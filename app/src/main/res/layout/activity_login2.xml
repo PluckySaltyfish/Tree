@@ -7,37 +7,55 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context="com.example.plucky.mytree.Login2Activity"
-    tools:ignore="ExtraText"
-    tools:layout_editor_absoluteY="25dp">
+    tools:ignore="ExtraText">
 
     <com.example.plucky.mytree.AvatarImageView
         android:id="@+id/imageView6"
         android:layout_width="92dp"
         android:layout_height="92dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="90dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/me"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="90dp"/>
+        tools:ignore="MissingConstraints"/>
 
     <TextView
         android:id="@+id/textbackground"
         android:layout_width="307dp"
         android:layout_height="188dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/testview_background"
         android:enabled="false"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="215dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintVertical_bias="0.136"/>
 
 
     <Button
         android:id="@+id/loginin"
         android:layout_width="143dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@null"
         android:text="登录"
-        tools:ignore="MissingConstraints,RtlCompat"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="347dp"/>
+        app:layout_constraintBottom_toBottomOf="@+id/textbackground"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text2"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints,RtlCompat"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -50,112 +68,195 @@
         android:id="@+id/forgetpassword"
         android:layout_width="143dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:background="@null"
         android:text="忘记密码"
-        tools:ignore="MissingConstraints,RtlCompat"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="347dp"/>
+        app:layout_constraintBottom_toBottomOf="@+id/textbackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toBottomOf="@+id/text2"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints,RtlCompat"/>
 
     <TextView
         android:id="@+id/text1"
         android:layout_width="277dp"
         android:layout_height="43dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
         android:background="@drawable/userbackground"
         android:enabled="false"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="233dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textbackground"/>
 
     <TextView
         android:id="@+id/text2"
         android:layout_width="277dp"
         android:layout_height="43dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/userbackground"
         android:enabled="false"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="287dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintVertical_bias="0.015"/>
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="32dp"
         android:layout_height="16dp"
-        app:srcCompat="@drawable/eye1"
-        tools:layout_editor_absoluteX="279dp"
-        tools:layout_editor_absoluteY="301dp"/>
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/text2"
+        app:layout_constraintEnd_toEndOf="@+id/text2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/text2"
+        app:layout_constraintTop_toTopOf="@+id/text2"
+        app:srcCompat="@drawable/eye1"/>
 
     <TextView
         android:id="@+id/service"
         android:layout_width="141dp"
         android:layout_height="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
         android:text="登录即代表阅读并同意"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="407dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.378"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textbackground"
+        app:layout_constraintVertical_bias="0.0"/>
 
     <TextView
         android:id="@+id/user1"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
         android:text="账号 "
-        tools:ignore="RtlCompat"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="246dp"/>
+        app:layout_constraintBottom_toBottomOf="@+id/text1"
+        app:layout_constraintEnd_toEndOf="@+id/text1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text1"
+        app:layout_constraintTop_toTopOf="@+id/text1"
+        tools:ignore="RtlCompat"/>
 
     <TextView
         android:id="@+id/password1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="密码"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="300dp"/>
+        app:layout_constraintBottom_toBottomOf="@+id/text2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="@+id/textbackground"
+        app:layout_constraintTop_toTopOf="@+id/text2"
+        app:layout_constraintVertical_bias="0.625"/>
 
     <EditText
         android:id="@+id/password"
         android:layout_width="188dp"
         android:layout_height="32dp"
-        android:background="@null"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="295dp"/>
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/text2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toEndOf="@+id/password1"
+        app:layout_constraintTop_toTopOf="@+id/text2"
+        app:layout_constraintVertical_bias="0.0"/>
 
     <EditText
         android:id="@+id/edituser"
         android:layout_width="189dp"
         android:layout_height="34dp"
-        android:background="@null"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:singleLine="false"
-        tools:ignore="RtlCompat"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="241dp"/>
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/text1"
+        app:layout_constraintEnd_toEndOf="@+id/text1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/user1"
+        app:layout_constraintTop_toTopOf="@+id/text1"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlCompat"/>
 
     <TextView
         android:id="@+id/servicecontinue"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
         android:autoLink="all"
         android:text="@string/service_rule"
-        tools:ignore="RtlCompat"
-        tools:layout_editor_absoluteX="226dp"
-        tools:layout_editor_absoluteY="407dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/service"
+        app:layout_constraintTop_toBottomOf="@+id/textbackground"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlCompat"/>
 
     <View
         android:id="@+id/view1"
         android:layout_width="308dp"
 
         android:layout_height="0.1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="337dp"/>
+        app:layout_constraintBottom_toTopOf="@+id/loginin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text2"/>
 
     <View
         android:id="@+id/view2"
         android:layout_width="0.1dp"
         android:layout_height="67dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="@id/textbackground"
 
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="336dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view1"/>
 
 
 </android.support.constraint.ConstraintLayout>
