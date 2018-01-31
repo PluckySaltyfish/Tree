@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="com.example.plucky.mytree.Login2Activity"
+    tools:ignore="ExtraText"
+    tools:layout_editor_absoluteY="25dp">
+
+    <com.example.plucky.mytree.AvatarImageView
+        android:id="@+id/imageView6"
+        android:layout_width="92dp"
+        android:layout_height="92dp"
+        android:src="@drawable/me"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="90dp"/>
+
+    <TextView
+        android:id="@+id/textbackground"
+        android:layout_width="307dp"
+        android:layout_height="188dp"
+        android:background="@drawable/testview_background"
+        android:enabled="false"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="215dp"/>
+
+
+    <Button
+        android:id="@+id/loginin"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:text="登录"
+        tools:ignore="MissingConstraints,RtlCompat"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="347dp"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="192dp"/>
+
+    <Button
+        android:id="@+id/forgetpassword"
+        android:layout_width="143dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:text="忘记密码"
+        tools:ignore="MissingConstraints,RtlCompat"
+        tools:layout_editor_absoluteX="168dp"
+        tools:layout_editor_absoluteY="347dp"/>
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="277dp"
+        android:layout_height="43dp"
+        android:background="@drawable/userbackground"
+        android:enabled="false"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="233dp"/>
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="277dp"
+        android:layout_height="43dp"
+        android:background="@drawable/userbackground"
+        android:enabled="false"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="287dp"/>
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="32dp"
+        android:layout_height="16dp"
+        app:srcCompat="@drawable/eye1"
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="301dp"/>
+
+    <TextView
+        android:id="@+id/service"
+        android:layout_width="141dp"
+        android:layout_height="16dp"
+        android:text="登录即代表阅读并同意"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="407dp"/>
+
+    <TextView
+        android:id="@+id/user1"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:text="账号 "
+        tools:ignore="RtlCompat"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="246dp"/>
+
+    <TextView
+        android:id="@+id/password1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="密码"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="300dp"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="188dp"
+        android:layout_height="32dp"
+        android:background="@null"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="295dp"/>
+
+    <EditText
+        android:id="@+id/edituser"
+        android:layout_width="189dp"
+        android:layout_height="34dp"
+        android:background="@null"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:singleLine="false"
+        tools:ignore="RtlCompat"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="241dp"/>
+
+    <TextView
+        android:id="@+id/servicecontinue"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:autoLink="all"
+        android:text="@string/service_rule"
+        tools:ignore="RtlCompat"
+        tools:layout_editor_absoluteX="226dp"
+        tools:layout_editor_absoluteY="407dp"/>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="308dp"
+
+        android:layout_height="0.1dp"
+        android:background="@android:color/darker_gray"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="337dp"/>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0.1dp"
+        android:layout_height="67dp"
+        android:background="@android:color/darker_gray"
+
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="336dp"/>
+
+
+</android.support.constraint.ConstraintLayout>

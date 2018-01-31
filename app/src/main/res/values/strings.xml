@@ -1,0 +1,33 @@
+
+<resources>
+    <string name="app_name">MyTree</string>
+    <string name="subtitle">Better Learning, Better Growth</string>
+    <string name="logo">logo</string>
+    <string name="signIn">sign in button</string>
+    <string name="signUp">sign up button</string>
+    <string name="tree_navigation">树</string>
+    <string name="me_navigation">个人</string>
+    <string name="task_navigation">任务</string>
+    <string name="achievement_navigation">成就</string>
+    <string name="dialog_title">添加任务</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    <string name="task_type">类型</string>
+    <string name="time_limit">限时(min)</string>
+    <string name="read_task">内置</string>
+    <string name="start_time">开始时间</string>
+    <string name="time_set">选择时间</string>
+    <string name="end_time">截止时间</string>
+    <string name="typical_task">普通</string>
+    <string name="minute">分钟</string>
+    <string name="repeat_time">重复</string>
+    <string name="select_repeat">选择重复</string>
+    <string name="task_content_hint">在此输入任务内容</string>
+    <string name="year">年</string>
+    <string name="dash">-</string>
+    <string name="pickup">筛选</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="service_rule"><u>服务条款</u></string>
+    <string name="click"><u>clicked</u></string>
+</resources>
