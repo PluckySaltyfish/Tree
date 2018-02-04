@@ -36,8 +36,8 @@ public class LoginActivity extends AppCompatActivity {
         sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent i = new Intent(LoginActivity.this, test_chart_activity.class);
-//                startActivity(i);
+                Intent i = new Intent(LoginActivity.this, Login2Activity.class);
+                startActivity(i);
             }
         });
 

@@ -5,10 +5,7 @@
     <string name="logo">logo</string>
     <string name="signIn">sign in button</string>
     <string name="signUp">sign up button</string>
-    <string name="tree_navigation">树</string>
-    <string name="me_navigation">个人</string>
-    <string name="task_navigation">任务</string>
-    <string name="achievement_navigation">成就</string>
+
     <string name="dialog_title">添加任务</string>
     <string name="cancel">取消</string>
     <string name="confirm">确认</string>

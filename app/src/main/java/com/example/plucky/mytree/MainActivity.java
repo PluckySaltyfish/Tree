@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         three = mTabLayout.getTabAt(2);
         four = mTabLayout.getTabAt(3);
 
-        //设置Tab的图标，假如不需要则把下面的代码删去
+
         one.setIcon(R.mipmap.ic_launcher);
         two.setIcon(R.mipmap.ic_launcher);
         three.setIcon(R.mipmap.ic_launcher);

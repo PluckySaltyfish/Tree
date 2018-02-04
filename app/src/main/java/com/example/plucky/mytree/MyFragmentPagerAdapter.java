@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] mTitles = new String[]{"首页", "发现", "进货单","我的"};
+    private String[] mTitles = new String[]{" ", " ", " "," "};
 
     public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -30,7 +30,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         return mTitles.length;
     }
 
-    //ViewPager与TabLayout绑定后，这里获取到PageTitle就是Tab的Text
+
     @Override
     public CharSequence getPageTitle(int position) {
         return mTitles[position];
