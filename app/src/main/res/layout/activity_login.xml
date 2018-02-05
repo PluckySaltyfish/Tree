@@ -62,40 +62,36 @@
         app:layout_constraintGuide_percent="0.5"/>
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline4"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.65"/>
+        app:layout_constraintGuide_percent="0.6"/>
 
-    <ImageButton
-        android:id="@+id/signIn"
+    <Button
+        android:id="@+id/SignIN"
         android:layout_width="220dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="0dp"
-        android:background="#00000000"
-        android:contentDescription="@string/signIn"
-        android:scaleType="centerCrop"
+        android:layout_height="50.666666dp"
+        android:background="@drawable/sign_in_button"
+        android:text="@string/signin"
+        android:textSize="8pt"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"/>
+
+    <Button
+        android:id="@+id/signup"
+        android:layout_width="220dp"
+        android:layout_height="50.66666dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/sign_up_button"
+        android:textColor="@color/colorPrimary"
+        android:text="@string/signup"
+        android:textSize="8pt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4"
-        app:srcCompat="@drawable/signin"/>
-
-    <ImageButton
-        android:id="@+id/signUp"
-        android:layout_width="220dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="24dp"
-        android:background="#00000000"
-        android:contentDescription="@string/signUp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/signIn"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/signup"/>
+        app:layout_constraintTop_toBottomOf="@id/SignIN"/>
 
 
 </android.support.constraint.ConstraintLayout>

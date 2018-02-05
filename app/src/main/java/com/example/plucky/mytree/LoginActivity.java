@@ -7,7 +7,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,8 +30,8 @@ public class LoginActivity extends AppCompatActivity {
         TextView textView = (TextView) findViewById(R.id.subtitle);
         textView.setTypeface(typeface);
 
-        ImageButton sign_in_button= (ImageButton)findViewById(R.id.signIn);
-        ImageButton sign_up_button= (ImageButton)findViewById(R.id.signUp);
+       Button sign_in_button= (Button)findViewById(R.id.SignIN);
+       Button sign_up_button= (Button)findViewById(R.id.signup);
 
         sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
