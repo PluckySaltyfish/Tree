@@ -12,5 +12,11 @@
     <color name="gray">#f2f2f2</color>
     <color name="line">#f3f3f3</color>
     <color name="hint_word">#b5b5b5</color>
+    <color name="task_bkg">#ebeff3</color>
+    <color name="shadow_start">#dee2e8</color>
+    <color name="red_circle">#E24e7a</color>
+    <color name="blue_circle">#69e8fb</color>
+    <color name="green_circle">#5fc68f</color>
+
 </resources>
 

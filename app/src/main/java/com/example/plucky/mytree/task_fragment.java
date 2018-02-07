@@ -37,7 +37,7 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
     private AddTaskDialog mdialog;
     private TaskAdapter adapter;
     private LinearLayoutManager layoutManager;
-    private Button TimeFilter;
+
     private DatePicker mDatePicker;
 
     @SuppressLint("ClickableViewAccessibility")
@@ -55,7 +55,7 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
         recyclerView =(RecyclerView)v.findViewById(R.id.recycler_view);
 
 
-        TimeFilter=(Button)v.findViewById(R.id.filter);
+
         SimpleDateFormat format =   new SimpleDateFormat( "yyyy-MM-dd" );
         Date date = new Date();
         String time=format.format(date);
@@ -66,27 +66,6 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
         month=Integer.parseInt(format.format(date));
         format=new SimpleDateFormat("dd");
         day=Integer.parseInt(format.format(date));
-        TimeFilter.setText(time);
-        TimeFilter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar c = Calendar.getInstance();
-                TimeSelector timeSelector = new TimeSelector(getActivity(), new TimeSelector.ResultHandler() {
-                    @Override
-                    public void handle(String time) {
-                        Toast.makeText(getActivity(), time, Toast.LENGTH_LONG).show();
-                    }
-                }, "2015-11-22 17:34", "2015-12-1 15:20");
-                timeSelector.setMode(TimeSelector.MODE.YMD);
-                timeSelector.show();
-
-            }
-
-
-
-
-
-        });
 
 
         mResourceFAB=(FloatingActionButton)v.findViewById(R.id.resource_fab);
@@ -158,15 +137,10 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
     private void getTasks(){
         for (int i = 0; i < 5 ; i=i+2) {
             Task task1 = new Task("我很帅很帅很帅我很帅" +
-                    "很帅很帅我很帅很帅很帅我很帅很帅很帅我很帅" +
-                    "很帅很帅我很帅很帅很帅我我很帅很帅很帅我很" +
-                    "帅很帅很帅我很帅很帅很帅我很帅很帅很帅我很" +
-                    "帅很帅很帅" +
-                    "很帅很帅很帅",i);
-            Task task2 = new Task("我很美很美我很美很美我很" +
+                    "很帅很帅我很帅很帅很帅我很帅很帅很帅我很帅",i);
+            Task task2 = new Task(
                     "美很美我很美很美我很美很美我很美很美我很美很美我很美" +
-                    "很美我很美很美我很美很" +
-                    "美我很美很美我很美很美我很美很美",i+1);
+                    "很美我很美很美我很美很" ,i+1);
             taskList.add(task1);
             taskList.add(task2);
         }

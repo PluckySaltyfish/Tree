@@ -11,31 +11,31 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolbar2"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="25dp"
         android:background="@color/blue"
         android:logo="@drawable/logo2"
-        android:layout_marginTop="25dp"
         android:padding="0dp"
         />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="52dp"
         android:background="@color/blue"
+
+        app:tabBackground="@drawable/selected"
 
         app:tabIndicatorColor="@color/white"
 
-        app:tabIndicatorHeight="5pt"
-
-        app:tabTextColor="@color/blue"
-
-        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorHeight="3pt"
 
         app:tabMode="fixed"
 
-        app:tabBackground="@drawable/selected"
+        app:tabSelectedTextColor="@color/white"
+
         app:tabTextAppearance="@style/MyTabLayout"
+        app:tabTextColor="@color/blue"
         />
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"

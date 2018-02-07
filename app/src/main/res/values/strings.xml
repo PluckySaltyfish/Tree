@@ -29,4 +29,5 @@
     <string name="click"><u>clicked</u></string>
     <string name="signup">注册</string>
     <string name="signin">登录</string>
+    <string name="date">请选择日期</string>
 </resources>
