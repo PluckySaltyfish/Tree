@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_green"
-    tools:context="com.example.plucky.mytree.Login2Activity"
+    android:background="@drawable/bkg2"
+    tools:context="com.example.plucky.mytree.Register"
     tools:ignore="ExtraText"
     tools:layout_editor_absoluteY="25dp">
 
