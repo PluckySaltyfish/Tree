@@ -30,4 +30,8 @@
     <string name="signup">注册</string>
     <string name="signin">登录</string>
     <string name="date">请选择日期</string>
+    <string name="add_task">add task</string>
+    <string name="delete_task">delete task</string>
+    <string name="filter">filter</string>
+    <string name="resource">resource</string>
 </resources>

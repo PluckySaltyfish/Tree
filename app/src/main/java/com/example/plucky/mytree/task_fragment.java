@@ -2,7 +2,6 @@
 package com.example.plucky.mytree;
 
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -14,29 +13,30 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Toast;
 
-import org.feezu.liuli.timeselector.TimeSelector;
+import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class task_fragment extends Fragment implements TaskAdapter.MyItemLongClickListener,TaskAdapter.MyItemClickListener {
+public class task_fragment extends Fragment implements TaskAdapter.MyItemLongClickListener,TaskAdapter.MyItemClickListener,FloatingToolbar.ItemClickListener {
     private List<Task> taskList = new ArrayList<>();
-    private FloatingActionButton mAddFAB,mResourceFAB,mTaskFAB;
     private int ListCount;
     private  RecyclerView recyclerView;
-    private AddTaskDialog mdialog;
+    private AddTaskDialog AddTaskDialog;
+    private TimeSelectorDialog mTimeSelectorDialog;
     private TaskAdapter adapter;
     private LinearLayoutManager layoutManager;
+    private FloatingActionButton mFab;
+    private FloatingToolbar mFloatingToolbar;
+    private Connection mConnection = new Connection();
 
     private DatePicker mDatePicker;
 
@@ -55,6 +55,13 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
         recyclerView =(RecyclerView)v.findViewById(R.id.recycler_view);
 
 
+        mFloatingToolbar=(FloatingToolbar)v.findViewById(R.id.floatingToolbar);
+        mFab=(FloatingActionButton)v.findViewById(R.id.add_fab);
+
+
+        mFloatingToolbar.attachFab(mFab);
+        mFloatingToolbar.attachRecyclerView(recyclerView);
+        mFloatingToolbar.setClickListener(this);
 
         SimpleDateFormat format =   new SimpleDateFormat( "yyyy-MM-dd" );
         Date date = new Date();
@@ -68,55 +75,13 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
         day=Integer.parseInt(format.format(date));
 
 
-        mResourceFAB=(FloatingActionButton)v.findViewById(R.id.resource_fab);
-        mTaskFAB=(FloatingActionButton)v.findViewById(R.id.task_fab);
-        mAddFAB=(FloatingActionButton)v.findViewById(R.id.add_fab);
-
-        mTaskFAB.setVisibility(View.INVISIBLE);
-        mResourceFAB.setVisibility(View.INVISIBLE);
-        mTaskFAB.setEnabled(false);
-        mResourceFAB.setEnabled(false);
 
 
         layoutManager= new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         UpdateUI();
 
-        mAddFAB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ListCount =adapter.getItemCount();
-                mTaskFAB.setVisibility(View.VISIBLE);
-                mResourceFAB.setVisibility(View.VISIBLE);
-                mTaskFAB.setEnabled(true);
-                mTaskFAB.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                         mdialog= new AddTaskDialog(getActivity(), R.style.dialog, new AddTaskDialog.OnCloseListener() {
 
-                            public void onClick(Dialog dialog, boolean confirm) {
-                                if(confirm){
-                                    Toast.makeText(getActivity(),"hahaha",Toast.LENGTH_SHORT).show();
-                                    taskList.add(mdialog.getTask());
-                                    UpdateUI();
-                                    dialog.dismiss();
-                                }
-
-                            }
-                        },ListCount);
-                        mdialog.show();
-                    }
-                });
-                mResourceFAB.setEnabled(true);
-                mResourceFAB.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(getActivity(),"resource",Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-        });
         return v;
     }
 
@@ -134,30 +99,23 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
     }
 
 
-    private void getTasks(){
-        for (int i = 0; i < 5 ; i=i+2) {
-            Task task1 = new Task("我很帅很帅很帅我很帅" +
-                    "很帅很帅我很帅很帅很帅我很帅很帅很帅我很帅",i);
-            Task task2 = new Task(
-                    "美很美我很美很美我很美很美我很美很美我很美很美我很美" +
-                    "很美我很美很美我很美很" ,i+1);
-            taskList.add(task1);
-            taskList.add(task2);
-        }
-    }
+
 
     private void UpdateUI(){
 
 
         if (adapter == null) {
-            getTasks();
+            taskList=mConnection.getTaskList();
             adapter = new TaskAdapter(taskList);
             adapter.setOnItemLongClickListener(this);
             adapter.setOnItemClickListener(this);
             recyclerView.setAdapter(adapter);
         } else {
+
+
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
+
         }
     }
 
@@ -209,10 +167,56 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
                 }
             }); dialog.show();
         }
-        mTaskFAB.setVisibility(View.INVISIBLE);
-        mResourceFAB.setVisibility(View.INVISIBLE);
-        mTaskFAB.setEnabled(false);
-        mResourceFAB.setEnabled(false);
+
+    }
+
+    @Override
+    public void onItemClick(MenuItem item) {
+        Log.d(TAG, "onItemClick: "+item.getItemId());
+        switch (item.getItemId()){
+
+            case R.id.add_task:
+                AddTaskDialog = new AddTaskDialog(getActivity(), R.style.dialog, new AddTaskDialog.OnCloseListener() {
+
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if(confirm){
+                            Toast.makeText(getActivity(),"hahaha",Toast.LENGTH_SHORT).show();
+                            taskList.add(AddTaskDialog.getTask());
+                            mConnection.AddTask(AddTaskDialog.getTask());
+                            UpdateUI();
+                            dialog.dismiss();
+                        }
+
+                    }
+                },ListCount);
+                AddTaskDialog.show();
+                break;
+            case R.id.resources:
+                break;
+
+            case R.id.filter:
+                mTimeSelectorDialog = new TimeSelectorDialog(getActivity(), R.style.dialog, new TimeSelectorDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm,int year,int month,int day) {
+                        if (confirm){
+                            taskList.clear();
+                            taskList.addAll(mConnection.getFilteredTask(year,month,day));
+                            UpdateUI();
+                            dialog.dismiss();
+                        }
+
+                    }
+                });
+
+                mTimeSelectorDialog.show();
+                break;
+
+        }
+    }
+
+    @Override
+    public void onItemLongClick(MenuItem item) {
+
     }
 }
 

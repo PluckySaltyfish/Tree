@@ -95,14 +95,14 @@ public class Login2Activity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if (mConnection.VerifyUser(UserId,mPasswordEditText.getText().toString())==1){
+                if (mConnection.VerifyUser(UserId,mPasswordEditText.getText().toString())==1){
                     Intent i = new Intent(Login2Activity.this, MainActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
-                //}
-                //else{
+                }
+                else{
                     //Alert Dialog show"登录失败:用户名或密码错误"
-                //}
+                }
             }
         });
 

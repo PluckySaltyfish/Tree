@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/add_task"
+        android:icon="@drawable/add"
+        android:title="@string/add_task"
+        app:showAsAction="ifRoom" />
+
+
+
+    <item
+        android:id="@+id/filter"
+        android:icon="@drawable/filter"
+        android:title="@string/filter"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/resources"
+        android:icon="@drawable/book"
+        android:title="@string/resource"
+        app:showAsAction="ifRoom" />
+
+
+</menu>

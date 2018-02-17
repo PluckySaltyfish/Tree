@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/task_layout"
-    android:background="@color/task_bkg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/task_bkg"
     android:orientation="vertical">
 
 
@@ -16,30 +16,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginBottom="48dp"
+        android:layout_marginTop="8dp"
         android:padding="0dp"
         android:src="@drawable/plus"
         app:backgroundTint="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="@+id/guideline10"/>
 
-
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/task_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:clickable="true"
-        android:visibility="invisible"
-        app:backgroundTint="@color/blue"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/add_fab"
-        app:layout_constraintRight_toLeftOf="@+id/guideline9"
-        app:srcCompat="@drawable/eye1"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline9"
@@ -48,27 +33,25 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/resource_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:clickable="true"
-        android:visibility="invisible"
-        app:backgroundTint="@color/blue"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/add_fab"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline9"
-        app:srcCompat="@drawable/eye2"/>
 
+    <com.github.rubensousa.floatingtoolbar.FloatingToolbar
+        android:id="@+id/floatingToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        app:floatingMenu="@menu/fab_menu"
+        android:background="@color/blue"
+        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline10"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="340dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline13"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +65,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9329806"/>
+        app:layout_constraintGuide_end="?attr/actionBarSize"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80"/>
 
 
 </android.support.constraint.ConstraintLayout>
