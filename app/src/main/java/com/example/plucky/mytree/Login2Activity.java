@@ -110,8 +110,8 @@ public class Login2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //start forgetpassword activity
-//                Intent i = new Intent(Login2Activity.this, xxx.class);
-//                startActivity(i);
+                Intent i = new Intent(Login2Activity.this, RetrievePassword1.class);
+                startActivity(i);
             }
         });
 
