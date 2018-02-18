@@ -1,12 +1,16 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.connection;
 
+
+import com.example.plucky.mytree.connection.LocalData;
+import com.example.plucky.mytree.fragment.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class Connection {
+public class RemoteData {
 
-    int VerifyUser(String username,String password){
+    private LocalData mLocalData = new LocalData();
+    public int VerifyUser(String username,String password){
 //        String t_password = "null";
 //        if (password.equals(t_password))return 1;
 //        return 0;
@@ -14,11 +18,11 @@ class Connection {
 
     }
 
-    void AddTask(Task task){
+    public void AddTask(Task task){
 
     }
 
-    List<Task> getTaskList(){
+    public List<Task> getTaskList(){
         List<Task> TaskList = new ArrayList<>();
         //get task list
         for (int i = 0; i < 5 ; i=i+2) {
@@ -33,7 +37,7 @@ class Connection {
         return TaskList;
     }
 
-    List<Task> getFilteredTask(int year, int month, int day){
+    public List<Task> getFilteredTask(int year, int month, int day){
         //获取year,month,day日期前的所有任务
 
         List<Task> TaskList = new ArrayList<>();
@@ -45,6 +49,16 @@ class Connection {
             TaskList.add(task2);
         }
         return TaskList;
+    }
+
+    public String getMailbox(){
+        //get mailbox
+        String mailbox="1828151761@qq.com";
+        return mailbox;
+    }
+
+    public void AlterPassword(String password){
+        //change user's password
     }
 
 }

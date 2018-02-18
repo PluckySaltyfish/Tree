@@ -1,10 +1,10 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.chart;
 
 
-class PairData {
+public class PairData {
     private int ValueX,ValueY;
 
-    PairData(int valueX, int valueY) {
+    public PairData(int valueX, int valueY) {
         ValueX = valueX;
         ValueY = valueY;
     }

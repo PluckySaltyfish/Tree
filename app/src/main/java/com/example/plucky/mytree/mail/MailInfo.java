@@ -1,4 +1,4 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.mail;
 
 import java.util.Properties;
 

@@ -1,4 +1,4 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.chart;
 
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;

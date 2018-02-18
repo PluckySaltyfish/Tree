@@ -1,8 +1,12 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.fragment.profile;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.plucky.mytree.fragment.achievement.achievement_fragment;
+import com.example.plucky.mytree.fragment.task.TaskFragment;
+import com.example.plucky.mytree.fragment.tree.TreeFragment;
 
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
@@ -16,13 +20,13 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 1) {
-            return new me_fragment();
+            return new ProfileFragment();
         } else if (position == 2) {
-            return new task_fragment();
+            return new TaskFragment();
         }else if (position==3){
             return new achievement_fragment();
         }
-        return new tree_fragment();
+        return new TreeFragment();
     }
 
     @Override

@@ -1,7 +1,10 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.mail;
 
 
 import android.support.annotation.NonNull;
+
+
+import com.example.plucky.mytree.connection.RemoteData;
 
 import java.io.File;
 
@@ -33,8 +36,13 @@ public class SendMailUtil {
         mailInfo.setPassword(FROM_PSW);// 您的邮箱密码
         mailInfo.setFromAddress(FROM_ADD); // 发送的邮箱
         mailInfo.setToAddress(toAdd); // 发到哪个邮件去
-        mailInfo.setSubject("Hello"); // 邮件主题
-        mailInfo.setContent("Android 测试"); // 邮件文本
+        mailInfo.setSubject("Tree密码找回"); // 邮件主题
+
+        String RandomPassword ="";
+
+        RemoteData mRemoteData = new RemoteData();
+        mRemoteData.AlterPassword(RandomPassword);
+        mailInfo.setContent("您的账户密码已经重置为 "+ RandomPassword +" ,请在24h内登录账号进行密码修改。"); // 邮件文本
         return mailInfo;
     }
 }

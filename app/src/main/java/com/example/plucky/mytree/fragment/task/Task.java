@@ -1,4 +1,4 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.fragment.task;
 
 
 import java.text.SimpleDateFormat;
@@ -57,7 +57,7 @@ public class Task implements Comparable{
         return type;
     }
 
-    void setType(int type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -68,12 +68,12 @@ public class Task implements Comparable{
     public void setTimeLimit(int timeLimit) {
         TimeLimit = timeLimit;
     }
-    Task(String content, int taskID) {
+    public Task(String content, int taskID) {
         this.content = content;
         this.taskID = taskID;
     }
 
-    Task(int taskID) {
+    public Task(int taskID) {
         this.taskID = taskID;
         this.content="";
     }
@@ -99,7 +99,7 @@ public class Task implements Comparable{
         return taskID;
     }
 
-    String TimeFormatter(Date date){
+    public String TimeFormatter(Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return dateFormat.format(date);
     }

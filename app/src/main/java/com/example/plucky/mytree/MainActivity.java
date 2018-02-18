@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.plucky.mytree.fragment.profile.MyFragmentPagerAdapter;
+
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout mTabLayout;

@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -21,16 +21,16 @@
         <activity android:name=".MainActivity">
 
         </activity>
-        <activity android:name=".Login2Activity">
+        <activity android:name=".login.Login2Activity">
 
         </activity>
-        <activity android:name=".RetrievePassword1">
+        <activity android:name=".login.RetrievePassword1">
 
         </activity>
-        <activity android:name=".RetrievePassword2">
+        <activity android:name=".login.RetrievePassword2">
 
         </activity>
-        <activity android:name=".Register">
+        <activity android:name=".login.Register">
 
         </activity>
 

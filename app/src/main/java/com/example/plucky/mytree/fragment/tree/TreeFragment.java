@@ -1,4 +1,4 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.fragment.tree;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class tree_fragment extends Fragment {
+import com.example.plucky.mytree.R;
+
+public class TreeFragment extends Fragment {
 
     @Nullable
     @Override

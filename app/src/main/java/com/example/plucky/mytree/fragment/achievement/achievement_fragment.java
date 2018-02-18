@@ -1,4 +1,4 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.fragment.achievement;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.fragment.achievement.Achievement;
 
 public class achievement_fragment extends Fragment {
 

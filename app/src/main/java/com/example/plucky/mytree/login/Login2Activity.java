@@ -1,4 +1,4 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.login;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,6 +13,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.plucky.mytree.AvatarImageView;
+import com.example.plucky.mytree.MainActivity;
+import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.fragment.profile.Users;
+import com.example.plucky.mytree.connection.RemoteData;
+
 public class Login2Activity extends AppCompatActivity {
 
     Users mUsers=new Users();
@@ -22,7 +28,7 @@ public class Login2Activity extends AppCompatActivity {
     private AvatarImageView mImageView;
     private ImageView mPasswordImageView;
     private EditText mPasswordEditText;
-    private Connection mConnection=new Connection();
+    private RemoteData mRemoteData =new RemoteData();
     private String UserId;
     private boolean isHideFirst = true;// 输入框密码是否是隐藏的，默认为true
 
@@ -95,7 +101,7 @@ public class Login2Activity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mConnection.VerifyUser(UserId,mPasswordEditText.getText().toString())==1){
+                if (mRemoteData.VerifyUser(UserId,mPasswordEditText.getText().toString())==1){
                     Intent i = new Intent(Login2Activity.this, MainActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);

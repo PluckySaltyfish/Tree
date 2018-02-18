@@ -1,31 +1,28 @@
 
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.dialog;
 
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.fragment.task.Task;
 
 import org.feezu.liuli.timeselector.TimeSelector;
 
 import java.util.Date;
 
-class AddTaskDialog  extends Dialog implements View.OnClickListener{
+public class AddTaskDialog  extends Dialog implements View.OnClickListener{
 
 
     private RadioGroup mRadioGroup;

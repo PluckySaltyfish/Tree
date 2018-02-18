@@ -1,4 +1,4 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.dialog;
 
 
 import android.app.Dialog;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.aigestudio.wheelpicker.widgets.WheelDatePicker;
+import com.example.plucky.mytree.R;
 
 import java.util.Calendar;
 
@@ -16,7 +17,7 @@ public class TimeSelectorDialog extends Dialog implements  View.OnClickListener{
     private Context mContext;
     private WheelDatePicker datePicker;
     private OnCloseListener listener;
-    TimeSelectorDialog(Context context, int themeResID, OnCloseListener listener){
+    public TimeSelectorDialog(Context context, int themeResID, OnCloseListener listener){
         super(context,themeResID);
         this.mContext=context;
         this.listener = listener;

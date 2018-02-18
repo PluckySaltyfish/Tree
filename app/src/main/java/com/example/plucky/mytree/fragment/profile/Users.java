@@ -1,4 +1,6 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.fragment.profile;
+
+import com.example.plucky.mytree.R;
 
 public class Users {
     private String User[]=new String[10];
@@ -8,7 +10,7 @@ public class Users {
     public Users(){
         User[0]="CXY";
         Password[0]="123456";
-        Image[0]=R.drawable.tree_one;
+        Image[0]= R.drawable.tree_one;
 
         User[1]="cxy";
         Password[1]="654321";

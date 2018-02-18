@@ -1,4 +1,4 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.fragment.profile;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -28,6 +28,10 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.plucky.mytree.AvatarImageView;
+import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.chart.SemiAnnualChart;
+import com.example.plucky.mytree.chart.PairData;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.io.File;
@@ -36,7 +40,7 @@ import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
 
-public class me_fragment extends Fragment {
+public class ProfileFragment extends Fragment {
     private AvatarImageView mImageView;
     private Button takePhoto;
     private Button chooseFromAlbum;

@@ -1,5 +1,5 @@
 
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.fragment.task;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -19,6 +19,12 @@ import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.connection.RemoteData;
+import com.example.plucky.mytree.dialog.AddTaskDialog;
+import com.example.plucky.mytree.dialog.TimeSelectorDialog;
+import com.example.plucky.mytree.fragment.task.Task;
+import com.example.plucky.mytree.fragment.task.TaskAdapter;
 import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
 
 import java.text.SimpleDateFormat;
@@ -26,24 +32,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class task_fragment extends Fragment implements TaskAdapter.MyItemLongClickListener,TaskAdapter.MyItemClickListener,FloatingToolbar.ItemClickListener {
+public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClickListener,TaskAdapter.MyItemClickListener,FloatingToolbar.ItemClickListener {
     private List<Task> taskList = new ArrayList<>();
     private int ListCount;
     private  RecyclerView recyclerView;
-    private AddTaskDialog AddTaskDialog;
+    private com.example.plucky.mytree.dialog.AddTaskDialog AddTaskDialog;
     private TimeSelectorDialog mTimeSelectorDialog;
     private TaskAdapter adapter;
     private LinearLayoutManager layoutManager;
     private FloatingActionButton mFab;
     private FloatingToolbar mFloatingToolbar;
-    private Connection mConnection = new Connection();
+    private RemoteData mRemoteData = new RemoteData();
 
     private DatePicker mDatePicker;
 
     @SuppressLint("ClickableViewAccessibility")
     @Nullable
 
-    private static final String TAG = "task_fragment";
+    private static final String TAG = "TaskFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -105,7 +111,7 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
 
 
         if (adapter == null) {
-            taskList=mConnection.getTaskList();
+            taskList= mRemoteData.getTaskList();
             adapter = new TaskAdapter(taskList);
             adapter.setOnItemLongClickListener(this);
             adapter.setOnItemClickListener(this);
@@ -182,7 +188,7 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
                         if(confirm){
                             Toast.makeText(getActivity(),"hahaha",Toast.LENGTH_SHORT).show();
                             taskList.add(AddTaskDialog.getTask());
-                            mConnection.AddTask(AddTaskDialog.getTask());
+                            mRemoteData.AddTask(AddTaskDialog.getTask());
                             UpdateUI();
                             dialog.dismiss();
                         }
@@ -200,7 +206,7 @@ public class task_fragment extends Fragment implements TaskAdapter.MyItemLongCli
                     public void onClick(Dialog dialog, boolean confirm,int year,int month,int day) {
                         if (confirm){
                             taskList.clear();
-                            taskList.addAll(mConnection.getFilteredTask(year,month,day));
+                            taskList.addAll(mRemoteData.getFilteredTask(year,month,day));
                             UpdateUI();
                             dialog.dismiss();
                         }

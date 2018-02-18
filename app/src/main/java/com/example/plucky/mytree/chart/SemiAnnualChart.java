@@ -1,8 +1,11 @@
-package com.example.plucky.mytree;
+package com.example.plucky.mytree.chart;
 
 
 import android.graphics.Color;
 
+import com.example.plucky.mytree.chart.BaseChartSettings;
+import com.example.plucky.mytree.chart.MyFormatter;
+import com.example.plucky.mytree.chart.PairData;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
