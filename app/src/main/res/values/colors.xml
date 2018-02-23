@@ -17,6 +17,7 @@
     <color name="red_circle">#E24e7a</color>
     <color name="blue_circle">#69e8fb</color>
     <color name="green_circle">#5fc68f</color>
+    <color name="dialog_text">#000000</color>
 
 </resources>
 

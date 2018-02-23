@@ -28,7 +28,7 @@ public class Login2Activity extends AppCompatActivity {
     private AvatarImageView mImageView;
     private ImageView mPasswordImageView;
     private EditText mPasswordEditText;
-    private RemoteData mRemoteData =new RemoteData();
+    private RemoteData mRemoteData =new RemoteData(Login2Activity.this);
     private String UserId;
     private boolean isHideFirst = true;// 输入框密码是否是隐藏的，默认为true
 
@@ -101,7 +101,7 @@ public class Login2Activity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mRemoteData.VerifyUser(UserId,mPasswordEditText.getText().toString())==1){
+                if (mRemoteData.verifyUser(UserId,mPasswordEditText.getText().toString())==1){
                     Intent i = new Intent(Login2Activity.this, MainActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);

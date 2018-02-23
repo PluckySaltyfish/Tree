@@ -23,8 +23,6 @@ import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.dialog.AddTaskDialog;
 import com.example.plucky.mytree.dialog.TimeSelectorDialog;
-import com.example.plucky.mytree.fragment.task.Task;
-import com.example.plucky.mytree.fragment.task.TaskAdapter;
 import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
 
 import java.text.SimpleDateFormat;
@@ -42,7 +40,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     private LinearLayoutManager layoutManager;
     private FloatingActionButton mFab;
     private FloatingToolbar mFloatingToolbar;
-    private RemoteData mRemoteData = new RemoteData();
+    private RemoteData mRemoteData = new RemoteData(getActivity());
 
     private DatePicker mDatePicker;
 
@@ -188,7 +186,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                         if(confirm){
                             Toast.makeText(getActivity(),"hahaha",Toast.LENGTH_SHORT).show();
                             taskList.add(AddTaskDialog.getTask());
-                            mRemoteData.AddTask(AddTaskDialog.getTask());
+                            mRemoteData.addTask(AddTaskDialog.getTask());
                             UpdateUI();
                             dialog.dismiss();
                         }

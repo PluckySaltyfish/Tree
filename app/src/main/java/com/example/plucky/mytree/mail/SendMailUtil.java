@@ -15,8 +15,8 @@ public class SendMailUtil {
     private static final String FROM_ADD = "1828151761@qq.com"; //发送方邮箱
     private static final String FROM_PSW = "Bowtiesarecool11";//发送方邮箱授权码
 
-    public static void send(String toAdd){
-        final MailInfo mailInfo = creatMail(toAdd);
+    public static void send(String toAdd,String title,String content){
+        final MailInfo mailInfo = creatMail(toAdd,title,content);
         final MailSender sms = new MailSender();
         new Thread(new Runnable() {
             @Override
@@ -27,7 +27,7 @@ public class SendMailUtil {
     }
 
     @NonNull
-    private static MailInfo creatMail(String toAdd) {
+    private static MailInfo creatMail(String toAdd,String title,String content) {
         final MailInfo mailInfo = new MailInfo();
         mailInfo.setMailServerHost(HOST);
         mailInfo.setMailServerPort(PORT);
@@ -36,13 +36,8 @@ public class SendMailUtil {
         mailInfo.setPassword(FROM_PSW);// 您的邮箱密码
         mailInfo.setFromAddress(FROM_ADD); // 发送的邮箱
         mailInfo.setToAddress(toAdd); // 发到哪个邮件去
-        mailInfo.setSubject("Tree密码找回"); // 邮件主题
-
-        String RandomPassword ="";
-
-        RemoteData mRemoteData = new RemoteData();
-        mRemoteData.AlterPassword(RandomPassword);
-        mailInfo.setContent("您的账户密码已经重置为 "+ RandomPassword +" ,请在24h内登录账号进行密码修改。"); // 邮件文本
+        mailInfo.setSubject(title); // 邮件主题
+        mailInfo.setContent(content); // 邮件文本
         return mailInfo;
     }
 }

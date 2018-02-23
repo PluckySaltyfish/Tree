@@ -34,4 +34,7 @@
     <string name="delete_task">delete task</string>
     <string name="filter">filter</string>
     <string name="resource">resource</string>
+    <string name="title">标题</string>
+    <string name="content">内容</string>
+    <string name="hint_icon">hint icon</string>
 </resources>

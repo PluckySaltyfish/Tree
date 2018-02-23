@@ -13,12 +13,16 @@
 
     <Button
         android:id="@+id/takephoto"
-        android:layout_width="362dp"
-        android:layout_height="72dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:color="#DCDCDC"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/register_button"
         android:text="拍照选取"
+        android:textSize="18sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/frompicture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,13 +31,15 @@
 
     <Button
         android:id="@+id/frompicture"
-        android:layout_width="362dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="2dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:color="#DCDCDC"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+
+        android:background="@drawable/register_button"
         android:text="从相册选取"
+        android:textSize="18sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,16 +48,16 @@
     <TextView
         android:id="@+id/background"
         android:layout_width="372dp"
-        android:layout_height="148dp"
+        android:layout_height="150dp"
 
         android:layout_marginTop="393dp"
         android:background="@color/white"
         android:enabled="false"
+        android:gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:gravity="bottom"/>
+        app:layout_constraintVertical_bias="1.0"/>
 
 </android.support.constraint.ConstraintLayout>

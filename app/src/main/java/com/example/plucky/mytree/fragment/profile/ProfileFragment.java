@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment {
         mImageView=(AvatarImageView) vv.findViewById(R.id.head_icon);
         mImageView.setImageResource(R.drawable.me);
 
-        final View contentView = inflater.inflate(R.layout.popupwindow,container,false);
+        final View contentView = inflater.inflate(R.layout.pop_up_window,container,false);
         final PopupWindow popupWindow = new PopupWindow(contentView, RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
 
         popupWindow.setOutsideTouchable(false);

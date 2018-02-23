@@ -1,6 +1,8 @@
 package com.example.plucky.mytree.connection;
 
 
+import android.content.Context;
+
 import com.example.plucky.mytree.connection.LocalData;
 import com.example.plucky.mytree.fragment.task.Task;
 
@@ -9,8 +11,15 @@ import java.util.List;
 
 public class RemoteData {
 
-    private LocalData mLocalData = new LocalData();
-    public int VerifyUser(String username,String password){
+    private Context mContext;
+
+    public RemoteData(Context mContext){
+        mContext=mContext;
+    }
+
+    private LocalData mLocalData = new LocalData(mContext,"tree",null,1);
+
+    public int verifyUser(String username, String password){
 //        String t_password = "null";
 //        if (password.equals(t_password))return 1;
 //        return 0;
@@ -18,7 +27,7 @@ public class RemoteData {
 
     }
 
-    public void AddTask(Task task){
+    public void addTask(Task task){
 
     }
 
@@ -57,8 +66,12 @@ public class RemoteData {
         return mailbox;
     }
 
-    public void AlterPassword(String password){
+    public void alterPassword(String password){
         //change user's password
+    }
+
+    public void addUser(String username,String password,String mailbox){
+        //add user
     }
 
 }

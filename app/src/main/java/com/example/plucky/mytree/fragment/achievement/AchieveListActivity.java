@@ -14,11 +14,11 @@ public class AchieveListActivity extends FragmentActivity {
         setContentView(R.layout.activity_fragment);
 
         FragmentManager fm=getSupportFragmentManager();
-        Fragment fragment =fm.findFragmentById(R.id.frament_container);
+        Fragment fragment =fm.findFragmentById(R.id.fragment_container);
 
         if(fragment==null){
             fragment =new achievement_fragment();
-            fm.beginTransaction().add(R.id.frament_container,fragment).commit();
+            fm.beginTransaction().add(R.id.fragment_container,fragment).commit();
         }
 
     }

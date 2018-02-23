@@ -10,17 +10,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.connection.RemoteData;
 
-/**
- * Created by Administrator on 2018/2/8.
- */
+
 
 public class Register extends AppCompatActivity {
 
     private  EditText psw;
     private  EditText vpsw;
+    private EditText username,mailbox;
     private Button buttonreg;
 
+    private RemoteData mRemoteData=new RemoteData(Register.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,8 @@ public class Register extends AppCompatActivity {
 
         psw=(EditText) findViewById(R.id.editpsw);
         vpsw=(EditText) findViewById(R.id.verifypd);
+        username=(EditText)findViewById(R.id.edituser);
+        mailbox=(EditText)findViewById(R.id.editmail);
 
 
         buttonreg=(Button) findViewById(R.id.buttonregister);
@@ -44,12 +47,12 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(vpsw.getText().toString().equals(psw.getText().toString())){
+                    mRemoteData.addUser(username.getText().toString(),psw.getText().toString(),mailbox.getText().toString());
                     Toast.makeText(Register.this, "password confirmed", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(Register.this, "password mismatch", Toast.LENGTH_SHORT).show();
                 }
-                //SendMailUtil.send("1828151761@qq.com");
             }
         });
     }

@@ -55,7 +55,7 @@
         app:layout_constraintBottom_toTopOf="@+id/status_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/blue_cirle"/>
+        app:srcCompat="@drawable/blue_circle"/>
 
 
 </android.support.constraint.ConstraintLayout>
