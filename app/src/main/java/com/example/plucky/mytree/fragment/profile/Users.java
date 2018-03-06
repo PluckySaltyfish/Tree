@@ -64,6 +64,5 @@ public class Users {
         if(flag==-1) return R.drawable.me;
         else return Image[flag];
 
-
     }
 }

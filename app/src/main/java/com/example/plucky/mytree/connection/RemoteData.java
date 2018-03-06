@@ -3,7 +3,6 @@ package com.example.plucky.mytree.connection;
 
 import android.content.Context;
 
-import com.example.plucky.mytree.connection.LocalData;
 import com.example.plucky.mytree.fragment.task.Task;
 
 import java.util.ArrayList;
