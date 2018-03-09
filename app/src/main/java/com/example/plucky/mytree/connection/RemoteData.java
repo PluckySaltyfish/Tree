@@ -16,7 +16,6 @@ public class RemoteData {
         mContext=mContext;
     }
 
-    private LocalData mLocalData = new LocalData(mContext,"tree",null,1);
 
     public int verifyUser(String username, String password){
 //        String t_password = "null";

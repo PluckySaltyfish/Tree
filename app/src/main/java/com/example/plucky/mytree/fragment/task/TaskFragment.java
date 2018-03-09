@@ -3,7 +3,10 @@ package com.example.plucky.mytree.fragment.task;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.KeyguardManager;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +21,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.Toast;
+
+import com.example.plucky.mytree.LockScreen.LockActivity;
+import com.example.plucky.mytree.LockScreen.LockService;
 
 import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.connection.RemoteData;
@@ -43,6 +49,9 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     private RemoteData mRemoteData = new RemoteData(getActivity());
 
     private DatePicker mDatePicker;
+
+    public KeyguardManager keyguardManager = null;
+    public KeyguardManager.KeyguardLock keyguardLock = null;
 
     @SuppressLint("ClickableViewAccessibility")
     @Nullable
@@ -161,6 +170,17 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     //锁屏倒计时
+                    String minute="1";
+                    String second="30";
+                    initKeyguardManager();
+
+                    Intent i=new Intent(getActivity(),LockActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putString("minutes",minute);
+                    bundle.putString("seconds",second);
+                    bundle.putString("flagg","0");
+                    i.putExtras(bundle);
+                    startActivity(i);
                 }
             });
             dialog.setNegativeButton("取消", new DialogInterface.
@@ -221,6 +241,16 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     @Override
     public void onItemLongClick(MenuItem item) {
 
+    }
+
+    //初始化和取消系统锁屏，启动服务
+    private void initKeyguardManager() {
+        keyguardManager =
+                (KeyguardManager)getActivity().getSystemService(Context.KEYGUARD_SERVICE);
+        keyguardLock = keyguardManager.newKeyguardLock("");
+
+        keyguardLock.disableKeyguard();//取消系统锁屏
+        getActivity().startService(new Intent(getActivity(), LockService.class));
     }
 }
 
