@@ -6,8 +6,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.plucky.mytree.local.UserSchema.UserTable;
 import com.example.plucky.mytree.local.UserHelper;
+import com.example.plucky.mytree.local.UserSchema.UserTable;
 
 import java.util.ArrayList;
 import java.util.List;
