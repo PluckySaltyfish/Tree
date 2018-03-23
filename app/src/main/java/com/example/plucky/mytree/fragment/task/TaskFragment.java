@@ -40,6 +40,8 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     private List<Task> taskList = new ArrayList<>();
     private int ListCount;
     private  RecyclerView recyclerView;
+    private int currentYear,currentMonth,currentDay;
+
     private com.example.plucky.mytree.dialog.AddTaskDialog AddTaskDialog;
     private TimeSelectorDialog mTimeSelectorDialog;
     private TaskAdapter adapter;
@@ -65,6 +67,17 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         Log.i(TAG, "onCreateView");
         View v = inflater.inflate(R.layout.task_fragment, container, false);
 
+        SimpleDateFormat format =   new SimpleDateFormat( "yyyy-MM-dd" );
+        Date date = new Date();
+        String time=format.format(date);
+        format=new SimpleDateFormat("yyyy");
+        currentYear=Integer.parseInt(format.format(date));
+        format=new SimpleDateFormat("MM");
+        currentMonth=Integer.parseInt(format.format(date));
+        format=new SimpleDateFormat("dd");
+        currentDay=Integer.parseInt(format.format(date));
+
+
         recyclerView =(RecyclerView)v.findViewById(R.id.recycler_view);
 
 
@@ -76,16 +89,6 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         mFloatingToolbar.attachRecyclerView(recyclerView);
         mFloatingToolbar.setClickListener(this);
 
-        SimpleDateFormat format =   new SimpleDateFormat( "yyyy-MM-dd" );
-        Date date = new Date();
-        String time=format.format(date);
-        final int year,month,day;
-        format=new SimpleDateFormat("yyyy");
-        year=Integer.parseInt(format.format(date));
-        format=new SimpleDateFormat("MM");
-        month=Integer.parseInt(format.format(date));
-        format=new SimpleDateFormat("dd");
-        day=Integer.parseInt(format.format(date));
 
 
 
@@ -118,7 +121,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
 
 
         if (adapter == null) {
-            taskList= mRemoteData.getTaskList();
+            taskList= mRemoteData.getTaskList(currentYear,currentMonth,currentDay);
             adapter = new TaskAdapter(taskList);
             adapter.setOnItemLongClickListener(this);
             adapter.setOnItemClickListener(this);
@@ -145,6 +148,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
             public void onClick(DialogInterface dialog, int which) {
                 taskList.remove(position);
                 adapter.notifyDataSetChanged();
+                mRemoteData.deleteTask(taskList.get(position).getTaskID());
             }
         });
         dialog.setNegativeButton("取消", new DialogInterface.
@@ -160,7 +164,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     public void onItemClick(View view, int position) {
         Toast.makeText(getActivity(),"Click "+position,Toast.LENGTH_SHORT).show();
         Task mTask = taskList.get(position);
-        if (mTask.getTimeLimit()==0){
+        if (mTask.getTimeLimit()!=0){
             AlertDialog.Builder dialog = new AlertDialog.Builder (getActivity());
             dialog.setTitle("开始");
             dialog.setMessage("要开始此任务吗？");
@@ -169,6 +173,8 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                     OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+
+
                     //锁屏倒计时
                     String minute="1";
                     String second="30";
@@ -183,6 +189,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                     startActivity(i);
                 }
             });
+
             dialog.setNegativeButton("取消", new DialogInterface.
                     OnClickListener() {
                 @Override
@@ -224,7 +231,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                     public void onClick(Dialog dialog, boolean confirm,int year,int month,int day) {
                         if (confirm){
                             taskList.clear();
-                            taskList.addAll(mRemoteData.getFilteredTask(year,month,day));
+                            taskList.addAll(mRemoteData.getTaskList(year,month,day));
                             UpdateUI();
                             dialog.dismiss();
                         }

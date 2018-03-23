@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.plucky.mytree.R;
@@ -20,6 +21,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener,View.OnClickListener {
         TextView status;
         TextView task_content;
+        ImageView status_cirle;
 
         MyItemLongClickListener mLongClickListener;
         MyItemClickListener mItemClickListener;
@@ -28,6 +30,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             super(view);
             status = (TextView) view.findViewById(R.id.status_text);
             task_content = (TextView) view.findViewById(R.id.taskText);
+            status_cirle = (ImageView)view.findViewById(R.id.status_circle);
 
             this.mLongClickListener = mLongClickListener;
             this.mItemClickListener = myItemClickListener;
@@ -69,6 +72,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Task task = mTasksList.get(position);
         //holder.status.setText(task.getTaskID());
+        int status = task.getStatus();
+        if (status==0){
+            holder.status_cirle.setImageResource(R.drawable.yellow_circle);
+        }else if(status==1){
+            holder.status_cirle.setImageResource(R.drawable.blue_circle);
+        }else if (status==2){
+            holder.status_cirle.setImageResource(R.drawable.green_circle);
+        }else{
+            holder.status_cirle.setImageResource(R.drawable.red_circle);
+        }
         holder.task_content.setText(task.getContent());
     }
     @Override

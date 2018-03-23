@@ -14,10 +14,10 @@ public class Task implements Comparable{
     //0--限时
     //1--不限时
     private int status=0;
-    //0--未开始
-    //1--进行中
-    //2--已完成
-    //3--未完成
+    //0--未开始 yellow
+    //1--进行中 blue
+    //2--已完成 green
+    //3--未完成 red
     private String StartTime,EndTime;
 
     public int getStatus() {
