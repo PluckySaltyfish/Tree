@@ -9,8 +9,8 @@ public class Task implements Comparable{
     private int taskID;
     private int type;
     //0--普通任务
-    //1--内之任务
-    private int TimeLimit;
+    //1--内置任务
+    private int TimeLimit=120;
     //0--限时
     //1--不限时
     private int status=0;

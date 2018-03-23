@@ -14,13 +14,18 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.fragment.task.Task;
 
+import org.angmarch.views.NiceSpinner;
 import org.feezu.liuli.timeselector.TimeSelector;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class AddTaskDialog  extends Dialog implements View.OnClickListener{
 
@@ -30,7 +35,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
     private TextView ConfirmTxt;
     private TextView CancelTxt;
     private EditText TaskContent;
-    private Spinner TimeLimit;
+    private NiceSpinner TimeSpinner;
     private Context mContext;
     private OnCloseListener listener;
     private Task mTask;
@@ -68,42 +73,40 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
 
     private void initView(){
         mTask = new Task(count);
-        TimeLimit=(Spinner)findViewById(R.id.time_limit);
+        TimeSpinner =(NiceSpinner)findViewById(R.id.time_limit);
         TaskContent=(EditText)findViewById(R.id.task_content);
-        adapter = ArrayAdapter.createFromResource(mContext, R.array.time, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        List<String> data = new LinkedList<>(Arrays.asList("120","60", "40", "30", "20","不限时"));
+        TimeSpinner.attachDataSource(data);
 
-        //将adapter2 添加到spinner中
-        TimeLimit.setAdapter(adapter);
-        TimeLimit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        TimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 switch(position){
                     case 0:
-                        mTask.setTimeLimit(60);
+                        mTask.setTimeLimit(120);
                         break;
                     case 1:
-                        mTask.setTimeLimit(40);
+                        mTask.setTimeLimit(60);
                         break;
                     case 2:
-                        mTask.setTimeLimit(30);
+                        mTask.setTimeLimit(40);
                         break;
                     case 3:
-                        mTask.setTimeLimit(20);
+                        mTask.setTimeLimit(30);
                         break;
                     case 4:
-                        mTask.setTimeLimit(10);
+                        mTask.setTimeLimit(20);
                         break;
                     case 5:
                         mTask.setTimeLimit(0);
+
 
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                mTask.setTimeLimit(60);
+                mTask.setTimeLimit(120);
             }
         });
 
@@ -170,7 +173,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
                         TimeSelector1.setText(time);
                         mTask.setStartTime(time);
                     }
-                }, now, "2020-12-12 15:20");
+                }, now, "2032-12-12 15:20");
                 timeSelector.show();
                 break;
             case R.id.time_select2:
@@ -184,7 +187,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
                         TimeSelector2.setText(time);
                         mTask.setEndTime(time);
                     }
-                }, now, "2020-12-12 15:20");
+                }, now, "2032-12-12 15:20");
                 timeSelector2.show();
                 break;
 

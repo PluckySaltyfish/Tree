@@ -204,7 +204,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
 
                     public void onClick(Dialog dialog, boolean confirm) {
                         if(confirm){
-                            Toast.makeText(getActivity(),"hahaha",Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, AddTaskDialog.getTask().toString());
                             taskList.add(AddTaskDialog.getTask());
                             mRemoteData.addTask(AddTaskDialog.getTask());
                             UpdateUI();
