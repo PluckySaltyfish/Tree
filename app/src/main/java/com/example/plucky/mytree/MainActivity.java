@@ -65,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
         four = mTabLayout.getTabAt(3);
 
 
-        one.setIcon(R.mipmap.ic_launcher);
-        two.setIcon(R.mipmap.ic_launcher);
-        three.setIcon(R.mipmap.ic_launcher);
-        four.setIcon(R.mipmap.ic_launcher);
+        one.setIcon(R.drawable.tree);
+        two.setIcon(R.drawable.profile);
+        three.setIcon(R.drawable.task);
+        four.setIcon(R.drawable.crown);
 
         mToolbar = (Toolbar)findViewById(R.id.main_toolbar2);
         setSupportActionBar(mToolbar);

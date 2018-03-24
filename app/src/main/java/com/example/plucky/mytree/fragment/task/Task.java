@@ -9,15 +9,15 @@ public class Task implements Comparable{
     private int taskID;
     private int type;
     //0--普通任务
-    //1--内之任务
-    private int TimeLimit;
+    //1--内置任务
+    private int TimeLimit=120;
     //0--限时
     //1--不限时
     private int status=0;
-    //0--未开始
-    //1--进行中
-    //2--已完成
-    //3--未完成
+    //0--未开始 yellow
+    //1--进行中 blue
+    //2--已完成 green
+    //3--未完成 red
     private String StartTime,EndTime;
 
     public int getStatus() {
@@ -71,11 +71,13 @@ public class Task implements Comparable{
     public Task(String content, int taskID) {
         this.content = content;
         this.taskID = taskID;
+        this.EndTime ="2017-11-08 08:11:50";
     }
 
     public Task(int taskID) {
         this.taskID = taskID;
         this.content="";
+        this.EndTime = "2017-11-08 08:11:50";
     }
 
     @Override

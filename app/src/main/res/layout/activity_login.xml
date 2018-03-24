@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bkg"
     tools:context="com.example.plucky.mytree.login.LoginActivity">
 
     <ImageView
@@ -74,7 +74,7 @@
         android:layout_height="50.666666dp"
         android:background="@drawable/sign_in_button"
         android:text="@string/signin"
-        android:textSize="8pt"
+        android:textSize="16sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,7 @@
         android:background="@drawable/sign_up_button"
         android:textColor="@color/colorPrimary"
         android:text="@string/signup"
-        android:textSize="8pt"
+        android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/SignIN"/>

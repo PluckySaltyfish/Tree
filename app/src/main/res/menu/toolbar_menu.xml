@@ -5,12 +5,12 @@
       tools:context=".MainActivity">
     <item
         android:id="@+id/logo"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/notification"
         android:title=""
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/logo2"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/settings"
         android:title=""
         app:showAsAction="ifRoom"/>
 
