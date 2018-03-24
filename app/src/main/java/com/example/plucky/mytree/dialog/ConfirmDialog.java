@@ -15,8 +15,15 @@ public class ConfirmDialog extends Dialog implements View.OnClickListener{
     private String sTitle,sContent,sCancel,sConfirm;
     private int resID;
     private Context mContext;
+    private int count;
     private OnCloseListener listener;
     public ConfirmDialog(Context context, int themeResID, OnCloseListener listener){
+        super(context,themeResID);
+        this.listener = listener;
+        this.mContext = context;
+    }
+
+    public ConfirmDialog(Context context, int themeResID, OnCloseListener listener,int count){
         super(context,themeResID);
         this.listener = listener;
         this.mContext = context;

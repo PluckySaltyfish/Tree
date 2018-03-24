@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4bcbe0</color>
+    <color name="colorPrimary">#6fc9dd</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#4bcbe0</color>
+    <color name="colorAccent">#6fc9dd</color>
     <color name="white">#FFFFFF</color>
-    <color name="blue">#4bcbe0</color>
+    <color name="blue">#6fc9dd</color>
     <color name="dark_green">#226b67</color>
     <color name="black">#000000</color>
     <color name="light_gray">#F0F0F0</color>
@@ -15,7 +15,7 @@
     <color name="task_bkg">#ebeff3</color>
     <color name="shadow_start">#dee2e8</color>
     <color name="red_circle">#E24e7a</color>
-    <color name="blue_circle">#69e8fb</color>
+    <color name="blue_circle">#6fc9dd</color>
     <color name="green_circle">#5fc68f</color>
     <color name="dialog_text">#226b67</color>
     <color name="dialog_content">#000000</color>

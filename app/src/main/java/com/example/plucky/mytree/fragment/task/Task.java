@@ -71,11 +71,13 @@ public class Task implements Comparable{
     public Task(String content, int taskID) {
         this.content = content;
         this.taskID = taskID;
+        this.EndTime ="2017-11-08 08:11:50";
     }
 
     public Task(int taskID) {
         this.taskID = taskID;
         this.content="";
+        this.EndTime = "2017-11-08 08:11:50";
     }
 
     @Override

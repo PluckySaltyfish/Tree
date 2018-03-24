@@ -29,7 +29,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         ViewHolder(View view,MyItemLongClickListener mLongClickListener,MyItemClickListener myItemClickListener) {
             super(view);
             status = (TextView) view.findViewById(R.id.status_text);
-            task_content = (TextView) view.findViewById(R.id.taskText);
+            task_content = (TextView) view.findViewById(R.id.textView3);
             status_cirle = (ImageView)view.findViewById(R.id.status_circle);
 
             this.mLongClickListener = mLongClickListener;
@@ -63,7 +63,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.task_item, null);
+        View view = LayoutInflater.from(parent.getContext()) .inflate(R.layout.task_item, parent,false);
         ViewHolder holder = new ViewHolder(view,mLongClickListener, mItemClickListener);
 
         return holder;
@@ -71,7 +71,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Task task = mTasksList.get(position);
-        //holder.status.setText(task.getTaskID());
+        holder.status.setText(task.getEndTime());
         int status = task.getStatus();
         if (status==0){
             holder.status_cirle.setImageResource(R.drawable.yellow_circle);
