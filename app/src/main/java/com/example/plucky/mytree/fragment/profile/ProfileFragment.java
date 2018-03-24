@@ -18,6 +18,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -40,6 +41,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
 
 public class ProfileFragment extends Fragment {
     private AvatarImageView mImageView;
@@ -74,7 +76,7 @@ public class ProfileFragment extends Fragment {
                 mImageView.setImageResource(R.drawable.me);
             }
             else{
-                Bitmap bitmap= BitmapFactory.decodeFile(isimage);
+                Bitmap bitmap=BitmapFactory.decodeFile(isimage);
                 mImageView.setImageBitmap(bitmap);
             }
 
@@ -178,8 +180,9 @@ public class ProfileFragment extends Fragment {
             case TAKE_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
-                        String imagePath=null;
-                        imagePath = imageUri.getPath();
+                        String imagePath="/storage/emulated/0/Android/data/com.example.plucky.mytree/cache/output_image.jpg";
+                        //imagePath = imageUri.getPath();
+                        //Log.v(TAG,"take photo"+imagePath);
                         User UserOnline=SearchUserOnline();
                         UserOnline.setPhoto(imagePath);
                         mUsersManager.updateUser(UserOnline);
@@ -228,6 +231,7 @@ public class ProfileFragment extends Fragment {
         }
         User UserOnline=SearchUserOnline();
         UserOnline.setPhoto(imagePath);
+        Log.v(TAG,"from album"+imagePath);
         mUsersManager.updateUser(UserOnline);
         displayImage(imagePath);
     }
@@ -237,6 +241,7 @@ public class ProfileFragment extends Fragment {
         String imagePath = getImagePath(uri, null);
         User UserOnline=SearchUserOnline();
         UserOnline.setPhoto(imagePath);
+        Log.v(TAG,"from album"+imagePath);
         mUsersManager.updateUser(UserOnline);
         displayImage(imagePath);
     }
