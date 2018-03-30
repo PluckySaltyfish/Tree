@@ -1,6 +1,7 @@
 
 package com.example.plucky.mytree;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -84,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.logo2:
                         Toast.makeText(MainActivity.this, "logo2", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+                        startActivity(i);
                         break;
                 }
                 return true;

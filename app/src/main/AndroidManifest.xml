@@ -64,6 +64,11 @@
                 />
         </provider>
 
+        <activity android:name=".SettingsActivity">
+
+
+        </activity>
+
     </application>
 
 

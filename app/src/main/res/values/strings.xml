@@ -37,4 +37,24 @@
     <string name="title">标题</string>
     <string name="content">内容</string>
     <string name="hint_icon">hint icon</string>
+
+    <string name="topColumn">topcolumn</string>
+    <string name="topImage">topimage</string>
+    <string name="taskImage">taskimage</string>
+    <string name="texttimeImage">texttimeimage</string>
+    <string name="updateImage">updateimage</string>
+    <string name="titleUserSetting">"      账号设置"</string>
+    <string name="namechange">"     用户名称更改"</string>
+    <string name="passwordchange">"     用户密码修改"</string>
+    <string name="portraitchange">"     用户头像更改"</string>
+    <string name="titleMessageNotification">"      消息提醒"</string>
+    <string name="tasknotification">"     任务日常提醒"</string>
+    <string name="testtimenotification">"     考试时间倒计时"</string>
+    <string name="titleHelp">"      帮助"</string>
+    <string name="suggestion">"     用户反馈与建议"</string>
+    <string name="contactus">"     联系我们"</string>
+    <string name="titleOthers">"      其他"</string>
+    <string name="version">"     版本"</string>
+    <string name="clean">"     清除缓存"</string>
+    <string name="quit">"     退出登录"</string>
 </resources>
