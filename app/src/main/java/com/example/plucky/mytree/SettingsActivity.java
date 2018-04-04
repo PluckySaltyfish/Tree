@@ -33,20 +33,15 @@ public class SettingsActivity  extends AppCompatActivity {
 
         topimageview=(ImageView)findViewById(R.id.topimage);
 
-        mnamechange=(TextView)findViewById(R.id.changename);
         mpasswordchange=(TextView)findViewById(R.id.changepassword);
-        mportraitchange=(TextView)findViewById(R.id.changeportrait);
 
         mtasknotification=(TextView)findViewById(R.id.tasknotification);
-        mtexttimenotification=(TextView)findViewById(R.id.texttimenotification);
         mtaskimage=(ImageView)findViewById(R.id.taskimage);
-        mtexttimeimage=(ImageView)findViewById(R.id.texttimeimage);
 
         msuggestion=(TextView)findViewById(R.id.suggestion);
         mcontactus=(TextView)findViewById(R.id.contactus);
 
         mversion=(TextView)findViewById(R.id.version);
-        mclean=(TextView)findViewById(R.id.clean);
         mquit=(TextView)findViewById(R.id.quit);
         mversionimage=(ImageView)findViewById(R.id.versionimage);
 
@@ -59,12 +54,6 @@ public class SettingsActivity  extends AppCompatActivity {
             }
         });
 
-        mnamechange.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(SettingsActivity.this, "修改用户名称", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         mpasswordchange.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -73,12 +62,6 @@ public class SettingsActivity  extends AppCompatActivity {
             }
         });
 
-        mportraitchange.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(SettingsActivity.this, "修改用户头像", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         mtasknotification.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -92,21 +75,6 @@ public class SettingsActivity  extends AppCompatActivity {
             public void onClick(View v){
                 //on:settings_treebuttonon off:settings_treebuttonof
                 Toast.makeText(SettingsActivity.this, "任务日常提醒图标", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        mtexttimenotification.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(SettingsActivity.this, "考试时间倒计时", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        mtexttimeimage.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //on:settings_treebuttonon off:settings_treebuttonof
-                Toast.makeText(SettingsActivity.this, "考试时间倒计时图标", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -136,13 +104,6 @@ public class SettingsActivity  extends AppCompatActivity {
             public void onClick(View v){
                 //on:settings_updatebuttonon off:settings_updatebuttonof
                 Toast.makeText(SettingsActivity.this, "版本图标", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        mclean.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(SettingsActivity.this, "清除缓存", Toast.LENGTH_SHORT).show();
             }
         });
 

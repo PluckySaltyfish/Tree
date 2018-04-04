@@ -61,23 +61,9 @@
                     android:layout_height="30dp"
                     android:layout_gravity="bottom"
                     android:text="@string/titleUserSetting"
+                    android:paddingLeft="24dp"
                     android:textColor="#96b5b4"
                     android:textSize="16sp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:background="@drawable/settings_columnwithoutprojection">
-
-                <TextView
-                    android:id="@+id/changename"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:gravity="left|center"
-                    android:text="@string/namechange"
-                    android:textColor="#231815"
-                    android:textSize="20sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -90,26 +76,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:gravity="left|center"
+                    android:paddingLeft="24dp"
                     android:text="@string/passwordchange"
                     android:textColor="#231815"
                     android:textSize="20sp"/>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:background="@drawable/settings_columnwithoutprojection">
-
-                <TextView
-                    android:id="@+id/changeportrait"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:gravity="left|center"
-                    android:text="@string/portraitchange"
-                    android:textColor="#231815"
-                    android:textSize="20sp"/>
-            </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -121,6 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom"
+                    android:paddingLeft="24dp"
                     android:text="@string/titleMessageNotification"
                     android:textColor="#96b5b4"
                     android:textSize="16sp"/>
@@ -137,6 +109,7 @@
                     android:layout_width="310dp"
                     android:layout_height="60dp"
                     android:gravity="left|center"
+                    android:paddingLeft="24dp"
                     android:text="@string/tasknotification"
                     android:textColor="#231815"
                     android:textSize="20sp"/>
@@ -153,31 +126,6 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:background="@drawable/settings_columnwithoutprojection">
-
-                <TextView
-                    android:id="@+id/texttimenotification"
-                    android:layout_width="310dp"
-                    android:layout_height="60dp"
-                    android:gravity="left|center"
-                    android:text="@string/testtimenotification"
-                    android:textColor="#231815"
-                    android:textSize="20sp"/>
-
-                <ImageView
-                    android:id="@+id/texttimeimage"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/texttimeImage"
-                    app:srcCompat="@drawable/settings_treebuttonof"
-                    />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#f9f2ef">
 
@@ -186,6 +134,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom"
+                    android:paddingLeft="24dp"
                     android:text="@string/titleHelp"
                     android:textColor="#96b5b4"
                     android:textSize="16sp"/>
@@ -201,6 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:gravity="left|center"
+                    android:paddingLeft="24dp"
                     android:text="@string/suggestion"
                     android:textColor="#231815"
                     android:textSize="20sp"/>
@@ -216,6 +166,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:gravity="left|center"
+                    android:paddingLeft="24dp"
                     android:text="@string/contactus"
                     android:textColor="#231815"
                     android:textSize="20sp"/>
@@ -232,6 +183,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="bottom"
+                    android:paddingLeft="24dp"
                     android:text="@string/titleOthers"
                     android:textColor="#96b5b4"
                     android:textSize="16sp"/>
@@ -247,6 +199,7 @@
                     android:layout_width="310dp"
                     android:layout_height="60dp"
                     android:gravity="left|center"
+                    android:paddingLeft="24dp"
                     android:text="@string/version"
                     android:textColor="#231815"
                     android:textSize="20sp"/>
@@ -267,25 +220,11 @@
                 android:background="@drawable/settings_columnwithoutprojection">
 
                 <TextView
-                    android:id="@+id/clean"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:gravity="left|center"
-                    android:text="@string/clean"
-                    android:textColor="#231815"
-                    android:textSize="20sp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
-                android:background="@drawable/settings_columnwithoutprojection">
-
-                <TextView
                     android:id="@+id/quit"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:gravity="left|center"
+                    android:paddingLeft="24dp"
                     android:text="@string/quit"
                     android:textColor="#231815"
                     android:textSize="20sp"/>
