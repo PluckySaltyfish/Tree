@@ -66,9 +66,6 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
         setContentView(R.layout.my_dialog);
         setCanceledOnTouchOutside(false);
         initView();
-
-
-
     }
 
     private void initView(){
@@ -122,6 +119,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
                         break;
                     case R.id.inherent_task:
                         mTask.setType(1);
+                        TaskContent.setEnabled(false);
                         break;
                 }
 

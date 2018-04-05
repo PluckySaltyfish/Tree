@@ -69,6 +69,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         Log.i(TAG, "onCreateView");
         View v = inflater.inflate(R.layout.task_fragment, container, false);
 
+        //获取当前时间
         SimpleDateFormat format =   new SimpleDateFormat( "yyyy-MM-dd" );
         Date date = new Date();
         String time=format.format(date);
@@ -79,25 +80,17 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         format=new SimpleDateFormat("dd");
         currentDay=Integer.parseInt(format.format(date));
 
-
         recyclerView =(RecyclerView)v.findViewById(R.id.recycler_view);
-
 
         mFloatingToolbar=(FloatingToolbar)v.findViewById(R.id.floatingToolbar);
         mFab=(FloatingActionButton)v.findViewById(R.id.add_fab);
-
-
         mFloatingToolbar.attachFab(mFab);
         mFloatingToolbar.attachRecyclerView(recyclerView);
         mFloatingToolbar.setClickListener(this);
 
-
-
-
         layoutManager= new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         UpdateUI();
-
 
         return v;
     }
@@ -116,8 +109,6 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     }
 
 
-
-
     private void UpdateUI(){
 
 
@@ -128,14 +119,16 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
             adapter.setOnItemClickListener(this);
             recyclerView.setAdapter(adapter);
         } else {
-
-
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-
         }
     }
 
+    private void Reload(int year,int month ,int day){
+        taskList.clear();
+        taskList.addAll(mRemoteData.getTaskList(year,month,day));
+        UpdateUI();
+    }
     @Override
     public void onItemLongClick(View view, final int position){
 
@@ -148,8 +141,9 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 taskList.remove(position);
-                adapter.notifyDataSetChanged();
                 mRemoteData.deleteTask(taskList.get(position).getTaskID());
+                UpdateUI();
+                //Reload(currentYear,currentMonth,currentDay);
             }
         });
         dialog.setNegativeButton("取消", new DialogInterface.
@@ -164,15 +158,17 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     @Override
     public void onItemClick(View view, final int position) {
         Toast.makeText(getActivity(),"Click "+position,Toast.LENGTH_SHORT).show();
-        Task mTask = taskList.get(position);
+        final Task mTask = taskList.get(position);
         if (mTask.getTimeLimit()!=0){
             mConfirmDialog = new ConfirmDialog(getActivity(), R.style.dialog, new ConfirmDialog.OnCloseListener() {
                 @Override
                 public void onClick(Dialog dialog, boolean confirm) {
                     if (confirm){
                         //锁屏倒计时
-                        taskList.get(position).setStatus(1);
+                        mTask.setTimes(mTask.getTimes()+1);
+                        mRemoteData.setTimes(mTask.getTaskID(),mTask.getTimes()+1);
                         UpdateUI();
+
                         int timelimit = taskList.get(position).getTimeLimit();
                         String minute=String.valueOf(timelimit);
                         String second="00";
@@ -209,6 +205,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                             taskList.add(AddTaskDialog.getTask());
                             mRemoteData.addTask(AddTaskDialog.getTask());
                             UpdateUI();
+                            //Reload(currentYear,currentMonth,currentDay);
                             dialog.dismiss();
                         }
 
@@ -224,9 +221,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                     @Override
                     public void onClick(Dialog dialog, boolean confirm,int year,int month,int day) {
                         if (confirm){
-                            taskList.clear();
-                            taskList.addAll(mRemoteData.getTaskList(year,month,day));
-                            UpdateUI();
+                            Reload(year,month,day);
                             dialog.dismiss();
                         }
 

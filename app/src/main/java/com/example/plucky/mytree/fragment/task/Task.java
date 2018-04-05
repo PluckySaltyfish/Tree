@@ -8,6 +8,16 @@ public class Task implements Comparable{
     private String content;
     private int taskID;
     private int type;
+
+    public int getTimes() {
+        return times;
+    }
+
+    public void setTimes(int times) {
+        this.times = times;
+    }
+
+    private int times = 0;
     //0--普通任务
     //1--内置任务
     private int TimeLimit=120;

@@ -1,10 +1,20 @@
 package com.example.plucky.mytree.fragment.achievement;
 
+import android.content.Context;
+
 import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.connection.RemoteData;
+
+import java.util.List;
 
 public class Achievement {
     private int id[]=new int[30];
     private int image[]=new int[30];
+    private String names[]={};
+    private int status[]=new int[30];
+    private RemoteData mRemoteData;
+    //0--未获得
+    //1--已获得
 
     public Achievement(){
         for(int i=0;i<30;i++) id[i]=i+1;
@@ -19,6 +29,26 @@ public class Achievement {
             image[i]=R.mipmap.tree_four;
         for(int i=4;i<30;i=i+5)
             image[i]=R.mipmap.tree_five;
+    }
+
+    private void loadImage(){
+        for (int i = 0 ;i < 30 ;i++){
+            if (status[i]==0){
+                //加载灰色图片
+            }
+            else{
+                //加载彩色图片
+            }
+        }
+    }
+
+    public Achievement(Context mContext,String username){
+        mRemoteData = new RemoteData(mContext);
+        List<Integer>list = mRemoteData.getAchievementID();
+        for (int i = 0;i<list.size();i++){
+            status[list.get(i)]=1;
+        }
+        loadImage();
     }
 
     public int getId(int i){

@@ -38,9 +38,16 @@ public class RemoteData {
     public void addUser(String username,String password,String mailbox){
         //add user
     }
-/*-----------------------Task----------------------------------*/
-    public void addTask(Task task){
 
+    public void alterPhoto(String username){
+        //传输图片，并写地址在USER表中
+    }
+
+
+/*-----------------------Task----------------------------------*/
+    public String addTask(Task task){
+        //添加Task的同时返回taskID
+        return "00000";
     }
 
     public void deleteTask(int taskID){
@@ -48,6 +55,10 @@ public class RemoteData {
     }
 
     public void setStatus(int taskID,int status){
+
+    }
+
+    public void setTimes(int taskID,int times){
 
     }
 
@@ -74,5 +85,17 @@ public class RemoteData {
         }
         return TaskList;
     }
+
+    /*-----------------achievement--------------------*/
+    public List<Integer>getAchievementID(){
+        List<Integer>list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        return list;
+    }
+
+
+
 
 }
