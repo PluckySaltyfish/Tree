@@ -12,7 +12,7 @@
         android:id="@+id/logo"
         android:layout_width="167dp"
         android:layout_height="97dp"
-        app:srcCompat="@drawable/logo"
+        app:srcCompat="@drawable/tree_main"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         android:layout_marginTop="1dp"
         android:layout_marginLeft="0dp"

@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.23"/>
+        app:layout_constraintGuide_percent="0.27"/>
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
@@ -34,21 +34,23 @@
         android:layout_width="130dp"
         android:layout_height="37dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.675"
-        app:srcCompat="@drawable/tree_bar"
-        tools:layout_editor_absoluteX="16dp"/>
+        app:layout_constraintVertical_bias="0.246"
+        app:srcCompat="@drawable/tree_bar"/>
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="96dp"
         android:layout_height="40dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/exp_bar"
-        tools:layout_editor_absoluteX="36dp"/>
+        app:srcCompat="@drawable/exp_bar"/>
 
     <ImageView
         android:id="@+id/imageView4"
