@@ -44,7 +44,7 @@ public class Achievement {
 
     public Achievement(Context mContext,String username){
         mRemoteData = new RemoteData(mContext);
-        List<Integer>list = mRemoteData.getAchievementID();
+        List<Integer>list = mRemoteData.getAchievementID(username);
         for (int i = 0;i<list.size();i++){
             status[list.get(i)]=1;
         }

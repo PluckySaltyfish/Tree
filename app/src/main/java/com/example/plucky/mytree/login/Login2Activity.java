@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import com.example.plucky.mytree.dialog.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -14,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.plucky.mytree.AvatarImageView;
 import com.example.plucky.mytree.MainActivity;
@@ -22,8 +22,7 @@ import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.fragment.profile.User;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
-
-import java.util.List;
+import com.example.plucky.mytree.watcher.Validation;
 
 public class Login2Activity extends AppCompatActivity {
 
@@ -33,8 +32,10 @@ public class Login2Activity extends AppCompatActivity {
     private AvatarImageView mImageView;
     private ImageView mPasswordImageView;
     private EditText mPasswordEditText;
+    private AlertDialog mAlertDialog;
     private RemoteData mRemoteData =new RemoteData(Login2Activity.this);
-    private String UserId;
+    private String UserId,password;
+    private Validation mValidation = new Validation(Login2Activity.this);
     private boolean isHideFirst = true;// 输入框密码是否是隐藏的，默认为true
 
     @Override
@@ -127,45 +128,34 @@ public class Login2Activity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mRemoteData.verifyUser(UserId,mPasswordEditText.getText().toString())==1){
                     UserId = mEditText.getText().toString();
-                    if(UserId.equals("")){
-                        Toast.makeText(Login2Activity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();
-                    }
-
-                    else{
-                        User user = mUserManager.getUser(UserId);
-                        List<User> users = mUserManager.getUsers();
-                        int flag=0;
-                        int length = users.size();
-                        for(int i=0;i<length;i++){
-                            if(users.get(i).getUsername().equals(UserId)){
-                                flag=1;
-                            }
-                        }
-                        if(flag==1){
-                            if(user.getPassword().equals(mPasswordEditText.getText().toString())){
-                                user.setStatus(1);
-                                mUserManager.updateUser(user);
-                                Toast.makeText(Login2Activity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(Login2Activity.this, MainActivity.class);
-                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(i);
+                    password = mPasswordEditText.getText().toString();
+                    if (mValidation.isEmpty(UserId,"用户名")!=1){
+                        if (mValidation.isEmpty(password,"密码")!=1){
+                            if(mRemoteData.ifExist(UserId)==1){
+                                String true_password = mRemoteData.getPassword(UserId);
+                                if (mValidation.isEqual(true_password,password,"密码错误")==1){
+                                    User user = mUserManager.getUser(UserId);
+                                    if (user == null){
+                                        User user1 = new User(UserId,password);
+                                        user1.setStatus(1);
+                                        mUserManager.addUser(user1);
+                                    }
+                                    else
+                                        user.setStatus(1);
+                                    Intent i = new Intent(Login2Activity.this, MainActivity.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i);
+                                }
                             }
                             else{
-                                Toast.makeText(Login2Activity.this, "密码错误", Toast.LENGTH_SHORT).show();
+                                mAlertDialog = new AlertDialog(Login2Activity.this,R.style.dialog);
+                                mAlertDialog.idolize("用户不存在","确定",R.drawable.warning);
+                                mAlertDialog.show();
                             }
-                        }
-                        else{
-                            Toast.makeText(Login2Activity.this, "用户不存在", Toast.LENGTH_SHORT).show();
                         }
 
                     }
-
-                }
-                else{
-                    //Alert Dialog show"登录失败:用户名或密码错误"
-                }
             }
         });
 

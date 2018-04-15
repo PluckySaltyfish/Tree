@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.UserManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -30,6 +31,7 @@ import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.dialog.AddTaskDialog;
 import com.example.plucky.mytree.dialog.ConfirmDialog;
 import com.example.plucky.mytree.dialog.TimeSelectorDialog;
+import com.example.plucky.mytree.fragment.profile.UsersManager;
 import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
 
 import java.text.SimpleDateFormat;
@@ -42,7 +44,8 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     private int ListCount;
     private  RecyclerView recyclerView;
     private int currentYear,currentMonth,currentDay;
-
+    private UsersManager mUsersManager;
+    private String username;
     private com.example.plucky.mytree.dialog.AddTaskDialog AddTaskDialog;
     private TimeSelectorDialog mTimeSelectorDialog;
     private ConfirmDialog mConfirmDialog;
@@ -69,6 +72,9 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         Log.i(TAG, "onCreateView");
         View v = inflater.inflate(R.layout.task_fragment, container, false);
 
+        mUsersManager = new UsersManager(getActivity());
+        username = mUsersManager.getUsername();
+
         //获取当前时间
         SimpleDateFormat format =   new SimpleDateFormat( "yyyy-MM-dd" );
         Date date = new Date();
@@ -92,6 +98,8 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         recyclerView.setLayoutManager(layoutManager);
         UpdateUI();
 
+
+
         return v;
     }
 
@@ -113,7 +121,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
 
 
         if (adapter == null) {
-            taskList= mRemoteData.getTaskList(currentYear,currentMonth,currentDay);
+            taskList= mRemoteData.getTaskList(username,currentYear,currentMonth,currentDay);
             adapter = new TaskAdapter(taskList);
             adapter.setOnItemLongClickListener(this);
             adapter.setOnItemClickListener(this);
@@ -126,7 +134,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
 
     private void Reload(int year,int month ,int day){
         taskList.clear();
-        taskList.addAll(mRemoteData.getTaskList(year,month,day));
+        taskList.addAll(mRemoteData.getTaskList(username,year,month,day));
         UpdateUI();
     }
     @Override
@@ -159,35 +167,54 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     public void onItemClick(View view, final int position) {
         Toast.makeText(getActivity(),"Click "+position,Toast.LENGTH_SHORT).show();
         final Task mTask = taskList.get(position);
-        if (mTask.getTimeLimit()!=0){
-            mConfirmDialog = new ConfirmDialog(getActivity(), R.style.dialog, new ConfirmDialog.OnCloseListener() {
-                @Override
-                public void onClick(Dialog dialog, boolean confirm) {
-                    if (confirm){
-                        //锁屏倒计时
-                        mTask.setTimes(mTask.getTimes()+1);
-                        mRemoteData.setTimes(mTask.getTaskID(),mTask.getTimes()+1);
-                        UpdateUI();
+        if (mTask.getType()==0){
+            if (mTask.getStatus()==0) {
+                mConfirmDialog = new ConfirmDialog(getActivity(), R.style.dialog, new ConfirmDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if (confirm) {
+                            //锁屏倒计时
+                            mTask.setTimes(mTask.getTimes() + 1);
+                            mRemoteData.setTimes(mTask.getTaskID(), mTask.getTimes() + 1);
+                            UpdateUI();
 
-                        int timelimit = taskList.get(position).getTimeLimit();
-                        String minute=String.valueOf(timelimit);
-                        String second="00";
-                        initKeyguardManager();
+                            int timelimit = taskList.get(position).getTimeLimit();
+                            String minute = String.valueOf(timelimit);
+                            String second = "00";
+                            initKeyguardManager();
 
-                        Intent i=new Intent(getActivity(),LockActivity.class);
-                        Bundle bundle=new Bundle();
-                        bundle.putString("minutes",minute);
-                        bundle.putString("seconds",second);
-                        bundle.putString("flagg","0");
-                        i.putExtras(bundle);
-                        startActivity(i);
+                            Intent i = new Intent(getActivity(), LockActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("minutes", minute);
+                            bundle.putString("seconds", second);
+                            bundle.putString("flagg", "0");
+                            i.putExtras(bundle);
+                            startActivity(i);
+                        }
+                        mConfirmDialog.dismiss();
                     }
-                    mConfirmDialog.dismiss();
-                }
-            });
-            mConfirmDialog.idolize("开始任务","确定要开始此任务吗？","取消","确定",R.drawable.frog);
-            mConfirmDialog.show();
+                });
+                mConfirmDialog.idolize("开始任务", "确定要开始此任务吗？", "取消", "确定", R.drawable.frog);
+                mConfirmDialog.show();
+            }
+            else if(mTask.getStatus()==1){
+                mConfirmDialog = new ConfirmDialog(getActivity(), R.style.dialog, new ConfirmDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if (confirm) {
+                            mTask.setTimes(1);
+                            UpdateUI();
+                            //mRemoteData.setTimes(mTask.getTaskID(),mTask.getTimes());
+                            //Reload(currentYear,currentMonth,currentDay);
+                            mConfirmDialog.dismiss();
+                        }
+                    }
+                });
+                mConfirmDialog.idolize("每日检查", "今日此任务计划已完成？", "取消", "完成", R.drawable.frog);
+                mConfirmDialog.show();
+            }
         }
+
 
     }
 
@@ -203,14 +230,14 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                         if(confirm){
                             Log.d(TAG, AddTaskDialog.getTask().toString());
                             taskList.add(AddTaskDialog.getTask());
-                            mRemoteData.addTask(AddTaskDialog.getTask());
+                            mRemoteData.addTask(username,AddTaskDialog.getTask());
                             UpdateUI();
                             //Reload(currentYear,currentMonth,currentDay);
                             dialog.dismiss();
                         }
 
                     }
-                },ListCount);
+                },ListCount,username);
                 AddTaskDialog.show();
                 break;
             case R.id.resources:

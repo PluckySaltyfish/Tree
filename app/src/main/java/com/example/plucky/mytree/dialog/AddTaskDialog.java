@@ -12,12 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.fragment.task.Task;
+import com.example.plucky.mytree.store.StoreItem;
 
 import org.angmarch.views.NiceSpinner;
 import org.feezu.liuli.timeselector.TimeSelector;
@@ -41,15 +40,18 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
     private Task mTask;
     private ArrayAdapter adapter;
     private int count;
+    private String username;
     private String now;
+    private StoreDialog mdialog;
 
 
-    public AddTaskDialog(Context context, int themeResId, OnCloseListener listener,int count) {
+    public AddTaskDialog(Context context, int themeResId, OnCloseListener listener,int count,String username) {
         //test
         super(context, themeResId);
         this.mContext = context;
         this.count = count;
         this.listener = listener;
+        this.username = username;
     }
 
     protected AddTaskDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
@@ -72,7 +74,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
         mTask = new Task(count);
         TimeSpinner =(NiceSpinner)findViewById(R.id.time_limit);
         TaskContent=(EditText)findViewById(R.id.task_content);
-        List<String> data = new LinkedList<>(Arrays.asList("120","60", "40", "30", "20","不限时"));
+        List<String> data = new LinkedList<>(Arrays.asList("120","60", "40", "30", "20","每日"));
         TimeSpinner.attachDataSource(data);
 
         TimeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -96,6 +98,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
                         break;
                     case 5:
                         mTask.setTimeLimit(0);
+                        mTask.setStatus(1);
 
 
                 }
@@ -119,7 +122,21 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
                         break;
                     case R.id.inherent_task:
                         mTask.setType(1);
-                        TaskContent.setEnabled(false);
+
+                        mdialog = new StoreDialog(mContext, R.style.dialog, new StoreDialog.OnCloseListener() {
+                            @Override
+                            public void onClick(Dialog dialog, boolean confirm) {
+                                if (confirm){
+                                    StoreItem item = mdialog.getItem();
+                                    mTask.setContent(item.getName());
+                                    TaskContent.setText(item.getName());
+                                    TaskContent.setEnabled(false);
+                                    TimeSpinner.setEnabled(false);
+                                    mdialog.dismiss();
+                                }
+                            }
+                        },username);
+                        mdialog.show();
                         break;
                 }
 
@@ -169,7 +186,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
                     @Override
                     public void handle(String time) {
                         TimeSelector1.setText(time);
-                        mTask.setStartTime(time);
+                        mTask.setCreateTime(time);
                     }
                 }, now, "2032-12-12 15:20");
                 timeSelector.show();
@@ -183,7 +200,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
                     @Override
                     public void handle(String time) {
                         TimeSelector2.setText(time);
-                        mTask.setEndTime(time);
+                        mTask.setDeadline(time);
                     }
                 }, now, "2032-12-12 15:20");
                 timeSelector2.show();

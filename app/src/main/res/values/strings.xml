@@ -57,4 +57,7 @@
     <string name="version">"版本"</string>
     <string name="clean">"清除缓存"</string>
     <string name="quit">"退出登录"</string>
+    <string name="store">商店</string>
+    <string name="back">返回</string>
+    <string name="itemname">ItemName</string>
 </resources>

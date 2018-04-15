@@ -3,10 +3,14 @@ package com.example.plucky.mytree.connection;
 
 import android.content.Context;
 
+import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.fragment.task.Task;
+import com.example.plucky.mytree.store.StoreItem;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.mail.Store;
 
 public class RemoteData {
 
@@ -17,21 +21,50 @@ public class RemoteData {
     }
 
 /*-----------------------------USER------------------------------------*/
-    public int verifyUser(String username, String password){
-//        String t_password = "null";
-//        if (password.equals(t_password))return 1;
-//        return 0;
+
+    public int ifExist(String username){
         return 1;
+    }
+
+    public int getTreeExp(String username){
+        return 20;
+    }
+
+    public void setTreeExp(String username,int exp){
 
     }
 
-    public String getMailbox(){
+    public int getTreeNumber(String username){
+        return 1;
+    }
+
+    public void setTreeNumber(String username,int number){
+
+    }
+
+    public int getCoin(String username){return 30;}
+
+    public void setCoin(String username,int coin){}
+
+    public int getExp(String username){
+        return 30;
+    }
+
+    public void setExp(String name,int exp){
+
+    }
+
+    public String getPassword(String username){
+        return "123456";
+    }
+
+    public String getMailbox(String username){
         //get mailbox
         String mailbox="1828151761@qq.com";
         return mailbox;
     }
 
-    public void alterPassword(String password){
+    public void alterPassword(String username,String password){
         //change user's password
     }
 
@@ -39,13 +72,8 @@ public class RemoteData {
         //add user
     }
 
-    public void alterPhoto(String username){
-        //传输图片，并写地址在USER表中
-    }
-
-
-/*-----------------------Task----------------------------------*/
-    public String addTask(Task task){
+/*-----------------------TASK----------------------------------*/
+    public String addTask(String username,Task task){
         //添加Task的同时返回taskID
         return "00000";
     }
@@ -62,7 +90,7 @@ public class RemoteData {
 
     }
 
-    public List<Task> getTaskList(int year,int month,int day){
+    public List<Task> getTaskList(String username,int year,int month,int day){
         List<Task> TaskList = new ArrayList<>();
         /*get task whose start time before the input time and
          the end time behind the input time*/
@@ -86,13 +114,79 @@ public class RemoteData {
         return TaskList;
     }
 
-    /*-----------------achievement--------------------*/
-    public List<Integer>getAchievementID(){
+    public List<Task> getMonthlyTaskList(String username,int year,int month,int day){
+        List<Task> TaskList = new ArrayList<>();
+        return TaskList;
+    }
+
+    public List<Task> getWeeklyTaskList(String username,int year,int month){
+        List<Task> TaskList = new ArrayList<>();
+        return TaskList;
+    }
+
+    public List<Task> getWeeklyCreateTask(String username,int year,int month,int day){
+        List<Task> TaskList = new ArrayList<>();
+        return TaskList;
+    }
+
+    public void setFinishTime(int taskID,int year,int month,int day){
+
+    }
+
+
+    /*-----------------Achievement--------------------*/
+    public List<Integer>getAchievementID(String username){
         List<Integer>list = new ArrayList<>();
         list.add(1);
         list.add(2);
         list.add(3);
         return list;
+    }
+
+    public void addAchievement(String username,int medalID){}
+
+
+    /*------------------Medal-------------------------*/
+    public List<Integer>getMedalID(){
+        List<Integer>list = new ArrayList<>();
+        list.add(1);
+        return list;
+    }
+
+    /*---------------Purchased------------------------*/
+    public List<StoreItem> getPurchasedBook(String username){
+        List<StoreItem>ItemList = new ArrayList<>();
+        for (int i = 0; i <= 2;i++){
+            StoreItem item0 = new StoreItem(R.drawable.book1,"么么哒");
+            StoreItem item1 = new StoreItem(R.drawable.book2,"呵呵哒");
+            ItemList.add(item0);
+            ItemList.add(item1);
+        }
+        return ItemList;
+    }
+
+
+
+    public  List<StoreItem> getPurchasedItem(String username){
+        List<StoreItem>ItemList = new ArrayList<>();
+        return ItemList;
+    }
+
+    public  List<StoreItem> getPurchasedSeed(String username){
+        List<StoreItem>ItemList = new ArrayList<>();
+        return ItemList;
+    }
+
+
+    public void addPurchased(String username,String ItemID){
+
+    }
+
+    /*-------------Resource----------------*/
+
+    public List<StoreItem>getResource(){
+        List<StoreItem>ItemList = new ArrayList<>();
+        return ItemList;
     }
 
 

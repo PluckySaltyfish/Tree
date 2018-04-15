@@ -8,7 +8,8 @@ public class Task implements Comparable{
     private String content;
     private int taskID;
     private int type;
-
+    //0--普通任务
+    //1--内置任务
     public int getTimes() {
         return times;
     }
@@ -18,8 +19,7 @@ public class Task implements Comparable{
     }
 
     private int times = 0;
-    //0--普通任务
-    //1--内置任务
+
     private int TimeLimit=120;
     //0--限时
     //1--不限时
@@ -28,7 +28,7 @@ public class Task implements Comparable{
     //1--进行中 blue
     //2--已完成 green
     //3--未完成 red
-    private String StartTime,EndTime;
+    private String createTime,deadline,finishtime;
 
     public int getStatus() {
         return status;
@@ -38,20 +38,20 @@ public class Task implements Comparable{
         this.status = status;
     }
 
-    public String getStartTime() {
-        return StartTime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setStartTime(String startTime) {
-        StartTime = startTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
-    String getEndTime() {
-        return EndTime;
+    String getDeadline() {
+        return deadline;
     }
 
-    public void setEndTime(String endTime) {
-        EndTime = endTime;
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
     }
 
 
@@ -81,13 +81,13 @@ public class Task implements Comparable{
     public Task(String content, int taskID) {
         this.content = content;
         this.taskID = taskID;
-        this.EndTime ="2017-11-08 08:11:50";
+        this.deadline ="2017-11-08 08:11:50";
     }
 
     public Task(int taskID) {
         this.taskID = taskID;
         this.content="";
-        this.EndTime = "2017-11-08 08:11:50";
+        this.deadline = "2017-11-08 08:11:50";
     }
 
     @Override
@@ -98,8 +98,8 @@ public class Task implements Comparable{
                 ", type=" + type +
                 ", TimeLimit=" + TimeLimit +
                 ", status=" + status +
-                ", StartTime='" + StartTime + '\'' +
-                ", EndTime='" + EndTime + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", deadline='" + deadline + '\'' +
                 '}';
     }
 
@@ -121,8 +121,8 @@ public class Task implements Comparable{
     @Override
     public int compareTo(Object task1) {
         Task task2=(Task) task1;
-        String []time2=task2.getEndTime().split("");
-        String []time1=EndTime.split("");
+        String []time2=task2.getDeadline().split("");
+        String []time1= deadline.split("");
         int year1 = Integer.parseInt(time1[0])*1000+Integer.parseInt(time1[1])*100+Integer.parseInt(time1[2])*10+Integer.parseInt(time1[3]);
         int month1 = Integer.parseInt(time1[5])*10+Integer.parseInt(time1[6]);
         int day1 = Integer.parseInt(time1[8])*10+Integer.parseInt(time1[9]);

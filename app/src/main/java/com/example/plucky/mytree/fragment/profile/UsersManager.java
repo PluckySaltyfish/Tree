@@ -89,4 +89,20 @@ public class UsersManager {
             cursor.close();
         }
     }
+
+    public String getUsername(){
+        UserCursorWrapper cursor = queryUsers(
+                UserTable.Cols.STATUS + "=? ",
+                new String[]{"1"}
+        );
+        try{
+            if (cursor.getCount() == 0){
+                return null;
+            }
+            cursor.moveToFirst();
+            return cursor.getUser().getUsername();
+        }finally {
+            cursor.close();
+        }
+    }
 }
