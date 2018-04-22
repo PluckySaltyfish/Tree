@@ -6,7 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.plucky.mytree.local.UserHelper;
+import com.example.plucky.mytree.local.LocalHelper;
 import com.example.plucky.mytree.local.UserSchema.UserTable;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class UsersManager {
 
     public UsersManager(Context context) {
         mContext = context.getApplicationContext();
-        mDatabase = new UserHelper(mContext).getWritableDatabase();
+        mDatabase = new LocalHelper(mContext).getWritableDatabase();
     }
 
     private static ContentValues getContentValues(User user) {
