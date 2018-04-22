@@ -1,6 +1,8 @@
 package com.example.plucky.mytree.store;
 
 
+import java.util.Arrays;
+
 public class RootDiagram implements Comparable {
     private int pno;
     private String title ;
@@ -77,5 +79,14 @@ public class RootDiagram implements Comparable {
             return -1;
     }
 
-
+    @Override
+    public String toString() {
+        return "RootDiagram{" +
+                "pno=" + pno +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", text=" + Arrays.toString(text) +
+                ", meaning='" + meaning + '\'' +
+                '}';
+    }
 }
