@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.watcher.Check;
 
 public class LoginActivity extends AppCompatActivity {
 

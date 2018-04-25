@@ -9,11 +9,19 @@ public class PairData {
         ValueY = valueY;
     }
 
-    int getValueX() {
+    public int getValueX() {
         return ValueX;
     }
 
-    int getValueY() {
+    public int getValueY() {
         return ValueY;
+    }
+
+    public void setValueX(int valueX) {
+        ValueX = valueX;
+    }
+
+    public void setValueY(int valueY) {
+        ValueY = valueY;
     }
 }

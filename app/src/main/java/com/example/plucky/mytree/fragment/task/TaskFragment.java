@@ -32,6 +32,7 @@ import com.example.plucky.mytree.dialog.AddTaskDialog;
 import com.example.plucky.mytree.dialog.ConfirmDialog;
 import com.example.plucky.mytree.dialog.TimeSelectorDialog;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
+import com.example.plucky.mytree.watcher.Check;
 import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
 
 import java.text.SimpleDateFormat;
@@ -42,6 +43,7 @@ import java.util.List;
 public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClickListener,TaskAdapter.MyItemClickListener,FloatingToolbar.ItemClickListener {
     private List<Task> taskList = new ArrayList<>();
     private int ListCount;
+    private Check mCheck;
     private  RecyclerView recyclerView;
     private int currentYear,currentMonth,currentDay;
     private UsersManager mUsersManager;
@@ -69,22 +71,16 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        Log.i(TAG, "onCreateView");
         View v = inflater.inflate(R.layout.task_fragment, container, false);
-
+        mCheck = new Check(getActivity());
         mUsersManager = new UsersManager(getActivity());
         username = mUsersManager.getUsername();
 
         //获取当前时间
-        SimpleDateFormat format =   new SimpleDateFormat( "yyyy-MM-dd" );
-        Date date = new Date();
-        String time=format.format(date);
-        format=new SimpleDateFormat("yyyy");
-        currentYear=Integer.parseInt(format.format(date));
-        format=new SimpleDateFormat("MM");
-        currentMonth=Integer.parseInt(format.format(date));
-        format=new SimpleDateFormat("dd");
-        currentDay=Integer.parseInt(format.format(date));
+        int []time = mCheck.getCurrentTime();
+        currentYear = time[0];
+        currentMonth = time[1];
+        currentDay = time[2];
 
         recyclerView =(RecyclerView)v.findViewById(R.id.recycler_view);
 

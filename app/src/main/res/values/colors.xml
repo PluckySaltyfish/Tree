@@ -20,6 +20,7 @@
     <color name="dialog_text">#226b67</color>
     <color name="dialog_content">#000000</color>
     <color name="yellow">#FFF983</color>
+    <color name="bkg_y">#efeac9</color>
 
 </resources>
 

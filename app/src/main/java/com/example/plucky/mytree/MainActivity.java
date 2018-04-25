@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         //使用适配器将ViewPager与Fragment绑定在一起
         mViewPager= (ViewPager) findViewById(R.id.viewPager);
+        mViewPager.setOffscreenPageLimit(4);
         myFragmentPagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(myFragmentPagerAdapter);
 

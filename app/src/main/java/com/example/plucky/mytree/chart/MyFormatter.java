@@ -5,9 +5,9 @@ import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 
 class MyFormatter {
-    private IAxisValueFormatter WeeklyFormatter,SemiAnnualFormatter;
+    private IAxisValueFormatter WeeklyFormatter, MonthlyFormatter;
     MyFormatter(final int today) {
-        final String[] quarters = new String[] { "周一", "周二", "周三", "周四","周五","周六","周日" };
+        final String[] quarters = new String[] { "Mon", "Tues", "Wed", "Thurs","Fri","Sat","Sun" };
 
         WeeklyFormatter = new IAxisValueFormatter() {
 
@@ -16,7 +16,7 @@ class MyFormatter {
                 return quarters[(((int) value)+today)%quarters.length];
             }
         };
-        SemiAnnualFormatter = new IAxisValueFormatter() {
+        MonthlyFormatter = new IAxisValueFormatter() {
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -29,7 +29,9 @@ class MyFormatter {
         return WeeklyFormatter;
     }
 
-    public IAxisValueFormatter getSemiAnnualFormatter() {
-        return SemiAnnualFormatter;
+    public IAxisValueFormatter getMonthlyFormatter() {
+        return MonthlyFormatter;
     }
+
+
 }

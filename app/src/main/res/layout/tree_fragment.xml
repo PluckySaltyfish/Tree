@@ -3,9 +3,33 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bkg00"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bkg00">
+
+
+    <VideoView
+        android:id="@+id/tree_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/bkg_y"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <FrameLayout
+        android:id="@+id/placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/bkg_y"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
 
 
     <android.support.constraint.Guideline
@@ -16,16 +40,16 @@
         app:layout_constraintGuide_percent="0.27"/>
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline6"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.21"/>
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline8"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9"/>
 
@@ -60,5 +84,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:srcCompat="@drawable/store"/>
+
+
+
 
 </android.support.constraint.ConstraintLayout>

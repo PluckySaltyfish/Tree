@@ -27,7 +27,7 @@ public class RemoteData {
     }
 
     public int getTreeExp(String username){
-        return 20;
+        return 120;
     }
 
     public void setTreeExp(String username,int exp){
@@ -114,12 +114,12 @@ public class RemoteData {
         return TaskList;
     }
 
-    public List<Task> getMonthlyTaskList(String username,int year,int month,int day){
+    public List<Task> getMonthlyTaskList(String username,int year,int month){
         List<Task> TaskList = new ArrayList<>();
         return TaskList;
     }
 
-    public List<Task> getWeeklyTaskList(String username,int year,int month){
+    public List<Task> getWeeklyTaskList(String username,int year,int month,int day){
         List<Task> TaskList = new ArrayList<>();
         return TaskList;
     }

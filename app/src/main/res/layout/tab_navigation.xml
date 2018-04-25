@@ -28,7 +28,7 @@
 
         app:tabIndicatorColor="@color/white"
 
-        app:tabIndicatorHeight="3pt"
+        app:tabIndicatorHeight="2pt"
 
         app:tabMode="fixed"
 

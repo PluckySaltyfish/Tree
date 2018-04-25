@@ -32,7 +32,9 @@ import android.widget.Toast;
 import com.example.plucky.mytree.AvatarImageView;
 import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.chart.PairData;
-import com.example.plucky.mytree.chart.SemiAnnualChart;
+import com.example.plucky.mytree.chart.WeeklyChart;
+import com.example.plucky.mytree.fragment.task.Task;
+import com.example.plucky.mytree.watcher.Check;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.io.File;
@@ -44,6 +46,8 @@ import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
 public class ProfileFragment extends Fragment {
+    private int currentYear,currentMonth,currentDay;
+
     private AvatarImageView mImageView;
     private Button takePhoto;
     private Button chooseFromAlbum;
@@ -51,18 +55,25 @@ public class ProfileFragment extends Fragment {
     public static final int CHOOSE_PHOTO = 2;
     private Uri imageUri;
     private UsersManager mUsersManager;
+    private Check mCheck;
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
+        mCheck = new Check(getActivity());
         View v = inflater.inflate(R.layout.me_fragment, container, false);
         mUsersManager = new UsersManager(getActivity());
 
         View v1 = v.findViewById(R.id.chart1_part);
         LineChart LineChart = (LineChart) v1.findViewById(R.id.chart1);
+
         PairData[] dataObjects = {new PairData(0, 30), new PairData(1, 99), new PairData(2, 22),
                 new PairData(3, 44), new PairData(4, 35), new PairData(5, 60), new PairData(6, 80)};
 
-        SemiAnnualChart wkChart = new SemiAnnualChart(LineChart, dataObjects);
+        int []time = mCheck.getCurrentTime();
+        currentYear = time[0];
+        currentMonth = time[1];
+        currentDay = time[2];
+        WeeklyChart wkChart = new WeeklyChart(LineChart, dataObjects,mCheck.getWeek(currentYear,currentMonth,currentDay));
         wkChart.setData();
         wkChart.drawChart();
 
