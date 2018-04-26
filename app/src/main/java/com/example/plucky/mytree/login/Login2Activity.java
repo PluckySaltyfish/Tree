@@ -131,12 +131,13 @@ public class Login2Activity extends AppCompatActivity {
                                         user1.setStatus(1);
                                         mUserManager.addUser(user1);
                                     }
-                                    else {
-                                        user.setStatus(1);
-                                        Intent i = new Intent(Login2Activity.this, MainActivity.class);
-                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                        startActivity(i);
-                                    }
+
+                                    user.setStatus(1);
+                                    mUserManager.updateUser(user);
+                                    Intent i = new Intent(Login2Activity.this, MainActivity.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(i);
+
                                 }
                             }
                             else{
