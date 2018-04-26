@@ -5,6 +5,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.plucky.mytree.fragment.profile.User;
 import com.example.plucky.mytree.local.UserSchema.UserTable;
 import com.example.plucky.mytree.local.BookSchema.RootTable;
 import com.example.plucky.mytree.store.RootDiagram;
@@ -86,6 +88,9 @@ public class LocalHelper extends SQLiteOpenHelper {
                 "write");
         contentValues = getContentValues(page10);
         db.insert(RootTable.NAME,null,contentValues);
+        User user = new User("CXY","123456");
+        contentValues = getUserContentValues(user);
+        db.insert(UserTable.NAME,null,contentValues);
 
 
     }
@@ -102,6 +107,15 @@ public class LocalHelper extends SQLiteOpenHelper {
         values.put(RootTable.Cols.content,rootDiagram.getContent());
         values.put(RootTable.Cols.meaning,rootDiagram.getMeaning());
 
+        return values;
+    }
+
+    private static ContentValues getUserContentValues(User user) {
+        ContentValues values = new ContentValues();
+        values.put(UserTable.Cols.USERNAME, user.getUsername());
+        values.put(UserTable.Cols.PASSWORD, user.getPassword());
+        values.put(UserTable.Cols.PHOTO, user.getPhoto());
+        values.put(UserTable.Cols.STATUS, user.getStatus());
         return values;
     }
 }

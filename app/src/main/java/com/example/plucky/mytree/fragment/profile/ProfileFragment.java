@@ -82,14 +82,15 @@ public class ProfileFragment extends Fragment {
         mImageView = (AvatarImageView) vv.findViewById(R.id.head_icon);
 
         User UserOnline=SearchUserOnline();
+        if (UserOnline!=null) {
             String isimage = UserOnline.getPhoto();
-            if(isimage==null){
+            if (isimage == null) {
                 mImageView.setImageResource(R.drawable.me);
-            }
-            else{
-                Bitmap bitmap=BitmapFactory.decodeFile(isimage);
+            } else {
+                Bitmap bitmap = BitmapFactory.decodeFile(isimage);
                 mImageView.setImageBitmap(bitmap);
             }
+        }
 
         final View contentView = inflater.inflate(R.layout.pop_up_window, container, false);
         final PopupWindow popupWindow = new PopupWindow(contentView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);

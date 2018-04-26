@@ -45,16 +45,6 @@ public class Login2Activity extends AppCompatActivity {
 
         mUserManager=new UsersManager(Login2Activity.this);
 
-        final User userfortext=new User("CXY","123456");
-        User usertext=mUserManager.getUser("CXY");
-
-        if(usertext==null){
-            mUserManager.addUser(userfortext);
-        }
-        else{
-            usertext.setStatus(0);
-            mUserManager.updateUser(usertext);
-        }
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView =getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -141,11 +131,12 @@ public class Login2Activity extends AppCompatActivity {
                                         user1.setStatus(1);
                                         mUserManager.addUser(user1);
                                     }
-                                    else
+                                    else {
                                         user.setStatus(1);
-                                    Intent i = new Intent(Login2Activity.this, MainActivity.class);
-                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(i);
+                                        Intent i = new Intent(Login2Activity.this, MainActivity.class);
+                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i);
+                                    }
                                 }
                             }
                             else{
