@@ -27,7 +27,7 @@ public class RemoteData {
     }
 
     public int getTreeExp(String username){
-        return 120;
+        return 200;
     }
 
     public void setTreeExp(String username,int exp){
@@ -47,7 +47,7 @@ public class RemoteData {
     public void setCoin(String username,int coin){}
 
     public int getExp(String username){
-        return 30;
+        return 1000;
     }
 
     public void setExp(String name,int exp){
