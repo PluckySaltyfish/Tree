@@ -6,6 +6,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.plucky.mytree.chart.PairData;
+import com.example.plucky.mytree.chart.Pie_Data;
 import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.fragment.task.Task;
 
@@ -34,7 +35,7 @@ public class Check {
 
     }
 
-    private PairData[] ChartCheck(int chart,int currentDay,int currentMonth,int currentYear,String username){
+    public PairData[] ChartCheck(int chart,int currentDay,int currentMonth,int currentYear,String username){
         mRemoteData = new RemoteData(mContext);
         if (chart == 1){
             List<Task>list = mRemoteData.getWeeklyCreateTask(username,currentYear,currentMonth,currentDay);
@@ -60,10 +61,76 @@ public class Check {
 
             return Data;
         }
-        return null;
+        else{
+            List<Task>list = mRemoteData.getMonthlyTaskList(username,currentYear,currentMonth);
+
+            int days =getDays(currentYear,currentDay);
+            float []finished = new float[days];
+            float []failed = new float[days];
+            for (int i = 0;i<finished.length;i++){
+                finished[i]=i*2%5;
+            }
+            for (int i = 0;i<failed.length;i++){
+                failed[i]=i%3;
+            }
+
+
+
+//            for (int i =0;i<=list.size();i++){
+//                int day = getTime(list.get(i).getDeadline(),1);
+//                Task task = list.get(i);
+//                if (task.getStatus()==2){
+//                    int times = task.getTimes();
+//                    if (times>1){
+//                        failed[day] += times - 1;
+//                    }
+//                    finished[day]++;
+//                }
+//                else {
+//                    failed[day]++;
+//                }
+//            }
+            PairData []Data = new PairData[days];
+            for (int i =1;i<=days;i++){
+                if(finished[i-1]+failed[i-1]==0)
+                    Data[i-1]=new PairData(i,0f);
+                else
+                    Data[i-1] = new PairData(i,(finished[i-1]/(finished[i-1]+failed[i-1]))*100);
+            }
+            return Data;
+        }
+
     }
 
-    public int getTime(String date,int i){
+    public Pie_Data[] PieChartCheck(String username,int currentYear,int currentMonth,int currentDay){
+        mRemoteData = new RemoteData(mContext);
+        List<Task>list = mRemoteData.getWeeklyTaskList(username,currentYear,currentMonth,currentDay);
+        int finished=6,failed=7,soon=8,ing=9;
+//        int finished=0,failed=0,soon=0,ing=0;
+
+//        for (int i =1;i<=list.size();i++){
+//            Task task = list.get(i);
+//            int status = task.getStatus();
+//            if (status==0){
+//                soon++;
+//            }
+//            else if(status==1){
+//                ing++;
+//            }
+//            else if(status==2){
+//                finished++;
+//            }
+//            else {
+//                failed++;
+//            }
+//        }
+
+        Pie_Data[] pie_data = {new Pie_Data(soon,"未开始"),new Pie_Data(ing,"进行中"),
+                new Pie_Data(finished,"已完成"),new Pie_Data(failed,"已失败")};
+        return pie_data;
+    }
+
+     private int getTime(String date,int i){
         String []time = date.split(" ");
         String []p_time = time[0].split("-");
         return Integer.parseInt(p_time[i]);
@@ -118,6 +185,39 @@ public class Check {
                 }
             }
         }).start();
+    }
+
+    private int isSmallMonth(int currentMonth){
+        int []small_month = {4,6,9,11};
+        for (int i =0;i<small_month.length;i++){
+            if (currentMonth==small_month[i])
+                return 1;
+        }
+        return 0;
+    }
+
+    private boolean isLeapYear(int year){
+        if (year % 4 == 0 && year % 100 != 0) {
+            return true;
+        } else if (year % 400 == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private int getDays(int currentYear,int currentMonth){
+        int days;
+        if (currentMonth==2){
+            if (isLeapYear(currentYear))days = 29;
+            else days = 28;
+        }
+        else if (isSmallMonth(currentMonth)==1){
+            days =30;
+        }
+        else{
+            days =31;
+        }
+        return days;
     }
 
 

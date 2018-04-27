@@ -16,6 +16,7 @@ public class UsersManager {
 
     private Context mContext;
     private SQLiteDatabase mDatabase;
+    private  User user;
 
     public UsersManager(Context context) {
         mContext = context.getApplicationContext();
@@ -55,8 +56,11 @@ public class UsersManager {
                 null
         );
 
-        return  new UserCursorWrapper(cursor);
+        return new UserCursorWrapper(cursor);
     }
+
+
+
 
     public List<User> getUsers(){
         List<User> users = new ArrayList<>();
@@ -91,18 +95,13 @@ public class UsersManager {
     }
 
     public String getUsername(){
-        UserCursorWrapper cursor = queryUsers(
-                UserTable.Cols.STATUS + "=? ",
-                new String[]{"1"}
-        );
-        try{
-            if (cursor.getCount() == 0){
-                return null;
-            }
-            cursor.moveToFirst();
-            return cursor.getUser().getUsername();
-        }finally {
-            cursor.close();
+
+        List<User>list = this.getUsers();
+        for (int i = 0;i< list.size();i++){
+            User user = list.get(i);
+            if (user.getStatus()==1)
+                return user.getUsername();
         }
+        return null;
     }
 }

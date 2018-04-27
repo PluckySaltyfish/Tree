@@ -46,7 +46,7 @@ public class Task implements Comparable{
         this.createTime = createTime;
     }
 
-    String getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
@@ -116,7 +116,13 @@ public class Task implements Comparable{
         return dateFormat.format(date);
     }
 
+    public String getFinishtime() {
+        return finishtime;
+    }
 
+    public void setFinishtime(String finishtime) {
+        this.finishtime = finishtime;
+    }
 
     @Override
     public int compareTo(Object task1) {

@@ -22,6 +22,10 @@
     <color name="yellow">#FFF983</color>
     <color name="bkg_y">#efeac9</color>
     <color name="green_sh">#6eab8a</color>
+    <color name="dark_blue">#15327D</color>
+    <color name="dark_red">#C4545B</color>
+    <color name="orange">#ffbe41</color>
+    <color name="green_bar">#80BA6F</color>
 
 </resources>
 

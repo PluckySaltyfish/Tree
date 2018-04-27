@@ -1,39 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:scrollbars="none"
-    android:padding="0dp">
+    android:layout_height="wrap_content"
+    >
 
-
-    <LinearLayout
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
+        android:padding="0dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-        <include
-            android:id="@+id/header_part"
-            layout="@layout/me_header"
-           >
-        </include>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="vertical"
 
-        <include
-            android:id="@+id/chart1_part"
-            layout="@layout/me_chart1">
-        </include>
-        <include
-            android:id="@+id/chart2_part"
+            >
 
-            layout="@layout/me_chart2">
-        </include>
-        <include
-            android:id="@+id/chart3_part"
-            layout="@layout/me_chart3">
-        </include>
-    </LinearLayout>
-</ScrollView>
+
+            <include
+                android:id="@+id/header_part"
+                layout="@layout/me_header"
+                >
+            </include>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="@string/performence"
+                android:textAlignment="center"
+                android:textColor="@color/dark_green"
+                android:textSize="30sp"/>
+
+            <include
+                android:id="@+id/chart3_part"
+                layout="@layout/me_chart3">
+            </include>
+
+            <include
+                android:id="@+id/chart2_part"
+
+                layout="@layout/me_chart2">
+            </include>
+
+            <include
+                android:id="@+id/chart1_part"
+                layout="@layout/me_chart1">
+            </include>
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

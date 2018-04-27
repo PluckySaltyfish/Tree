@@ -164,7 +164,7 @@ public class TreeFragment extends Fragment {
         user_level = (ImageView)v.findViewById(R.id.level);
         tree_level.setImageResource(tree_res);
         user_level.setImageResource(res);
-        return   v;
+        return v;
 
 
 

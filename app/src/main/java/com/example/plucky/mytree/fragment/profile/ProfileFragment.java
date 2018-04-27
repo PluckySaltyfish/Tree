@@ -27,15 +27,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.plucky.mytree.AvatarImageView;
 import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.chart.MonthlyChart;
 import com.example.plucky.mytree.chart.PairData;
-import com.example.plucky.mytree.chart.WeeklyChart;
-import com.example.plucky.mytree.fragment.task.Task;
+import com.example.plucky.mytree.chart.Pie_Data;
+import com.example.plucky.mytree.chart.WeeklyCreateChart;
+import com.example.plucky.mytree.chart.WeeklyPieChart;
 import com.example.plucky.mytree.watcher.Check;
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,6 +61,8 @@ public class ProfileFragment extends Fragment {
     private Uri imageUri;
     private UsersManager mUsersManager;
     private Check mCheck;
+    private String username;
+    private TextView mTextView;
 
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
 
@@ -64,18 +71,42 @@ public class ProfileFragment extends Fragment {
         mUsersManager = new UsersManager(getActivity());
 
         View v1 = v.findViewById(R.id.chart1_part);
+        View v2 = v.findViewById(R.id.chart2_part);
+        View v3 = v.findViewById(R.id.chart3_part);
+        View vh = v.findViewById(R.id.header_part);
+        mTextView = (TextView)v.findViewById(R.id.profile_username);
         LineChart LineChart = (LineChart) v1.findViewById(R.id.chart1);
+        BarChart barChart = (BarChart) v2.findViewById(R.id.chart2);
+        PieChart pieChart = (PieChart) v3.findViewById(R.id.chart3);
+
+//        PairData[] dataObjects = mCheck.ChartCheck(1,currentDay,currentMonth,currentYear,username);
 
         PairData[] dataObjects = {new PairData(0, 30), new PairData(1, 99), new PairData(2, 22),
                 new PairData(3, 44), new PairData(4, 35), new PairData(5, 60), new PairData(6, 80)};
+
+        username = mUsersManager.getUsername();
+        mTextView.setText(username);
+
 
         int []time = mCheck.getCurrentTime();
         currentYear = time[0];
         currentMonth = time[1];
         currentDay = time[2];
-        WeeklyChart wkChart = new WeeklyChart(LineChart, dataObjects,mCheck.getWeek(currentYear,currentMonth,currentDay));
-        wkChart.setData();
-        wkChart.drawChart();
+
+        Pie_Data[] data0 = mCheck.PieChartCheck(username,currentYear,currentMonth,currentDay);
+        PairData[] data1 = mCheck.ChartCheck(2,currentDay,currentMonth,currentYear,username);
+
+        MonthlyChart monthlyChart = new MonthlyChart(LineChart,data1);
+        monthlyChart.setData();
+        monthlyChart.drawChart();
+
+        WeeklyCreateChart wkcChart = new WeeklyCreateChart(barChart,dataObjects,mCheck.getWeek(currentYear,currentMonth,currentDay));
+        wkcChart.setData();
+        wkcChart.drawChart();
+
+        WeeklyPieChart wkpChart = new WeeklyPieChart(pieChart,data0);
+        wkpChart.setData();
+        wkpChart.drawChart();
 
 
         View vv = v.findViewById(R.id.header_part);

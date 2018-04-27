@@ -130,6 +130,7 @@ public class Login2Activity extends AppCompatActivity {
                                         User user1 = new User(UserId,password);
                                         user1.setStatus(1);
                                         mUserManager.addUser(user1);
+                                        user = user1;
                                     }
 
                                     user.setStatus(1);

@@ -75,7 +75,6 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         mCheck = new Check(getActivity());
         mUsersManager = new UsersManager(getActivity());
         username = mUsersManager.getUsername();
-
         //获取当前时间
         int []time = mCheck.getCurrentTime();
         currentYear = time[0];
@@ -144,8 +143,8 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                 OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                taskList.remove(position);
                 mRemoteData.deleteTask(taskList.get(position).getTaskID());
+                taskList.remove(position);
                 UpdateUI();
                 //Reload(currentYear,currentMonth,currentDay);
             }
@@ -193,6 +192,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                 mConfirmDialog.idolize("开始任务", "确定要开始此任务吗？", "取消", "确定", R.drawable.frog);
                 mConfirmDialog.show();
             }
+
             else if(mTask.getStatus()==1){
                 mConfirmDialog = new ConfirmDialog(getActivity(), R.style.dialog, new ConfirmDialog.OnCloseListener() {
                     @Override

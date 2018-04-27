@@ -20,6 +20,7 @@ class MyFormatter {
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
+                String[] quarters0 = new String[31];
                 return " ";
             }
         };
