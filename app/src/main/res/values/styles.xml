@@ -47,5 +47,12 @@
         <item name="android:windowExitAnimation">@anim/floatwindow_exit_anim</item>
     </style>
 
+    <style name="customProgressBar" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:maxHeight">4.0dip</item>
+        <item name="android:indeterminateDrawable">@drawable/progress_bar_h5</item>
+        <item name="android:progressDrawable">@drawable/progress_bar_h5</item>
+        <item name="android:minHeight">4.0dip</item>
+    </style>
+
 </resources>
 

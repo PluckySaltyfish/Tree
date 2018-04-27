@@ -1,9 +1,10 @@
 package com.example.plucky.mytree.store;
 
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class RootDiagram implements Comparable {
+public class RootDiagram implements Comparable, Serializable {
     private int pno;
     private String title ;
     private String content ;
