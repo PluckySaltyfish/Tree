@@ -22,6 +22,11 @@
     <color name="yellow">#FFF983</color>
     <color name="bkg_y">#efeac9</color>
     <color name="green_sh">#6eab8a</color>
-
+    <color name="green">#00BA9C</color>
+    <color name="green_dark">#05917a</color>
+    <color name="text_color">#141d26</color>
+    <color name="transparent">#00000000</color>
+    <color name="gray_ef">#efefef</color>
+    <color name="progress_bar_color">#00BA9C</color>
 </resources>
 

@@ -18,6 +18,8 @@ import android.widget.VideoView;
 import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
+import com.example.plucky.mytree.local.BookSchema;
+import com.example.plucky.mytree.store.BookStart;
 
 public class TreeFragment extends Fragment {
     private VideoView mVideoView;
@@ -27,7 +29,7 @@ public class TreeFragment extends Fragment {
     private ImageView tree_level,user_level;
     private TextView tree_exp,exp_text;
     private UsersManager mUsersManager;
-
+    private ImageView mImageView4;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -160,6 +162,14 @@ public class TreeFragment extends Fragment {
             }
         });
 
+        mImageView4=(ImageView)v.findViewById(R.id.imageView4);
+        mImageView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BookStart bookStart = new BookStart(getActivity());
+                bookStart.startReading(BookSchema.RootTable.NAME,0);
+            }
+        });
         tree_level = (ImageView)v.findViewById(R.id.tree_level);
         user_level = (ImageView)v.findViewById(R.id.level);
         tree_level.setImageResource(tree_res);
