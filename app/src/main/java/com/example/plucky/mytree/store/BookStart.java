@@ -30,16 +30,7 @@ public class BookStart{
         intent.putExtra("list",(Serializable)list);
         intent.putExtra("taskId",taskId);
         mContext.startActivity(intent);
-        //开启新的Activity
-        //用cardView展示list中的每一项内容
-        //最后一页添加一张，显示End
 
-
-//      if (taskId!=0){
-//            if (读到了最后一页){
-//                mRemoteData.setStatus(taskId,2);
-//            }
-//      }
 
     }
 }

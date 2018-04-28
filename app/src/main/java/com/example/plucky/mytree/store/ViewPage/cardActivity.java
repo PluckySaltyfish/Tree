@@ -1,9 +1,12 @@
 package com.example.plucky.mytree.store.ViewPage;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.store.RootDiagram;
@@ -13,9 +16,7 @@ import com.gu.library.transformer.VerticalStackTransformer;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Nate on 2016/7/22.
- */
+
 public class cardActivity extends AppCompatActivity {
 
     private OrientedViewPager mOrientedViewPager;
@@ -27,6 +28,15 @@ public class cardActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView =getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setNavigationBarColor(Color.TRANSPARENT);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
         list=(List<RootDiagram>)getIntent().getSerializableExtra("list");
         int taskId=getIntent().getIntExtra("taskId",0);
         int length=list.size();
