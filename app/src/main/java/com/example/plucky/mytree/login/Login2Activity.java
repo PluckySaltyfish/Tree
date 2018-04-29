@@ -15,11 +15,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.plucky.mytree.AvatarImageView;
 import com.example.plucky.mytree.MainActivity;
 import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.connection.RemoteData;
+import com.example.plucky.mytree.dialog.ServiceDialog;
 import com.example.plucky.mytree.fragment.profile.User;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
 import com.example.plucky.mytree.watcher.Validation;
@@ -33,6 +35,8 @@ public class Login2Activity extends AppCompatActivity {
     private ImageView mPasswordImageView;
     private EditText mPasswordEditText;
     private AlertDialog mAlertDialog;
+    private TextView servicecontinue;
+    private ServiceDialog mDialog;
     private RemoteData mRemoteData =new RemoteData(Login2Activity.this);
     private String UserId,password;
     private Validation mValidation = new Validation(Login2Activity.this);
@@ -55,6 +59,7 @@ public class Login2Activity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
 
+        servicecontinue = (TextView)findViewById(R.id.servicecontinue);
         mEditText=(EditText) findViewById(R.id.edituser);
         mPasswordEditText=(EditText) findViewById(R.id.password);
         mImageView=(AvatarImageView) findViewById(R.id.imageView6);
@@ -84,6 +89,14 @@ public class Login2Activity extends AppCompatActivity {
                         }
                     }
                 }
+            }
+        });
+
+        servicecontinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog = new ServiceDialog(Login2Activity.this,R.style.dialog);
+                mDialog.show();
             }
         });
         mPasswordImageView.setImageResource(R.drawable.eye2);

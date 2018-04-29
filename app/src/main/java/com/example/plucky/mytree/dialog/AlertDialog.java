@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.plucky.mytree.R;
 
 public class AlertDialog extends Dialog implements View.OnClickListener{
@@ -15,7 +14,9 @@ public class AlertDialog extends Dialog implements View.OnClickListener{
     private String sTitle,sConfirm;
     private int resID;
     private Context mContext;
-    public AlertDialog(Context context, int themeResID){
+    public AlertDialog(Context context, int themeResID)
+
+    {
         super(context,themeResID);
         this.mContext = context;
     }
@@ -34,7 +35,7 @@ public class AlertDialog extends Dialog implements View.OnClickListener{
 
     }
 
-    private void initView(){
+    protected void initView(){
         title = (TextView) findViewById(R.id.alert_title);
 
         icon = (ImageView) findViewById(R.id.alert_icon);

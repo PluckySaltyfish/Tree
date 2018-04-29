@@ -23,7 +23,7 @@ public class RemoteData {
 /*-----------------------------USER------------------------------------*/
 
     public int ifExist(String username){
-        return 1;
+        return 0;
     }
 
     public int getTreeExp(String username){

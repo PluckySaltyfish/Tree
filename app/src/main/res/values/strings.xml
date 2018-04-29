@@ -60,4 +60,16 @@
     <string name="back">返回</string>
     <string name="itemname">ItemName</string>
     <string name="performence">Performence</string>
+    <string name="service_item">Tree App服务条款</string>
+    <string name="service_content_0">欢迎您使用Tree APP服务！</string>
+    <string name="service_content_1">为使用Tree APP平台服务，您应当阅读并遵守《Tree App服务条款
+》（以下简称“本协议”）。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制责任的条款、管辖与法律适用条款。限制、免责条款可能以加粗或加下划线的形式提示您重点注意。除非您已阅读并接受本协议所有条款，否则您无权使用Tree APP提供的服务，您使用Tree APP平台的服务即视为您已阅读并同意上述协议的约束。
+如果您未满18周岁，请在法定监护人的陪同下阅读本协议，并特别注意未成年人使用条款。</string>
+    <string name="service_content_2">1. Tree APP是由江南大学大创团队提供的移动客户端解决方案，并由学生自行运行维护；本协议是您与开发者APP相关服务所订立的协议。
+</string>
+    <string name="service_content_3">2.遵守国家法律。
+</string>
+    <string name="service_content_4">3.遵循社会道德。
+</string>
+
 </resources>

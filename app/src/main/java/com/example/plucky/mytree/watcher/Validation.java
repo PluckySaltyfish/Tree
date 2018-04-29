@@ -57,9 +57,9 @@ public class Validation {
             mAlertDialog = new AlertDialog(mContext, R.style.dialog);
             mAlertDialog.idolize("密码长度不符合","确定",R.drawable.warning);
             mAlertDialog.show();
-            return 1;
+            return 0;
         }
-        else return 0;
+        else return 1;
         //判断password的长度是否在6-12位之间，如果小于6或大于12，显示AlertDialog,调用方法如isEmpty()中所示
     }
 

@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         sign_up_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SendMailUtil.send("1828151761@qq.com");
                 Intent j = new Intent(LoginActivity.this, Register.class);
                 startActivity(j);
             }

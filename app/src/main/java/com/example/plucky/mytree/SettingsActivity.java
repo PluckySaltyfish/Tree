@@ -1,5 +1,6 @@
 package com.example.plucky.mytree;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.plucky.mytree.connection.RemoteData;
+import com.example.plucky.mytree.fragment.profile.User;
+import com.example.plucky.mytree.fragment.profile.UsersManager;
+import com.example.plucky.mytree.login.LoginActivity;
+
 public class SettingsActivity  extends AppCompatActivity {
     private ImageView topimageview;
     private TextView mnamechange,mpasswordchange,mportraitchange;
@@ -16,6 +22,9 @@ public class SettingsActivity  extends AppCompatActivity {
     private TextView msuggestion,mcontactus;
     private TextView mversion,mclean,mquit;
     private ImageView mtaskimage,mtexttimeimage,mversionimage;
+    private UsersManager mUsersManager;
+    private RemoteData mRemoteData;
+    private String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,11 +54,13 @@ public class SettingsActivity  extends AppCompatActivity {
         mquit=(TextView)findViewById(R.id.quit);
         mversionimage=(ImageView)findViewById(R.id.versionimage);
 
+        mRemoteData = new RemoteData(SettingsActivity.this);
+        mUsersManager = new UsersManager(SettingsActivity.this);
+        username = mUsersManager.getUsername();
+
         topimageview.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //退出设置
-                Toast.makeText(SettingsActivity.this, "退出", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -110,7 +121,13 @@ public class SettingsActivity  extends AppCompatActivity {
         mquit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(SettingsActivity.this, "退出登录", Toast.LENGTH_SHORT).show();
+                User user = mUsersManager.getUser(username);
+                user.setStatus(0);
+                mUsersManager.updateUser(user);
+
+                Intent i = new Intent(SettingsActivity.this, LoginActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
             }
         });
     }

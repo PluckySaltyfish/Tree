@@ -65,12 +65,12 @@ public class Register extends AppCompatActivity {
                 psw1 = vpsw.getText().toString();
                 psw2 = psw.getText().toString();
                 if (mValidation.isEmpty(usr,"用户名")==0){
-                    if (mValidation.isEmpty(psw2,"密码")==0){
+                    if (mRemoteData.ifExist(usr)!=1){
+                        if (mValidation.isEmpty(psw2,"密码")==0){
                         if (mValidation.isEmpty(psw1,"重复密码")==0){
                             if (mValidation.isEmpty(mail,"邮箱")==0){
-                                if(mValidation.isEqual(psw1,psw2,"密码不一致")==1){
-                                    if (mValidation.isRightLength(psw1)==1){
-                                        if (mRemoteData.ifExist(usr)!=1){
+                                if (mValidation.isRightLength(psw1)==1){
+                                    if(mValidation.isEqual(psw1,psw2,"密码不一致")==1){
                                             mRemoteData.addUser(usr,psw2,mail);
                                             mConfirmDialog = new ConfirmDialog(Register.this, R.style.dialog, new ConfirmDialog.OnCloseListener() {
                                                 @Override
@@ -91,17 +91,18 @@ public class Register extends AppCompatActivity {
 
 
                                         }
-                                        else{
-                                            mAlertDialog = new AlertDialog(Register.this,R.style.dialog);
-                                            mAlertDialog.idolize("用户已存在","返回",R.drawable.warning);
-                                            mAlertDialog.show();
-                                        }
+
                                     }
 
 
                                 }
                             }
                         }
+                    }
+                    else{
+                        mAlertDialog = new AlertDialog(Register.this,R.style.dialog);
+                        mAlertDialog.idolize("用户已存在","返回",R.drawable.warning);
+                        mAlertDialog.show();
                     }
                 }
 
