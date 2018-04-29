@@ -71,5 +71,8 @@
 </string>
     <string name="service_content_4">3.遵循社会道德。
 </string>
+    <string name="mail_address">邮箱地址</string>
+    <string name="vali_code">输入验证码</string>
+    <string name="word">验证码已发送至您的邮箱 请登录邮箱完成验证</string>
 
 </resources>

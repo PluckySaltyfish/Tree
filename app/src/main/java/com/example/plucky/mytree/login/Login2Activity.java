@@ -24,6 +24,7 @@ import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.dialog.ServiceDialog;
 import com.example.plucky.mytree.fragment.profile.User;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
+import com.example.plucky.mytree.mail.SendMailUtil;
 import com.example.plucky.mytree.watcher.Validation;
 
 public class Login2Activity extends AppCompatActivity {
@@ -168,9 +169,15 @@ public class Login2Activity extends AppCompatActivity {
         ForgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //start forgetpassword activity
-                Intent i = new Intent(Login2Activity.this, RetrievePassword1.class);
-                startActivity(i);
+                UserId = mEditText.getText().toString();
+                if (mValidation.isEmpty(UserId,"用户名")!=1){
+
+                    Intent i = new Intent(Login2Activity.this, RetrievePassword1.class);
+                    i.putExtra("username",UserId);
+                    startActivity(i);
+                }
+
+
             }
         });
 

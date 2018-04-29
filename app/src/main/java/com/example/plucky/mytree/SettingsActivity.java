@@ -1,5 +1,6 @@
 package com.example.plucky.mytree;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -11,9 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.plucky.mytree.connection.RemoteData;
+import com.example.plucky.mytree.dialog.AlertDialog;
+import com.example.plucky.mytree.dialog.ConfirmDialog;
+import com.example.plucky.mytree.dialog.InputDialog;
 import com.example.plucky.mytree.fragment.profile.User;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
+import com.example.plucky.mytree.local.UserSchema;
 import com.example.plucky.mytree.login.LoginActivity;
+import com.example.plucky.mytree.watcher.Validation;
 
 public class SettingsActivity  extends AppCompatActivity {
     private ImageView topimageview;
@@ -25,6 +31,9 @@ public class SettingsActivity  extends AppCompatActivity {
     private UsersManager mUsersManager;
     private RemoteData mRemoteData;
     private String username;
+    private InputDialog mInputDialog;
+    private Validation mValidation;
+    private ConfirmDialog mConfirmDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +65,7 @@ public class SettingsActivity  extends AppCompatActivity {
 
         mRemoteData = new RemoteData(SettingsActivity.this);
         mUsersManager = new UsersManager(SettingsActivity.this);
+        mValidation = new Validation(SettingsActivity.this);
         username = mUsersManager.getUsername();
 
         topimageview.setOnClickListener(new View.OnClickListener(){
@@ -69,7 +79,27 @@ public class SettingsActivity  extends AppCompatActivity {
         mpasswordchange.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(SettingsActivity.this, "修改用户密码", Toast.LENGTH_SHORT).show();
+                mInputDialog = new InputDialog(SettingsActivity.this, R.style.dialog, new InputDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm, String text, int mode) {
+                        if (confirm){
+                            if (mValidation.isEmpty(text,"密码")!=1) {
+                                if (mValidation.isRightLength(text)==1){
+                                    mInputDialog.dismiss();
+                                    mRemoteData.alterPassword(username,text);
+                                    User user = mUsersManager.getUser(username);
+                                    user.setPassword(text);
+                                    mUsersManager.updateUser(user);
+                                    AlertDialog alertDialog = new AlertDialog(SettingsActivity.this,R.style.dialog);
+                                    alertDialog.idolize("修改成功","返回",R.drawable.smile);
+                                    alertDialog.show();
+                                }
+                            }
+                        }
+                    }
+                });
+                mInputDialog.idolize("输入新密码","取消","确定");
+                mInputDialog.show();
             }
         });
 

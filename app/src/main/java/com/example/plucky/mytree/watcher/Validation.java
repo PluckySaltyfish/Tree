@@ -7,8 +7,19 @@ import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.dialog.AlertDialog;
 import com.example.plucky.mytree.fragment.profile.User;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
+import com.sun.mail.util.MailSSLSocketFactory;
 
+import java.security.GeneralSecurityException;
+import java.util.Properties;
 import java.util.Random;
+
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class Validation {
     private Context mContext;
@@ -37,18 +48,12 @@ public class Validation {
     }
 
     public String PasswordGenerator(){
-        int pass[]=new int[12];
-        String password=new String();
+        String password = "";
         Random random=new Random();
-        int length=random.nextInt(7)+6;
+        int length = 6;
         for(int i=0;i<length;i++){
-            pass[i]=random.nextInt(62)+1;
-            if(pass[i]<27) pass[i]+=64;
-            else if(pass[i]<53) pass[i]+=70;
-            else pass[i]-=5;
-            password=password+(char)pass[i];
+            password += random.nextInt(10);
         }
-        //生成6-12位 由a-z，A-Z，0-9组成的字符串并返回
         return password;
     }
 
@@ -60,7 +65,6 @@ public class Validation {
             return 0;
         }
         else return 1;
-        //判断password的长度是否在6-12位之间，如果小于6或大于12，显示AlertDialog,调用方法如isEmpty()中所示
     }
 
     public int isEqual(String s1,String s2,String title){
@@ -72,4 +76,6 @@ public class Validation {
         }
         return 0;
     }
+
+
 }

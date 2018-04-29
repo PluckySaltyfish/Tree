@@ -13,10 +13,10 @@ public class SendMailUtil {
     private static final String HOST = "smtp.qq.com";
     private static final String PORT = "587";
     private static final String FROM_ADD = "1828151761@qq.com"; //发送方邮箱
-    private static final String FROM_PSW = "Bowtiesarecool11";//发送方邮箱授权码
+    private static final String FROM_PSW = "ywcwphforxtucffg";//发送方邮箱授权码
 
-    public static void send(String toAdd,String title,String content){
-        final MailInfo mailInfo = creatMail(toAdd,title,content);
+    public static void send(String toAdd,String content){
+        final MailInfo mailInfo = creatMail(toAdd,content);
         final MailSender sms = new MailSender();
         new Thread(new Runnable() {
             @Override
@@ -27,7 +27,7 @@ public class SendMailUtil {
     }
 
     @NonNull
-    private static MailInfo creatMail(String toAdd,String title,String content) {
+    private static MailInfo creatMail(String toAdd,String content) {
         final MailInfo mailInfo = new MailInfo();
         mailInfo.setMailServerHost(HOST);
         mailInfo.setMailServerPort(PORT);
@@ -36,8 +36,8 @@ public class SendMailUtil {
         mailInfo.setPassword(FROM_PSW);// 您的邮箱密码
         mailInfo.setFromAddress(FROM_ADD); // 发送的邮箱
         mailInfo.setToAddress(toAdd); // 发到哪个邮件去
-        mailInfo.setSubject(title); // 邮件主题
-        mailInfo.setContent(content); // 邮件文本
+        mailInfo.setSubject("Tree App密码找回"); // 邮件主题
+        mailInfo.setContent("【Tree】欢迎使用Tree App密码找回服务，验证码"+content+"。\n太阳系爱你哟（づ￣3￣）づ╭❤～"); // 邮件文本
         return mailInfo;
     }
 }
