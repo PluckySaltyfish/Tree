@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class LockService extends Service {
     private int StartTimeHour,StartTimeMinute,StartTimeSecond;
     private int HourEndnow,MinuteEndnow,SecondEndnow;
     private int isend=0;
+    private ImageView mImageView;
 
     private WindowManager windowManager;
     private Context mContext;
@@ -117,13 +119,16 @@ public class LockService extends Service {
                 inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 mDesktopLayout = inflater.inflate(R.layout.float_layout, null);
                 mTextView=(TextView) mDesktopLayout.findViewById(R.id.textisfinished);
+                mImageView=(ImageView) mDesktopLayout.findViewById(R.id.floatimageView2);
                 if(isend==1){
                     //已自动结束任务
                     mTextView.setText("已自动结束任务");
+                    mImageView.setImageResource(R.drawable.bingo);
                 }
                 else{
                     //任务失败
                     mTextView.setText("任务失败");
+                    mImageView.setImageResource(R.drawable.failed);
                 }
 
                 handler=new MyHandler();

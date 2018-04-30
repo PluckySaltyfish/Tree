@@ -3,7 +3,6 @@ package com.example.plucky.mytree.fragment.achievement;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 
-import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.connection.RemoteData;
 
 import java.util.List;
@@ -18,22 +17,6 @@ public class Achievement {
     private Context mContext;
     //0--未获得
     //1--已获得
-
-    public Achievement(){
-        for(int i=0;i<30;i++) id[i]=i+1;
-
-        for(int i=0;i<30;i=i+5)
-                image[i]= R.mipmap.tree_one;
-        for(int i=1;i<30;i=i+5)
-            image[i]=R.mipmap.tree_two;
-        for(int i=2;i<30;i=i+5)
-            image[i]=R.mipmap.tree_three;
-        for(int i=3;i<30;i=i+5)
-            image[i]=R.mipmap.tree_four;
-        for(int i=4;i<30;i=i+5)
-            image[i]=R.mipmap.tree_five;
-    }
-
     private void loadImage(){
         ApplicationInfo appInfo = mContext.getApplicationInfo();
 
@@ -49,7 +32,10 @@ public class Achievement {
                 name_prefix="medal";
             }
             int res= mContext.getResources().getIdentifier(name_prefix+num, "drawable", appInfo.packageName);
+
+
             image[i]=res;
+
         }
     }
 
@@ -73,6 +59,12 @@ public class Achievement {
         return image[i];
     }
 
+    public int getimagesize(){
+        return 18;
+    }
+    public int getstatus(int i){
+        return status[i];
+    }
 }
 
 

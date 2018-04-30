@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.plucky.mytree.R;
@@ -19,7 +19,7 @@ import com.example.plucky.mytree.connection.RemoteData;
 public class CardFragment extends Fragment {
     private static final String INDEX_KEY = "index_key";
     int num=0,sum=0,taskId=0;
-    private Button buttonEnd;
+    private ImageView mImageView;
     private TextView mwordTitle,mmeaning,mcontent0,mcontent1;
 
     private RemoteData mRemoteData=new RemoteData(getActivity());
@@ -49,8 +49,8 @@ public class CardFragment extends Fragment {
                 return v;
             } else {
                 final View v = inflater.inflate(R.layout.card_end, container, false);
-                buttonEnd = (Button) v.findViewById(R.id.buttonend);
-                buttonEnd.setOnClickListener(new View.OnClickListener() {
+                mImageView=(ImageView) v.findViewById(R.id.closeimageView7);
+                mImageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         mRemoteData.setStatus(taskId,2);

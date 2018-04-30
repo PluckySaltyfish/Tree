@@ -74,7 +74,7 @@ public class ProfileFragment extends Fragment {
         View v2 = v.findViewById(R.id.chart2_part);
         View v3 = v.findViewById(R.id.chart3_part);
         View vh = v.findViewById(R.id.header_part);
-        mTextView = (TextView)v.findViewById(R.id.profile_username);
+        mTextView = (TextView)vh.findViewById(R.id.profile_username);
         LineChart LineChart = (LineChart) v1.findViewById(R.id.chart1);
         BarChart barChart = (BarChart) v2.findViewById(R.id.chart2);
         PieChart pieChart = (PieChart) v3.findViewById(R.id.chart3);
@@ -125,7 +125,7 @@ public class ProfileFragment extends Fragment {
 
         final View contentView = inflater.inflate(R.layout.pop_up_window, container, false);
         final PopupWindow popupWindow = new PopupWindow(contentView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
+        popupWindow.setClippingEnabled(false);
         popupWindow.setOutsideTouchable(false);
         popupWindow.setFocusable(true);
         ColorDrawable dw = new ColorDrawable(0xb0000000);
@@ -137,7 +137,7 @@ public class ProfileFragment extends Fragment {
                 takePhoto = (Button) contentView.findViewById(R.id.takephoto);
                 chooseFromAlbum = (Button) contentView.findViewById(R.id.frompicture);
 
-                popupWindow.showAtLocation(contentView, Gravity.CENTER_HORIZONTAL, 10, 10);
+                popupWindow.showAtLocation(contentView, Gravity.CENTER_HORIZONTAL, 0, 0);
 
                 contentView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
