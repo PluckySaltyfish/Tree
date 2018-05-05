@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyTree</string>
+    <string name="app_name">Tree</string>
     <string name="subtitle">Better Learning, Better Growth</string>
     <string name="logo">logo</string>
     <string name="signIn">sign in button</string>
@@ -74,5 +74,9 @@
     <string name="mail_address">邮箱地址</string>
     <string name="vali_code">输入验证码</string>
     <string name="word">验证码已发送至您的邮箱 请登录邮箱完成验证</string>
+    <string name="chart_title1">任务类型统计</string>
+    <string name="char_title_3">任务完成率统计</string>
+    <string name="chart_title_2">新建任务统计</string>
+    <string name="setting">设置</string>
 
 </resources>

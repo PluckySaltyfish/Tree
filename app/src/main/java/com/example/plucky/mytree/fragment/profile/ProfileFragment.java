@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
@@ -74,6 +76,7 @@ public class ProfileFragment extends Fragment {
         View v2 = v.findViewById(R.id.chart2_part);
         View v3 = v.findViewById(R.id.chart3_part);
         View vh = v.findViewById(R.id.header_part);
+
         mTextView = (TextView)vh.findViewById(R.id.profile_username);
         LineChart LineChart = (LineChart) v1.findViewById(R.id.chart1);
         BarChart barChart = (BarChart) v2.findViewById(R.id.chart2);
@@ -93,16 +96,24 @@ public class ProfileFragment extends Fragment {
         currentMonth = time[1];
         currentDay = time[2];
 
+
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "syregular.otf");
+
         Pie_Data[] data0 = mCheck.PieChartCheck(username,currentYear,currentMonth,currentDay);
         PairData[] data1 = mCheck.ChartCheck(2,currentDay,currentMonth,currentYear,username);
 
         MonthlyChart monthlyChart = new MonthlyChart(LineChart,data1);
         monthlyChart.setData();
         monthlyChart.drawChart();
+        monthlyChart.setGradient(getActivity());
 
         WeeklyCreateChart wkcChart = new WeeklyCreateChart(barChart,dataObjects,mCheck.getWeek(currentYear,currentMonth,currentDay));
         wkcChart.setData();
         wkcChart.drawChart();
+        wkcChart.setWidth_m(0.999f);
+        wkcChart.setTypeface(tf);
+
+
 
         WeeklyPieChart wkpChart = new WeeklyPieChart(pieChart,data0);
         wkpChart.setData();

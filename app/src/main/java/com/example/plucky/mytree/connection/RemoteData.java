@@ -8,6 +8,7 @@ import com.example.plucky.mytree.fragment.task.Task;
 import com.example.plucky.mytree.store.StoreItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.mail.Store;
@@ -23,7 +24,7 @@ public class RemoteData {
 /*-----------------------------USER------------------------------------*/
 
     public int ifExist(String username){
-        return 0;
+        return 1;
     }
 
     public int getTreeExp(String username){
@@ -94,15 +95,20 @@ public class RemoteData {
         List<Task> TaskList = new ArrayList<>();
         /*get task whose start time before the input time and
          the end time behind the input time*/
-        for (int i = 0; i < 5 ; i=i+2) {
-            Task task1 = new Task("我很帅很帅很帅我很帅" +
-                    "很帅很帅我很帅很帅很帅我很帅很帅很帅我很帅",i);
+        for (int i = 0; i < 5 ; i=i+3) {
+            Task task1 = new Task("操作系统一二章习题" ,i);
+            task1.setDeadline("2018-04-19 12:17:41");
             Task task2 = new Task(
-                    "美很美我很美很美我很美很美我很美很美我很美很美我很美" +
-                            "很美我很美很美我很美很" ,i+1);
+                    "计算机网络试卷" ,i+1);
             task2.setTimeLimit(0);
+            task2.setDeadline("2018-04-19 12:17:42");
+            Task task3 = new Task(
+                    "嵌入式大作业" ,i+2);
+            task3.setTimeLimit(0);
+            task3.setDeadline("2018-04-19 12:17:40");
             TaskList.add(task1);
             TaskList.add(task2);
+            TaskList.add(task3);
         }
 
         //check status
@@ -111,6 +117,7 @@ public class RemoteData {
                 if (TaskList.get(i).getStatus()==0)
                     TaskList.get(i).setStatus(1);
         }
+        Collections.sort(TaskList);
         return TaskList;
     }
 

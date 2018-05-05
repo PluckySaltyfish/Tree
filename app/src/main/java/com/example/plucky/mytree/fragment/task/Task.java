@@ -127,35 +127,53 @@ public class Task implements Comparable{
     @Override
     public int compareTo(Object task1) {
         Task task2=(Task) task1;
-        String []time2=task2.getDeadline().split("");
-        String []time1= deadline.split("");
-        int year1 = Integer.parseInt(time1[0])*1000+Integer.parseInt(time1[1])*100+Integer.parseInt(time1[2])*10+Integer.parseInt(time1[3]);
-        int month1 = Integer.parseInt(time1[5])*10+Integer.parseInt(time1[6]);
-        int day1 = Integer.parseInt(time1[8])*10+Integer.parseInt(time1[9]);
-        int hour1 = Integer.parseInt(time1[11])*10+Integer.parseInt(time1[12]);
-        int minute1 = Integer.parseInt(time1[14])*10+Integer.parseInt(time1[15]);
+        String []time2=task2.getDeadline().split(" ");
+        String []year2=time2[0].split("-");
+        String []minute2=time2[1].split(":");
+        String []time1= deadline.split(" ");
+        String []year1= time1[0].split("-");
+        String []minute1= time2[1].split(":");
 
-        int year2 = Integer.parseInt(time2[0])*1000+Integer.parseInt(time2[1])*100+Integer.parseInt(time2[2])*10+Integer.parseInt(time2[3]);
-        int month2 = Integer.parseInt(time2[5])*10+Integer.parseInt(time2[6]);
-        int day2 = Integer.parseInt(time2[8])*10+Integer.parseInt(time2[9]);
-        int hour2 = Integer.parseInt(time2[11])*10+Integer.parseInt(time2[12]);
-        int minute2 = Integer.parseInt(time2[14])*10+Integer.parseInt(time2[15]);
+        int year_1 = Integer.parseInt(year1[0]);
+        int month_1 = Integer.parseInt(year1[1]);
+        int day_1 = Integer.parseInt(year1[2]);
 
-        if(year1<year2) return -1;
-        else if(year1>year2) return 1;
+        int year_2 = Integer.parseInt(year2[0]);
+        int month_2 = Integer.parseInt(year2[1]);
+        int day_2 = Integer.parseInt(year2[2]);
+
+        int hour_1 = Integer.parseInt(minute1[0]);
+        int minute_1 = Integer.parseInt(minute1[1]);
+        int second_1 = 0;
+        if (minute1.length>2)
+            second_1 = Integer.parseInt(minute1[2]);
+
+        int hour_2 = Integer.parseInt(minute2[0]);
+        int minute_2 = Integer.parseInt(minute2[1]);
+        int second_2 = 0;
+        if (minute2.length>2)
+            second_2 = Integer.parseInt(minute2[2]);
+
+
+        if(year_1 < year_2) return 1;
+        else if(year_1 > year_2) return -1;
         else{
-            if(month1<month2) return -1;
-            else if(month1>month2) return 1;
+            if(month_1<month_2) return 1;
+            else if(month_1>month_2) return -1;
             else{
-                if(day1<day2) return -1;
-                else if(day1>day2) return 1;
+                if(day_1<day_2) return 1;
+                else if(day_1>day_2) return -1;
                 else{
-                    if(hour1<hour2) return -1;
-                    else if(hour1>hour2) return 1;
+                    if(hour_1<hour_2) return 1;
+                    else if(hour_1>hour_2) return -1;
                     else{
-                        if(minute1<minute2) return -1;
-                        else if(minute1>minute2) return 1;
-                        else return 0;
+                        if(minute_1<minute_2) return 1;
+                        else if(minute_1>minute_2) return -1;
+                        else {
+                            if (second_1<second_2)return 1;
+                            else if (second_1>second_2)return -1;
+                            else return 0;
+                        }
                     }
                 }
             }

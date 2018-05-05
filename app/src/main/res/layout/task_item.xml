@@ -4,7 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="0dp"
+    android:layout_height="144dp"
+    android:layout_marginTop="0dp"
+    android:layout_marginBottom="0dp"
     android:background="@drawable/task_card"
     android:orientation="vertical">
 
@@ -12,27 +16,28 @@
     <TextView
         android:id="@+id/status_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="21dp"
 
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
 
-        android:background="@android:color/transparent"
-        android:gravity="start"
 
+        android:layout_marginTop="9dp"
+        android:background="@android:color/transparent"
+        android:gravity="start|top"
 
         android:textColor="@color/colorPrimary"
         android:textSize="8pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/status_circle"
-        app:layout_constraintTop_toBottomOf="@+id/status_circle"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/status_circle"
-        android:layout_width="9dp"
-        android:layout_height="10dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/blue_circle"/>
@@ -40,11 +45,11 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:textSize="6.5pt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

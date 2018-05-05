@@ -58,9 +58,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         holder.ItemPic.setImageResource(item.getRes());
         holder.ItemText.setText(item.getName());
         if (item.getSelected()==1)
-            holder.Layout.setBackgroundResource(R.drawable.box_selected);
+            holder.ItemPic.setBackgroundResource(R.color.bkg_u);
         else
-            holder.Layout.setBackgroundResource(R.drawable.box);
+            holder.Layout.setBackgroundResource(R.color.white);
     }
 
     @Override

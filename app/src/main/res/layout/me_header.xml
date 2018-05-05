@@ -9,8 +9,9 @@
 
     <ImageView
         android:id="@+id/header"
-        android:layout_width="500dp"
+        android:layout_width="match_parent"
         android:layout_height="230dp"
+        android:scaleType="fitXY"
 
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
@@ -24,7 +25,7 @@
         android:id="@+id/head_icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:scaleType="fitCenter"
@@ -35,27 +36,42 @@
         tools:ignore="ContentDescription"/>
 
     <android.support.constraint.Guideline
+        android:id="@+id/guideline7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline7"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.1"
-        tools:layout_editor_absoluteY="57dp"
-        tools:layout_editor_absoluteX="0dp"/>
+        app:layout_constraintGuide_percent="0.1005291"/>
 
     <TextView
         android:id="@+id/profile_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="60dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text=""
-        android:textSize="24sp"
+        android:text="hhhh"
         android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/header"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginStart="108dp"
+        android:gravity="center"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/setting_bkg"
+        android:text="@string/setting"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_username"/>
 
 
 </android.support.constraint.ConstraintLayout>

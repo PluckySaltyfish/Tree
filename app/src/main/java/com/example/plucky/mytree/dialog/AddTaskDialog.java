@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.fragment.task.Task;
 import com.example.plucky.mytree.store.StoreItem;
+import com.example.plucky.mytree.watcher.Validation;
 
 import org.angmarch.views.NiceSpinner;
 import org.feezu.liuli.timeselector.TimeSelector;
@@ -43,6 +44,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
     private String username;
     private String now;
     private StoreDialog mdialog;
+    private Validation mValidation;
 
 
     public AddTaskDialog(Context context, int themeResId, OnCloseListener listener,int count,String username) {
@@ -174,6 +176,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
                 if(listener != null){
                     listener.onClick(this, true);
                 }
+
                 mTask.setContent(TaskContent.getText().toString());
                 Log.d(TAG, "onClick: "+mTask.toString());
                 break;

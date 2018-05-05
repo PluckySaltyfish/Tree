@@ -162,7 +162,7 @@ public class TreeFragment extends Fragment {
             }
         });
 
-        mImageView4=(ImageView)v.findViewById(R.id.imageView4);
+        mImageView4=(ImageView)v.findViewById(R.id.store_icon);
         mImageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

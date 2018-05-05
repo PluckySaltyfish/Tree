@@ -33,10 +33,12 @@ import com.example.plucky.mytree.dialog.ConfirmDialog;
 import com.example.plucky.mytree.dialog.TimeSelectorDialog;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
 import com.example.plucky.mytree.watcher.Check;
+import com.example.plucky.mytree.watcher.Validation;
 import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -58,6 +60,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     private RemoteData mRemoteData = new RemoteData(getActivity());
 
     private DatePicker mDatePicker;
+    private Validation mValidation;
 
     public KeyguardManager keyguardManager = null;
     public KeyguardManager.KeyguardLock keyguardLock = null;
@@ -80,6 +83,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         currentYear = time[0];
         currentMonth = time[1];
         currentDay = time[2];
+        mValidation = new Validation(getActivity());
 
         recyclerView =(RecyclerView)v.findViewById(R.id.recycler_view);
 
@@ -92,8 +96,6 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         layoutManager= new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         UpdateUI();
-
-
 
         return v;
     }
@@ -130,6 +132,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     private void Reload(int year,int month ,int day){
         taskList.clear();
         taskList.addAll(mRemoteData.getTaskList(username,year,month,day));
+        Collections.sort(taskList);
         UpdateUI();
     }
     @Override
@@ -224,12 +227,20 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
 
                     public void onClick(Dialog dialog, boolean confirm) {
                         if(confirm){
-                            Log.d(TAG, AddTaskDialog.getTask().toString());
-                            taskList.add(AddTaskDialog.getTask());
-                            mRemoteData.addTask(username,AddTaskDialog.getTask());
-                            UpdateUI();
-                            //Reload(currentYear,currentMonth,currentDay);
-                            dialog.dismiss();
+                            Task mTask = AddTaskDialog.getTask();
+                            if (mValidation.isEmpty(mTask.getContent(),"任务内容")!=1){
+                                if (mValidation.isEmpty(mTask.getDeadline(),"结束日期")!=1){
+                                    if (mValidation.isEmpty(mTask.getCreateTime(),"开始时间")!=1){
+                                        taskList.add(mTask);
+                                        Collections.sort(taskList);
+                                        mRemoteData.addTask(username,AddTaskDialog.getTask());
+                                        UpdateUI();
+                                        //Reload(currentYear,currentMonth,currentDay);
+                                        dialog.dismiss();
+                                    }
+                                }
+                            }
+
                         }
 
                     }

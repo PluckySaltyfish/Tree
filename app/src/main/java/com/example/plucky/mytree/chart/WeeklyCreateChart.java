@@ -2,6 +2,7 @@ package com.example.plucky.mytree.chart;
 
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 
 import com.example.plucky.mytree.R;
 import com.github.mikephil.charting.charts.BarChart;
@@ -23,33 +24,40 @@ public class WeeklyCreateChart extends BaseChartSettings{
     private PairData[] dataObjects;
     private BarDataSet mDataSet;
     private List<BarEntry> entries = new ArrayList<>();
+    private int today;
     public WeeklyCreateChart(BarChart chart, PairData[] dataObjects, int today) {
         super(chart, dataObjects,2);
         mBarChart = chart;
         this.dataObjects = dataObjects;
         entries = this.getBarEntries();
+        this.today = today;
         xAxisSettings(today);
 
     }
 
     public void xAxisSettings(int today){
         XAxis xAxis = mBarChart.getXAxis();
+        xAxis.setDrawLimitLinesBehindData(true);
         xAxis.setTextSize(10);
         xAxis.setDrawAxisLine(false);
         xAxis.setDrawGridLines(false);
         xAxis.setValueFormatter(new MyFormatter(today).getWeeklyFormatter());
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setLabelCount(7, false);
     }
 
     public void setData(){
         mDataSet = new BarDataSet(entries, "一周内新建任务数"); // add entries to dataset
 
-        int []colors = {Color.rgb(71,168,237	),Color.rgb(252,233,96),
-                Color.rgb(236,98,55),Color.rgb(71,168,237),
-                Color.rgb(252,233,96),Color.rgb(236,98,55),
-                Color.rgb(71,168,237	)
+        int []colors = {Color.rgb(29,101,112	),Color.rgb(186,97,90),
+                Color.rgb(44,143,153),Color.rgb(167,209,206),
+                Color.rgb(255,197,143),Color.rgb(252,156,157	),
+                Color.rgb(89,173,173)
         };
         mDataSet.setColors(colors);
+        mDataSet.setDrawValues(false);
         mDataSet.setValueTextSize(12);
+
 
 
 
@@ -58,18 +66,39 @@ public class WeeklyCreateChart extends BaseChartSettings{
     public void drawChart(){
         BarData BarData = new BarData(mDataSet);
 
-
         mBarChart.setDescription(null);
         mBarChart.setData(BarData);
         BarData.setBarWidth(0.9f);
         YAxis rightAxis = mBarChart.getAxisRight();
         YAxis leftAxis = mBarChart.getAxisLeft();
-        leftAxis.setDrawAxisLine(false);
-        leftAxis.setTextSize(12);
+        rightAxis.setDrawLabels(false);
+        leftAxis.setDrawLabels(true);
+        leftAxis.setDrawAxisLine(true);
         rightAxis.setDrawAxisLine(false);
+        rightAxis.setDrawGridLines(false);
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setDrawGridLines(false);
+        leftAxis.setTextSize(12);
         mBarChart.setDrawGridBackground(false);
         rightAxis.setDrawLabels(false);
+        mBarChart.setDrawBorders(true);
+        mBarChart.setBorderWidth(3f);
+
+        mBarChart.setBorderColor(Color.rgb(102,102,102));
         mBarChart.setFitBars(true); // make the x-axis fit exactly all bars
         mBarChart.invalidate(); // refresh
+    }
+
+    public void setWidth_m(float f){
+        mBarChart.getBarData().setBarWidth(f);
+
+        //mBarChart.invalidate(); // refresh
+        xAxisSettings(today);
+
+    }
+
+    public void setTypeface(Typeface tf){
+        XAxis xAxis = mBarChart.getXAxis();
+        xAxis.setTypeface(tf);
     }
 }

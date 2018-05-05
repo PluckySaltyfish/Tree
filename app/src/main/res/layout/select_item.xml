@@ -9,20 +9,19 @@
     
     <FrameLayout
         android:id="@+id/item_layout"
-        android:background="@drawable/box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:foregroundGravity="center"
         >
+
         <ImageView
             android:id="@+id/item_pic"
-            android:src="@drawable/book2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="center"
-            android:layout_gravity="center"/>
+            android:src="@drawable/book2"/>
     </FrameLayout>
     <TextView
         android:id="@+id/item_text"

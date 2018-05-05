@@ -3,6 +3,7 @@ package com.example.plucky.mytree;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -17,13 +18,14 @@ import android.widget.Toast;
 
 import com.example.plucky.mytree.fragment.profile.MyFragmentPagerAdapter;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private MyFragmentPagerAdapter myFragmentPagerAdapter;
     private Toolbar mToolbar;
-
     private TabLayout.Tab one;
     private TabLayout.Tab two;
     private TabLayout.Tab three;
@@ -33,10 +35,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate");
+
         setContentView(R.layout.tab_navigation);
         initViews();
-
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView =getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -66,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         three = mTabLayout.getTabAt(2);
         four = mTabLayout.getTabAt(3);
 
-
         one.setIcon(R.drawable.tree);
         two.setIcon(R.drawable.profile);
         three.setIcon(R.drawable.task);
@@ -93,11 +95,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
-
-
     }
 
     @Override

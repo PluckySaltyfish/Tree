@@ -19,6 +19,7 @@ import com.example.plucky.mytree.fragment.profile.User;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
 import com.example.plucky.mytree.local.UserSchema;
 import com.example.plucky.mytree.login.LoginActivity;
+import com.example.plucky.mytree.mail.SendMailUtil;
 import com.example.plucky.mytree.watcher.Validation;
 
 public class SettingsActivity  extends AppCompatActivity {
@@ -34,6 +35,7 @@ public class SettingsActivity  extends AppCompatActivity {
     private InputDialog mInputDialog;
     private Validation mValidation;
     private ConfirmDialog mConfirmDialog;
+    private InputDialog inputDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +64,7 @@ public class SettingsActivity  extends AppCompatActivity {
         mversion=(TextView)findViewById(R.id.version);
         mquit=(TextView)findViewById(R.id.quit);
         mversionimage=(ImageView)findViewById(R.id.versionimage);
+
 
         mRemoteData = new RemoteData(SettingsActivity.this);
         mUsersManager = new UsersManager(SettingsActivity.this);
@@ -104,32 +107,45 @@ public class SettingsActivity  extends AppCompatActivity {
         });
 
 
-        mtasknotification.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Toast.makeText(SettingsActivity.this, "任务日常提醒", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         mtaskimage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 //on:settings_treebuttonon off:settings_treebuttonof
-                Toast.makeText(SettingsActivity.this, "任务日常提醒图标", Toast.LENGTH_SHORT).show();
+                mtaskimage.setImageResource(R.drawable.settings_treebuttonon);
             }
         });
 
         msuggestion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(SettingsActivity.this, "用户反馈与建议", Toast.LENGTH_SHORT).show();
+                inputDialog = new InputDialog(SettingsActivity.this, R.style.dialog, new InputDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm, String text, int mode) {
+                        if (confirm){
+                            SendMailUtil.send("1828151761@qq.com","text");
+                        }
+                    }
+                });
+                inputDialog.idolize("反馈与建议","取消","确定");
+                inputDialog.show();
             }
         });
 
         mcontactus.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(SettingsActivity.this, "联系我们", Toast.LENGTH_SHORT).show();
+                mConfirmDialog = new ConfirmDialog(SettingsActivity.this, R.style.dialog, new ConfirmDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if (confirm){
+
+                        }
+                    }
+                });
+                mConfirmDialog.idolize("联系我们","QQ:182815161","取消","确定",R.drawable.smile);
+                mConfirmDialog.show();
             }
         });
 

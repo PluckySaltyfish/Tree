@@ -29,12 +29,8 @@ public class LoginActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "HiraginoCNS.ttf");
-        TextView textView = (TextView) findViewById(R.id.subtitle);
-        textView.setTypeface(typeface);
-
-       Button sign_in_button= (Button)findViewById(R.id.SignIN);
-       Button sign_up_button= (Button)findViewById(R.id.signup);
+        Button sign_in_button= (Button)findViewById(R.id.SignIN);
+        Button sign_up_button= (Button)findViewById(R.id.signup);
 
         sign_in_button.setOnClickListener(new View.OnClickListener() {
             @Override

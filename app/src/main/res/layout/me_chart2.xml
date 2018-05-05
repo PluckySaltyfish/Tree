@@ -7,6 +7,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bar_shadow"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="60dp"
+            android:layout_gravity="start"
+            android:layout_weight="1.0"
+            android:src="@drawable/yellow_cube"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1.0"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:text="@string/chart_title_2"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/chart2"
         android:layout_width="0dp"

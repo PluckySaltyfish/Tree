@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bkg"
+    android:background="@drawable/bkg_none"
     tools:context="com.example.plucky.mytree.login.Login2Activity"
     tools:ignore="ExtraText">
 
