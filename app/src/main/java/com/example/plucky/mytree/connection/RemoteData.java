@@ -43,7 +43,7 @@ public class RemoteData {
 
     }
 
-    public int getCoin(String username){return 30;}
+    public int getCoin(String username){return 300;}
 
     public void setCoin(String username,int coin){}
 
@@ -185,11 +185,17 @@ public class RemoteData {
 
     public  List<StoreItem> getPurchasedItem(String username){
         List<StoreItem>ItemList = new ArrayList<>();
+        StoreItem item6 = new StoreItem("tree1","萤火树");
+        item6.setPrice(230);
+        ItemList.add(item6);
         return ItemList;
     }
 
     public  List<StoreItem> getPurchasedSeed(String username){
         List<StoreItem>ItemList = new ArrayList<>();
+        StoreItem item6 = new StoreItem("tree1","萤火树");
+        item6.setPrice(230);
+        ItemList.add(item6);
         return ItemList;
     }
 
@@ -202,6 +208,36 @@ public class RemoteData {
 
     public List<StoreItem>getResource(){
         List<StoreItem>ItemList = new ArrayList<>();
+
+        StoreItem item0 = new StoreItem("book1","Linux命令");
+        item0.setPrice(25);
+        StoreItem item1 = new StoreItem("book2","词根大百科");
+        item1.setPrice(35);
+        StoreItem item2 = new StoreItem("book3","前缀大百科");
+        item2.setPrice(35);
+        StoreItem item3 = new StoreItem("book4","后缀大百科");
+        item3.setPrice(77);
+        StoreItem item4 = new StoreItem("book5","前缀大百科2");
+        item4.setPrice(88);
+        StoreItem item5 = new StoreItem("book6","后缀大百科2");
+        item5.setPrice(88);
+        ItemList.add(item0);
+        ItemList.add(item1);
+        ItemList.add(item2);
+        ItemList.add(item3);
+        ItemList.add(item4);
+        ItemList.add(item5);
+
+        StoreItem item6 = new StoreItem("tree1","萤火树");
+        item6.setPrice(230);
+        StoreItem item7 = new StoreItem("tree2","樱花树");
+        item7.setPrice(230);
+
+        ItemList.add(item6);
+        ItemList.add(item7);
+
+
+
         return ItemList;
     }
 

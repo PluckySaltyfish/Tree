@@ -1,5 +1,6 @@
 package com.example.plucky.mytree.fragment.tree;
 
+import android.app.Dialog;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -17,9 +18,18 @@ import android.widget.VideoView;
 
 import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.connection.RemoteData;
+import com.example.plucky.mytree.dialog.AlertDialog;
+import com.example.plucky.mytree.dialog.ConfirmDialog;
+import com.example.plucky.mytree.dialog.StoreDialog;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
-import com.example.plucky.mytree.local.BookSchema;
-import com.example.plucky.mytree.store.BookStart;
+
+import com.example.plucky.mytree.store.StoreItem;
+import com.example.plucky.mytree.watcher.Validation;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.mail.Store;
 
 public class TreeFragment extends Fragment {
     private VideoView mVideoView;
@@ -27,9 +37,16 @@ public class TreeFragment extends Fragment {
     private RemoteData mRemoteData;
     private String username;
     private ImageView tree_level,user_level;
-    private TextView tree_exp,exp_text;
+    private TextView tree_exp,exp_text,coin_text;
     private UsersManager mUsersManager;
     private ImageView mImageView4;
+    private StoreDialog mStoreDialog;
+    private ConfirmDialog mConfirmDialog;
+    private AlertDialog mAlertDialog;
+    private StoreItem item;
+    private Validation mValidation;
+    private List<StoreItem> ItemList = new ArrayList<>();
+    private int coin;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -41,14 +58,19 @@ public class TreeFragment extends Fragment {
         //get data from remote server
         mRemoteData = new RemoteData(getActivity());
         mUsersManager = new UsersManager(getActivity());
+        mValidation = new Validation(getActivity());
         username = mUsersManager.getUsername();
 
         int maxExp;
         int exp = mRemoteData.getExp(username);
         int level;
+        coin = mRemoteData.getCoin(username);
 
         tree_exp = (TextView)v.findViewById(R.id.tree_exp);
         exp_text = (TextView)v.findViewById(R.id.exp);
+        coin_text = (TextView)v.findViewById(R.id.coin);
+
+        ItemList = mRemoteData.getPurchasedItem(username);
 
         if (exp < 200){
             level = exp / 50 + 1;
@@ -119,11 +141,12 @@ public class TreeFragment extends Fragment {
 
         String tree_level_mark = "tree_v"+treeLevel;
         String level_mark = "v"+level;
-        String user_mark = exp+"/"+maxExp;
+        final String user_mark = exp+"/"+maxExp;
         String tree_exp_mark = treeExp+"/"+treeMaxExp;
 
         tree_exp.setText(tree_exp_mark);
         exp_text.setText(user_mark);
+        coin_text.setText(String.valueOf(coin));
 
 
 
@@ -162,18 +185,56 @@ public class TreeFragment extends Fragment {
             }
         });
 
-        mImageView4=(ImageView)v.findViewById(R.id.store_icon);
-        mImageView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BookStart bookStart = new BookStart(getActivity());
-                bookStart.startReading(BookSchema.RootTable.NAME,0);
-            }
-        });
         tree_level = (ImageView)v.findViewById(R.id.tree_level);
         user_level = (ImageView)v.findViewById(R.id.level);
         tree_level.setImageResource(tree_res);
         user_level.setImageResource(res);
+
+        mImageView4=(ImageView)v.findViewById(R.id.store_icon);
+        mImageView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mStoreDialog = new StoreDialog(getActivity(), R.style.dialog, new StoreDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if (confirm){
+                            item = mStoreDialog.getItem();
+                            if (mValidation.isPurchased(item.getId(),ItemList)!=1) {
+                                mConfirmDialog = new ConfirmDialog(getActivity(), R.style.dialog, new ConfirmDialog.OnCloseListener() {
+                                    @Override
+                                    public void onClick(Dialog dialog, boolean confirm) {
+                                        if (confirm) {
+                                            mConfirmDialog.dismiss();
+                                            int coin_new = mValidation.isEnough(item.getPrice(), coin);
+                                            if (coin_new != -1) {
+                                                mAlertDialog = new AlertDialog(getActivity(), R.style.dialog);
+                                                mAlertDialog.idolize("购买成功", "确定", R.drawable.smile);
+                                                mAlertDialog.show();
+                                                mRemoteData.setCoin(username, coin_new);
+                                                coin_text.setText(String.valueOf(coin_new));
+                                                mStoreDialog.dismiss();
+                                            }
+                                        }
+                                    }
+                                });
+                                mConfirmDialog.idolize("购买确认", "确认要购买" + item.getName() + "吗？",
+                                        "取消", "确认", R.drawable.frog);
+                                mConfirmDialog.show();
+                            }else {
+                                mAlertDialog = new AlertDialog(getActivity(), R.style.dialog);
+                                mAlertDialog.idolize("请勿重复购买", "确定", R.drawable.warning);
+                                mAlertDialog.show();
+
+                            }
+                        }
+                    }
+                },username);
+                mStoreDialog.show();
+
+            }
+        });
+
+
         return v;
 
 

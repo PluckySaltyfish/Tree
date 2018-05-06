@@ -152,17 +152,15 @@ public class SettingsActivity  extends AppCompatActivity {
         mversion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Toast.makeText(SettingsActivity.this, "版本", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingsActivity.this, "当前版本已经是最新", Toast.LENGTH_SHORT).show();
             }
         });
 
-        mversionimage.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //on:settings_updatebuttonon off:settings_updatebuttonof
-                Toast.makeText(SettingsActivity.this, "版本图标", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        mversionimage.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v){
+//            }
+//        });
 
         mquit.setOnClickListener(new View.OnClickListener(){
             @Override

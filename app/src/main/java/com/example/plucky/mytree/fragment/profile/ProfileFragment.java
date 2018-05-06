@@ -34,11 +34,14 @@ import android.widget.Toast;
 
 import com.example.plucky.mytree.AvatarImageView;
 import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.SettingsActivity;
 import com.example.plucky.mytree.chart.MonthlyChart;
 import com.example.plucky.mytree.chart.PairData;
 import com.example.plucky.mytree.chart.Pie_Data;
 import com.example.plucky.mytree.chart.WeeklyCreateChart;
 import com.example.plucky.mytree.chart.WeeklyPieChart;
+import com.example.plucky.mytree.login.Login2Activity;
+import com.example.plucky.mytree.login.LoginActivity;
 import com.example.plucky.mytree.watcher.Check;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -57,6 +60,7 @@ public class ProfileFragment extends Fragment {
 
     private AvatarImageView mImageView;
     private Button takePhoto;
+    private TextView settings;
     private Button chooseFromAlbum;
     public static final int TAKE_PHOTO = 1;
     public static final int CHOOSE_PHOTO = 2;
@@ -77,12 +81,13 @@ public class ProfileFragment extends Fragment {
         View v3 = v.findViewById(R.id.chart3_part);
         View vh = v.findViewById(R.id.header_part);
 
+        settings = (TextView)vh.findViewById(R.id.set_btn);
+
         mTextView = (TextView)vh.findViewById(R.id.profile_username);
         LineChart LineChart = (LineChart) v1.findViewById(R.id.chart1);
         BarChart barChart = (BarChart) v2.findViewById(R.id.chart2);
         PieChart pieChart = (PieChart) v3.findViewById(R.id.chart3);
 
-//        PairData[] dataObjects = mCheck.ChartCheck(1,currentDay,currentMonth,currentYear,username);
 
         PairData[] dataObjects = {new PairData(0, 30), new PairData(1, 99), new PairData(2, 22),
                 new PairData(3, 44), new PairData(4, 35), new PairData(5, 60), new PairData(6, 80)};
@@ -95,6 +100,14 @@ public class ProfileFragment extends Fragment {
         currentYear = time[0];
         currentMonth = time[1];
         currentDay = time[2];
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),SettingsActivity.class);
+                startActivity(i);
+            }
+        });
 
 
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "syregular.otf");
@@ -120,8 +133,8 @@ public class ProfileFragment extends Fragment {
         wkpChart.drawChart();
 
 
-        View vv = v.findViewById(R.id.header_part);
-        mImageView = (AvatarImageView) vv.findViewById(R.id.head_icon);
+
+        mImageView = (AvatarImageView) vh.findViewById(R.id.head_icon);
 
         User UserOnline=SearchUserOnline();
         if (UserOnline!=null) {

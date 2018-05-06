@@ -84,10 +84,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.logo:
-                        Toast.makeText(MainActivity.this, "logo", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.logo2:
-                        Toast.makeText(MainActivity.this, "logo2", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MainActivity.this, SettingsActivity.class);
                         startActivity(i);
                         break;

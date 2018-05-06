@@ -73,7 +73,7 @@ public class Login2Activity extends AppCompatActivity {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if(hasFocus){
-                    mImageView.setImageResource(R.drawable.me);
+                    mImageView.setImageResource(R.drawable.me_login);
                 }
                 else {
                     UserId = mEditText.getText().toString();
@@ -82,7 +82,7 @@ public class Login2Activity extends AppCompatActivity {
                     if (user != null) {
                         String image = user.getPhoto();
                         if(image==null){
-                            mImageView.setImageResource(R.drawable.me);
+                            mImageView.setImageResource(R.drawable.me_login);
                         }
                         else{
                             Bitmap bitmap= BitmapFactory.decodeFile(image);

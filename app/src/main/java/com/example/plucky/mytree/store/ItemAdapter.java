@@ -19,7 +19,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
     private List<StoreItem> mItemList;
     MyItemClickListener mItemClickListener;
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView ItemPic;
+        ImageView ItemPic,price_pic;
         TextView ItemText;
         FrameLayout Layout;
         MyItemClickListener mItemClickListener;
@@ -27,7 +27,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
             super(view);
             ItemPic = (ImageView)view.findViewById(R.id.item_pic);
             ItemText = (TextView)view.findViewById(R.id.item_text);
-            Layout = (FrameLayout)view.findViewById(R.id.item_layout);
+            price_pic = (ImageView)view.findViewById(R.id.price_tag);
             this.mItemClickListener = myItemClickListener;
             view.setOnClickListener(this);
         }
@@ -57,10 +57,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         StoreItem item = mItemList.get(position);
         holder.ItemPic.setImageResource(item.getRes());
         holder.ItemText.setText(item.getName());
+        holder.price_pic.setImageResource(item.getPrice_res());
         if (item.getSelected()==1)
             holder.ItemPic.setBackgroundResource(R.color.bkg_u);
         else
-            holder.Layout.setBackgroundResource(R.color.white);
+            holder.ItemPic.setBackgroundResource(R.color.white);
     }
 
     @Override

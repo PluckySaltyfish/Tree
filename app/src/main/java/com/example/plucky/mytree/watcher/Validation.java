@@ -7,9 +7,11 @@ import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.dialog.AlertDialog;
 import com.example.plucky.mytree.fragment.profile.User;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
+import com.example.plucky.mytree.store.StoreItem;
 import com.sun.mail.util.MailSSLSocketFactory;
 
 import java.security.GeneralSecurityException;
+import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
@@ -73,6 +75,24 @@ public class Validation {
             mAlertDialog = new AlertDialog(mContext, R.style.dialog);
             mAlertDialog.idolize(title,"确定",R.drawable.warning);
             mAlertDialog.show();
+        }
+        return 0;
+    }
+
+    public int isEnough(int need,int have){
+        if (need < have) return have-need;
+        else{
+            mAlertDialog = new AlertDialog(mContext, R.style.dialog);
+            mAlertDialog.idolize("金币不够哦", "返回", R.drawable.warning);
+            mAlertDialog.show();
+        }
+        return -1;
+    }
+
+    public int isPurchased(String id, List<StoreItem>ItemList){
+        for (int i = 0;i<ItemList.size();i++){
+            if (ItemList.get(i).getId().equals(id))
+                return 1;
         }
         return 0;
     }

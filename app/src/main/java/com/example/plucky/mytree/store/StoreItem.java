@@ -11,11 +11,13 @@ public class StoreItem {
     private int selected=0;
     private String id;
     private int price;
+    private int price_res;
 
     public StoreItem(int res, String name) {
         this.res = res;
         this.name = name;
     }
+
 
     public StoreItem(String id,String name){
         this.id = id;
@@ -26,6 +28,14 @@ public class StoreItem {
         ApplicationInfo appInfo = mContext.getApplicationInfo();
         this.res  = mContext.getResources().getIdentifier(id, "drawable", appInfo.packageName);
         this.name = name;
+    }
+
+    public int getPrice_res() {
+        return price_res;
+    }
+
+    public void setPrice_res(int price_res) {
+        this.price_res = price_res;
     }
 
     public int getSelected() {
@@ -43,6 +53,7 @@ public class StoreItem {
     public void setRes(Context mContext) {
         ApplicationInfo appInfo = mContext.getApplicationInfo();
         this.res  = mContext.getResources().getIdentifier(id, "drawable", appInfo.packageName);
+        this.price_res = mContext.getResources().getIdentifier("price"+price,"drawable",appInfo.packageName);
         this.name = name;
     }
 
