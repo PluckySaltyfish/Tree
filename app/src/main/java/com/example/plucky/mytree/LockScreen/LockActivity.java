@@ -1,6 +1,8 @@
 package com.example.plucky.mytree.LockScreen;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -13,17 +15,16 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.plucky.mytree.R;
+import com.example.plucky.mytree.connection.RemoteData;
+import com.example.plucky.mytree.dialog.ConfirmDialog;
 
 import java.util.Calendar;
 
 import static android.content.ContentValues.TAG;
 
-/**
- * Created by Administrator on 2018/2/13.
- */
+
 
 public class LockActivity extends Activity {
 
@@ -34,10 +35,14 @@ public class LockActivity extends Activity {
     private boolean isRun = false;
     private Button start,pause,end;
     private final static int REQUEST_CODE=1;
+    private RemoteData mRemoteData;
+    private ConfirmDialog mConfirmDialog;
     int flag=0;
+    private int taskID;
 
     private FinishReceiver mFinshReceiver;
 
+    @SuppressLint("HandlerLeak")
     private Handler timeHandler = new Handler() {
 
         @Override
@@ -62,7 +67,7 @@ public class LockActivity extends Activity {
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
         setContentView(R.layout.activity_lock);
 
-
+        mRemoteData = new RemoteData(LockActivity.this);
 
         Bundle bundle=this.getIntent().getExtras();
         String min=bundle.getString("minutes");
@@ -86,7 +91,10 @@ public class LockActivity extends Activity {
         pause=(Button) findViewById(R.id.pausebutton);
         end=(Button) findViewById(R.id.endbutton);
 
+
+
         String f=bundle.getString("flagg");
+        taskID = bundle.getInt("taskID");
 
             if(Integer.parseInt(f)==1){
                 flag=1;
@@ -144,10 +152,13 @@ public class LockActivity extends Activity {
             @Override
             public void onClick(View v){
                 if(hour==0&&minute==0&&second==0) {
-                    //finish();
+                    finish();
                 }
                 else {
-                    Toast.makeText(LockActivity.this, "alert dialog", Toast.LENGTH_LONG).show();
+
+                    mRemoteData.incTimes(taskID);
+                    finish();
+
                 }
             }
         });
@@ -212,7 +223,7 @@ public class LockActivity extends Activity {
         minutesTv.setText(String.valueOf(minute));
         secondsTv.setText(String.valueOf(second));
         if(hoursTv.getText().toString().equals("0")&&minutesTv.getText().toString().equals("0")&&secondsTv.getText().toString().equals("0")){
-            //更新任务成功信息
+            mRemoteData.setStatus(taskID,2);
         }
 
         unregisterReceiver(mFinshReceiver);
@@ -240,7 +251,7 @@ public class LockActivity extends Activity {
         minutesTv.setText(String.valueOf(minute));
         secondsTv.setText(String.valueOf(second));
         if(hoursTv.getText().toString().equals("0")&&minutesTv.getText().toString().equals("0")&&secondsTv.getText().toString().equals("0")){
-            //更新任务成功信息
+            mRemoteData.setStatus(taskID,2);
         }
 
         Log.i(TAG,"LockActivity -onStop");

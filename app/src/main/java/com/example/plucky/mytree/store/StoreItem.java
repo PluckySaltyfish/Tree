@@ -10,7 +10,7 @@ public class StoreItem {
     private String name;
     private int selected=0;
     private String id;
-    private int price;
+    private int price=0;
     private int price_res;
 
     public StoreItem(int res, String name) {
@@ -53,7 +53,8 @@ public class StoreItem {
     public void setRes(Context mContext) {
         ApplicationInfo appInfo = mContext.getApplicationInfo();
         this.res  = mContext.getResources().getIdentifier(id, "drawable", appInfo.packageName);
-        this.price_res = mContext.getResources().getIdentifier("price"+price,"drawable",appInfo.packageName);
+        if (price!=0)
+            this.price_res = mContext.getResources().getIdentifier("price"+price,"drawable",appInfo.packageName);
         this.name = name;
     }
 

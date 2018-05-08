@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.UserManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -36,10 +35,8 @@ import com.example.plucky.mytree.watcher.Check;
 import com.example.plucky.mytree.watcher.Validation;
 import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClickListener,TaskAdapter.MyItemClickListener,FloatingToolbar.ItemClickListener {
@@ -173,7 +170,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                         if (confirm) {
                             //锁屏倒计时
                             mTask.setTimes(mTask.getTimes() + 1);
-                            mRemoteData.setTimes(mTask.getTaskID(), mTask.getTimes() + 1);
+                            mRemoteData.incTimes(mTask.getTaskID());
                             UpdateUI();
 
                             int timelimit = taskList.get(position).getTimeLimit();
@@ -186,6 +183,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                             bundle.putString("minutes", minute);
                             bundle.putString("seconds", second);
                             bundle.putString("flagg", "0");
+                            bundle.putInt("taskID",mTask.getTaskID());
                             i.putExtras(bundle);
                             startActivity(i);
                         }
@@ -203,7 +201,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                         if (confirm) {
                             mTask.setTimes(1);
                             UpdateUI();
-                            //mRemoteData.setTimes(mTask.getTaskID(),mTask.getTimes());
+                            //mRemoteData.incTimes(mTask.getTaskID(),mTask.getTimes());
                             //Reload(currentYear,currentMonth,currentDay);
                             mConfirmDialog.dismiss();
                         }

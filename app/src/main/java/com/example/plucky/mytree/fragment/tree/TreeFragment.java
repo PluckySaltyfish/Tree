@@ -20,6 +20,7 @@ import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.dialog.AlertDialog;
 import com.example.plucky.mytree.dialog.ConfirmDialog;
+import com.example.plucky.mytree.dialog.ResourceDialog;
 import com.example.plucky.mytree.dialog.StoreDialog;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
 
@@ -29,18 +30,17 @@ import com.example.plucky.mytree.watcher.Validation;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.mail.Store;
-
 public class TreeFragment extends Fragment {
     private VideoView mVideoView;
-    private FrameLayout placehodler;
+    private FrameLayout placeholder;
     private RemoteData mRemoteData;
     private String username;
     private ImageView tree_level,user_level;
     private TextView tree_exp,exp_text,coin_text;
     private UsersManager mUsersManager;
-    private ImageView mImageView4;
+    private ImageView store_icon,bag_icon;
     private StoreDialog mStoreDialog;
+    private ResourceDialog mResourceDialog;
     private ConfirmDialog mConfirmDialog;
     private AlertDialog mAlertDialog;
     private StoreItem item;
@@ -156,7 +156,7 @@ public class TreeFragment extends Fragment {
         int res = getActivity().getResources().getIdentifier(level_mark,"drawable",appInfo.packageName);
 
         mVideoView = (VideoView)v.findViewById(R.id.tree_view);
-        placehodler = (FrameLayout)v.findViewById(R.id.placeholder);
+        placeholder = (FrameLayout)v.findViewById(R.id.placeholder);
         final String videoPath = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + video_name).toString();
         mVideoView.setVideoPath(videoPath);
         mVideoView.start();
@@ -165,7 +165,7 @@ public class TreeFragment extends Fragment {
             public void onPrepared(MediaPlayer mp) {
                 mp.start();
                 mp.setLooping(true);
-                placehodler.setVisibility(View.GONE);
+                placeholder.setVisibility(View.GONE);
                 mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
                     @Override
                     public boolean onInfo(MediaPlayer mp, int what, int extra) {
@@ -190,8 +190,9 @@ public class TreeFragment extends Fragment {
         tree_level.setImageResource(tree_res);
         user_level.setImageResource(res);
 
-        mImageView4=(ImageView)v.findViewById(R.id.store_icon);
-        mImageView4.setOnClickListener(new View.OnClickListener() {
+        store_icon =(ImageView)v.findViewById(R.id.store_icon);
+        bag_icon =(ImageView)v.findViewById(R.id.bag_icon);
+        store_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mStoreDialog = new StoreDialog(getActivity(), R.style.dialog, new StoreDialog.OnCloseListener() {
@@ -231,6 +232,27 @@ public class TreeFragment extends Fragment {
                 },username);
                 mStoreDialog.show();
 
+            }
+        });
+
+        bag_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mResourceDialog = new ResourceDialog(getActivity(), R.style.dialog, new ResourceDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if (confirm){
+                            item = mResourceDialog.getItem();
+                            if (item.getId().substring(0,3).equals("tree")) {
+                                mAlertDialog = new AlertDialog(getActivity(), R.style.dialog);
+                                mAlertDialog.idolize("已经种了一棵树了哦", "返回", R.drawable.warning);
+                                mAlertDialog.show();
+                            }
+
+                        }
+                    }
+                },username,1);
+                mResourceDialog.show();
             }
         });
 
