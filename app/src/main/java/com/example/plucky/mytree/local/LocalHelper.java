@@ -15,6 +15,7 @@ import com.example.plucky.mytree.store.RootDiagram;
 public class LocalHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
     private static final String DATABASE_NAME = "tree.db";
+    private static final String book2 = "book2";
     private static final String CREAT_USER = "create table "+ UserTable.NAME+" ("
             + UserTable.Cols.USERNAME+","
             + UserTable.Cols.PASSWORD+","
@@ -22,6 +23,12 @@ public class LocalHelper extends SQLiteOpenHelper {
             + UserTable.Cols.STATUS+")";
 
     private static final String CREAT_WD = "create table "+ RootTable.NAME+" ("
+            + RootTable.Cols.pno+","
+            + RootTable.Cols.content+","
+            + RootTable.Cols.meaning+","
+            + RootTable.Cols.title+")";
+
+    private static final String CREAT_PB = "create table "+ book2+" ("
             + RootTable.Cols.pno+","
             + RootTable.Cols.content+","
             + RootTable.Cols.meaning+","
@@ -38,6 +45,7 @@ public class LocalHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREAT_USER);
         db.execSQL(CREAT_WD);
+        db.execSQL(CREAT_PB);
         RootDiagram page1 = new RootDiagram(1,"Anthrop",
                 "anthropology:study of human beings%misanthrope:person who dislikes humans",
                 "human");
@@ -88,9 +96,61 @@ public class LocalHelper extends SQLiteOpenHelper {
                 "write");
         contentValues = getContentValues(page10);
         db.insert(RootTable.NAME,null,contentValues);
+
+//        --prefix--
+        RootDiagram page1_2 = new RootDiagram(1,"Bio",
+                "bicycle:vehicle with two wheels%binocular:involving or built for two eyes",
+                "two");
+        RootDiagram page2_2 = new RootDiagram(2,"Bio",
+                "biography:story of someone's life%biology:study of life or living matter",
+                "life");
+        contentValues = getContentValues(page1_2);
+        db.insert(book2,null,contentValues);
+        contentValues2 = getContentValues(page2_2);
+        db.insert(book2,null,contentValues2);
+        RootDiagram page3_2 = new RootDiagram(3,"Co",
+                "coexist:to live together in peace%cohabitant:person living with another",
+                "together");
+        contentValues = getContentValues(page3_2);
+        db.insert(book2,null,contentValues);
+        RootDiagram page4_2 = new RootDiagram(4,"Dis",
+                "disappear:to vanish from sight%dislike:feeling of aversion or distate","apart");
+        contentValues = getContentValues(page4_2);
+        db.insert(book2,null,contentValues);
+        RootDiagram page5_2 = new RootDiagram(5,"Ex",
+                "exclude:to deny someone access%exit:way out of somewhere","out of");
+        contentValues = getContentValues(page5_2);
+        db.insert(book2,null,contentValues);
+        RootDiagram page6_2 = new RootDiagram(6,"Fore",
+                "forecast:to predict a future event%foreshadow:to indicate a future event","before");
+        contentValues = getContentValues(page6_2);
+        db.insert(book2,null,contentValues);
+        RootDiagram page7_2 = new RootDiagram(7,"In",
+                "not of lacking:being unable to do something%inordinate:unusually very large or excessive",
+                "not or lacking");
+        contentValues = getContentValues(page7_2);
+        db.insert(book2,null,contentValues);
+        RootDiagram page8_2 = new RootDiagram(8,
+                "Inter",
+                "interactive:involving the actions of another%international:existing between two or more countries",
+                "between or among");
+        contentValues = getContentValues(page8_2);
+        db.insert(book2,null,contentValues);
+        RootDiagram page9_2 = new RootDiagram(9,
+                "Non",
+                "nonsense:words or language having no meaning%nonstop:continuing without pause",
+                "not");
+        contentValues = getContentValues(page9_2);
+        db.insert(book2,null,contentValues);
+        RootDiagram page10_2 = new RootDiagram(10,
+                "Semi",
+                "semiannual:occurring twice a year%semiserious:partly serious",
+                "half or partly");
+        contentValues = getContentValues(page10_2);
+        db.insert(book2,null,contentValues);
         User user = new User("CXY","123456");
         contentValues = getUserContentValues(user);
-        db.insert(UserTable.NAME,null,contentValues);
+        db.insert(book2,null,contentValues);
 
 
     }

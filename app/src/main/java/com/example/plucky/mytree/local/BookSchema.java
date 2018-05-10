@@ -2,7 +2,7 @@ package com.example.plucky.mytree.local;
 
 public class BookSchema {
     public static final class RootTable{
-        public static final String NAME = "RootDiagram";
+        public static final String NAME = "book1";
         public static final class Cols{
             public static final String pno = "pno";
             public static final String title = "title";
@@ -11,5 +11,6 @@ public class BookSchema {
         }
 
     }
+
 
 }

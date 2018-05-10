@@ -70,8 +70,6 @@ public class ResourceDialog extends Dialog implements View.OnClickListener,Resou
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager
                 (3, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-
-
     }
 
     private void init(){

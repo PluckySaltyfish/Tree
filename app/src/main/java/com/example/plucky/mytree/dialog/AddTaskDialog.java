@@ -43,7 +43,7 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
     private int count;
     private String username;
     private String now;
-    private StoreDialog mdialog;
+    private ResourceDialog mdialog;
     private Validation mValidation;
 
 
@@ -125,19 +125,20 @@ public class AddTaskDialog  extends Dialog implements View.OnClickListener{
                     case R.id.inherent_task:
                         mTask.setType(1);
 
-                        mdialog = new StoreDialog(mContext, R.style.dialog, new StoreDialog.OnCloseListener() {
+                        mdialog = new ResourceDialog(mContext, R.style.dialog, new ResourceDialog.OnCloseListener() {
                             @Override
                             public void onClick(Dialog dialog, boolean confirm) {
                                 if (confirm){
-                                    StoreItem item = mdialog.getItem();
+                                    StoreItem item =mdialog.getItem();
                                     mTask.setContent(item.getName());
                                     TaskContent.setText(item.getName());
                                     TaskContent.setEnabled(false);
                                     TimeSpinner.setEnabled(false);
                                     mdialog.dismiss();
+
                                 }
                             }
-                        },username);
+                        },username,0);
                         mdialog.show();
                         break;
                 }

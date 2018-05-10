@@ -16,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.fragment.profile.MyFragmentPagerAdapter;
+import com.example.plucky.mytree.watcher.Check;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -49,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
             getWindow().setNavigationBarColor(Color.TRANSPARENT);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
+
+        RemoteData remoteData = new RemoteData(MainActivity.this);
+        //remoteData.getTaskList("plucky",2018,5,8);
+
     }
 
     private void initViews() {

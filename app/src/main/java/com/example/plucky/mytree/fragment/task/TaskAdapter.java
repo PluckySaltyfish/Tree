@@ -82,7 +82,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         }else if(status==1){
             if (task.getTimeLimit()==0&&task.getTimes()==1)
                 holder.status_circle.setImageResource(R.drawable.green_circle);
-            holder.status_circle.setImageResource(R.drawable.blue_circle);
+            else
+                holder.status_circle.setImageResource(R.drawable.blue_circle);
         }else if (status==2){
             holder.status_circle.setImageResource(R.drawable.green_circle);
         }else{

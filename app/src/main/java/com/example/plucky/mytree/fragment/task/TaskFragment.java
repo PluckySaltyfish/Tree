@@ -29,8 +29,11 @@ import com.example.plucky.mytree.R;
 import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.dialog.AddTaskDialog;
 import com.example.plucky.mytree.dialog.ConfirmDialog;
+import com.example.plucky.mytree.dialog.ResourceDialog;
 import com.example.plucky.mytree.dialog.TimeSelectorDialog;
 import com.example.plucky.mytree.fragment.profile.UsersManager;
+import com.example.plucky.mytree.store.BookStart;
+import com.example.plucky.mytree.store.StoreItem;
 import com.example.plucky.mytree.watcher.Check;
 import com.example.plucky.mytree.watcher.Validation;
 import com.github.rubensousa.floatingtoolbar.FloatingToolbar;
@@ -54,8 +57,9 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
     private LinearLayoutManager layoutManager;
     private FloatingActionButton mFab;
     private FloatingToolbar mFloatingToolbar;
+    private ResourceDialog mResourceDialog;
     private RemoteData mRemoteData = new RemoteData(getActivity());
-
+    private StoreItem mStoreItem;
     private DatePicker mDatePicker;
     private Validation mValidation;
 
@@ -123,6 +127,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         } else {
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
+            //adapter.notifyAll();
         }
     }
 
@@ -170,7 +175,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                         if (confirm) {
                             //锁屏倒计时
                             mTask.setTimes(mTask.getTimes() + 1);
-                            mRemoteData.incTimes(mTask.getTaskID());
+                            mRemoteData.setTimes(mTask.getTaskID());
                             UpdateUI();
 
                             int timelimit = taskList.get(position).getTimeLimit();
@@ -200,8 +205,9 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                     public void onClick(Dialog dialog, boolean confirm) {
                         if (confirm) {
                             mTask.setTimes(1);
+                            adapter.notifyItemChanged(position);
                             UpdateUI();
-                            //mRemoteData.incTimes(mTask.getTaskID(),mTask.getTimes());
+                            //mRemoteData.setTimes(mTask.getTaskID(),mTask.getTimes());
                             //Reload(currentYear,currentMonth,currentDay);
                             mConfirmDialog.dismiss();
                         }
@@ -210,6 +216,12 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                 mConfirmDialog.idolize("每日检查", "今日此任务计划已完成？", "取消", "完成", R.drawable.frog);
                 mConfirmDialog.show();
             }
+        }else{
+            String bookid = mTask.getContent();
+            if (bookid.equals("前缀大百科"))bookid="book1";
+            else bookid = "bool2";
+            BookStart bookStart= new BookStart(getActivity());
+            bookStart.startReading(bookid,mTask.getTaskID());
         }
 
 
@@ -246,6 +258,16 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
                 AddTaskDialog.show();
                 break;
             case R.id.resources:
+                mResourceDialog = new ResourceDialog(getActivity(), R.style.dialog, new ResourceDialog.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        mStoreItem = mResourceDialog.getItem();
+                        BookStart bookStart = new BookStart(getActivity());
+                        bookStart.startReading(mStoreItem.getId(),0);
+
+                    }
+                },username,0);
+                mResourceDialog.show();
                 break;
 
             case R.id.filter:
@@ -280,5 +302,7 @@ public class TaskFragment extends Fragment implements TaskAdapter.MyItemLongClic
         keyguardLock.disableKeyguard();//取消系统锁屏
         getActivity().startService(new Intent(getActivity(), LockService.class));
     }
+
+
 }
 

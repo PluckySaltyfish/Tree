@@ -103,7 +103,7 @@ public class Task implements Comparable{
                 '}';
     }
 
-    String getContent() {
+    public String getContent() {
         return content;
     }
 

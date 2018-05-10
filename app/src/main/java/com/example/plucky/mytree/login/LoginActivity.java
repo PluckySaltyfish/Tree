@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
 
+
+
         Button sign_in_button= (Button)findViewById(R.id.SignIN);
         Button sign_up_button= (Button)findViewById(R.id.signup);
 

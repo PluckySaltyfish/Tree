@@ -243,7 +243,7 @@ public class TreeFragment extends Fragment {
                     public void onClick(Dialog dialog, boolean confirm) {
                         if (confirm){
                             item = mResourceDialog.getItem();
-                            if (item.getId().substring(0,3).equals("tree")) {
+                            if (item.getId().substring(0,4).equals("tree")) {
                                 mAlertDialog = new AlertDialog(getActivity(), R.style.dialog);
                                 mAlertDialog.idolize("已经种了一棵树了哦", "返回", R.drawable.warning);
                                 mAlertDialog.show();
@@ -262,5 +262,7 @@ public class TreeFragment extends Fragment {
 
 
     }
+
+
 
 }

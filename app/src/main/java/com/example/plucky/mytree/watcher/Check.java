@@ -11,12 +11,21 @@ import com.example.plucky.mytree.connection.RemoteData;
 import com.example.plucky.mytree.fragment.task.Task;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 
@@ -105,7 +114,7 @@ public class Check {
     public Pie_Data[] PieChartCheck(String username,int currentYear,int currentMonth,int currentDay){
         mRemoteData = new RemoteData(mContext);
         List<Task>list = mRemoteData.getWeeklyTaskList(username,currentYear,currentMonth,currentDay);
-        int finished=6,failed=7,soon=8,ing=9;
+        int finished=6,failed=2,soon=3,ing=8;
 //        int finished=0,failed=0,soon=0,ing=0;
 
 //        for (int i =1;i<=list.size();i++){
@@ -173,7 +182,7 @@ public class Check {
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
                             // 指定访问的服务器地址是电脑本机
-                            .url("http://192.168.1.208:3000/user/user")
+                            .url("http://119.23.203.164:80/user")
                             .build();
                     Response response = client.newCall(request).execute();
                     String responseData = response.body().string();
@@ -220,5 +229,47 @@ public class Check {
         return days;
     }
 
+    public void postDatawithOKhttp(final String username){
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                MediaType JSON=MediaType.parse("application/json; charset=utf-8");
+                //使用JSONObject封装参数
+                String json = "{\"usrName\":\"" +username+"\"}";
+
+                RequestBody requestBody = RequestBody.create(JSON, json);
+
+                Request request = new Request
+                        .Builder()
+                        .post(requestBody)//Post请求的参数传递
+                        .url("http://192.168.1.102:3030/exist")
+                        .build();
+                try {
+                    Response response = okHttpClient.newCall(request).execute();
+                    String result = response.body().string();
+                    parseJSONWithJSONObject(result);
+                    response.body().close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+
+
+    private void parseJSONWithJSONObject(String jsonData){
+        try{
+            List<String>list = new ArrayList<>();
+            JSONArray jsonArray = new JSONArray(jsonData);
+            for (int i=0; i< jsonArray.length(); i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                list.add(jsonObject.getString("username"));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
